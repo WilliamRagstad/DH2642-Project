@@ -7,7 +7,7 @@ import allReducers from "./reducers";
 import { Provider } from 'react-redux';
 
 // FIREBASE
-import firebase from 'firebase-app';
+import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 const firebaseConfig = {
