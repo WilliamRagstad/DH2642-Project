@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+
+import firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
+
 import {createStore} from 'redux';
 import allReducers from "./reducers";
 import { Provider } from 'react-redux';
 
 // FIREBASE
-import firebase from 'firebase/app';
-import 'firebase/database';
-import 'firebase/auth';
 const firebaseConfig = {
 	apiKey: "AIzaSyCurCsMsxjroxfjgt6LpCLhH2pfbgasIvI",
 	authDomain: "fir-project-e91a1.firebaseapp.com",
@@ -23,9 +25,7 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth;
 export const db = firebase.database();
 
-
-
-
+// REDUX
 const store = createStore(
 	allReducers,
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
