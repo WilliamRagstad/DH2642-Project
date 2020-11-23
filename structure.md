@@ -16,5 +16,6 @@ src/
         sass/
             */
                 _*.scss         # a file for each component or module
-            style.scss          # import all _*.scss files here
+                _index.scss     # import all files in directory
+            style.scss          # import frameworkds and directory indexes
 ```
