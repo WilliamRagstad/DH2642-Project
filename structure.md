@@ -10,7 +10,9 @@ src/
             *.js
         index.js                # import and export all components here
     reducers/
-        *.js
+        */
+            *-reducer.js                # reducer
+        index.js                # import and export all components here
     styles/
         sass/
             */

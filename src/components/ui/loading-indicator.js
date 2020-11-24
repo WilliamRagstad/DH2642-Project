@@ -1,4 +1,3 @@
-const LoadingIndicator = () =>
-<div className="loading-indicator" />;
+const LoadingIndicator = () => <div className="loading-indicator" />;
 
 export default LoadingIndicator;
