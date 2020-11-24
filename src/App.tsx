@@ -4,14 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { Counter, Signin, LoadingIndicator } from './components';
 
 import { increment, decrement } from "./actions";
-
+// @ts-ignore
 import logo from './logo.svg';
 import './App.css';
 import './styles/sass/style.scss'
 
 function App() {
 
-	const counter = useSelector(state => state.counterReducer);
+	const counter = useSelector((state: any) => state.counterReducer);
 	const dispatch = useDispatch();
 
 	return (
@@ -32,8 +32,8 @@ function App() {
 
 			<div>
 				<h1>Counter {counter}</h1>
-				<button onClick={() => dispatch(increment())}>+</button>
-				<button onClick={() => dispatch(decrement())}>-</button>
+				<button onClick={() => dispatch(increment(5))}>+</button>
+				<button onClick={() => dispatch(decrement(5))}>-</button>
 			</div>
 		</div>
 	);
