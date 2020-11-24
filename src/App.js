@@ -2,8 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import './styles/sass/style.scss'
 
-import Counter from './components/counter';
-import LoadingIndicator from './components/ui/loading-indicator'
+import { Counter, LoadingIndicator } from './components';
 
 function App() {
   return (
