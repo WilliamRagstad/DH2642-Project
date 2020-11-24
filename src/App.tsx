@@ -28,7 +28,7 @@ function App() {
 
 			<LoadingIndicator />
 			<Counter />
-      <Signin />
+			<Signin />
 
 			<div>
 				<h1>Counter {counter}</h1>

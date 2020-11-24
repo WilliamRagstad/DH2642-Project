@@ -14,11 +14,11 @@ import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { createFirestoreInstance } from 'redux-firestore'
 
 const rrfProps = {
-    firebase,
-    config: {
-        userProfile: "users",
-        useFirestoreForProfile: true,
-    },
+	firebase,
+	config: {
+		userProfile: "users",
+		useFirestoreForProfile: true,
+	},
 	dispatch: store.dispatch,
 	createFirestoreInstance
 }
