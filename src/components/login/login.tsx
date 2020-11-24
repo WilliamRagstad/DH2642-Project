@@ -16,7 +16,7 @@ const Login = ({
                 e.preventDefault();
                 login();
             }}>
-                <input type="email" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></input>
+                <input type="text" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></input>
                 <input type="password" name={'password'} value={loginFormData.password} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></input>
                 <input type="submit" value="Sign in" />
                 <p>{loginError}</p>
