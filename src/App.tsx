@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Counter, Signin, LoadingIndicator } from './components';
+import { Counter, Signin, Signup, LoadingIndicator } from './components';
 
 import { increment, decrement } from "./actions";
 // @ts-ignore
@@ -28,7 +28,8 @@ function App() {
 
 			<LoadingIndicator />
 			<Counter />
-			<Signin />
+      		<Signin />
+			<Signup />
 
 			<div>
 				<h1>Counter {counter}</h1>

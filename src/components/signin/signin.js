@@ -16,12 +16,11 @@ const Signin = () => {
     }
 
     return React.createElement(SigninView, {
-            onEmail: email => setEmail(email),
-            onPassword: password => setPassword(password),
-            onSignin: () => signInWithEmail(),
-            errorMessage
-        }
-    );
+        onEmail: email => setEmail(email),
+        onPassword: password => setPassword(password),
+        onSignin: () => signInWithEmail(),
+        errorMessage
+    });
 }
 
 export default Signin;
