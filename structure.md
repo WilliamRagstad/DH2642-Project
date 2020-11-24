@@ -6,10 +6,9 @@ src/
         */
             *.js                # presenter
             *-view.js           # view
-            index.js            # pass through presenter
         ui/                     # pure ui components, only views
             *.js
-        index.js                # import all components here
+        index.js                # import and export all components here
     reducers/
         *.js
     styles/
