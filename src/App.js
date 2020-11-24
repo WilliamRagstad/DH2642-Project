@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Counter, LoadingIndicator } from './components';
+import { Counter, Signin, LoadingIndicator } from './components';
 
 import { increment, decrement } from "./actions";
 
@@ -28,6 +28,7 @@ function App() {
 
 			<LoadingIndicator />
 			<Counter />
+      <Signin />
 
 			<div>
 				<h1>Counter {counter}</h1>
