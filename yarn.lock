@@ -11845,11 +11845,6 @@
     "core-util-is" "1.0.2"
     "extsprintf" "^1.2.0"
 
-"vfile-location@^3.2.0":
-  "integrity" "sha512-aLEIZKv/oxuCDZ8lkJGhuhztf/BW4M+iHdCwglA/eWc+vtuRFJj8EtgceYFX4LRjOhCAAiNHsKGssC6onJ+jbA=="
-  "resolved" "https://registry.npmjs.org/vfile-location/-/vfile-location-3.2.0.tgz"
-  "version" "3.2.0"
-
 "vm-browserify@^1.0.1":
   "integrity" "sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ=="
   "resolved" "https://registry.npmjs.org/vm-browserify/-/vm-browserify-1.1.2.tgz"
