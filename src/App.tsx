@@ -5,7 +5,7 @@ import { Counter, Signin, LoadingIndicator } from './components';
 
 import { increment, decrement } from "./actions";
 // @ts-ignore
-// import logo from './logo.svg';
+// import logo from '../assets/logo.svg';
 import './App.css';
 import './styles/sass/style.scss'
 
@@ -28,7 +28,7 @@ function App() {
 
 			<LoadingIndicator />
 			<Counter />
-      		<Signin />
+			<Signin />
 
 			<div>
 				<h1>Counter {counter}</h1>
