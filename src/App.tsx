@@ -1,9 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Counter, Signin, Signup, LoadingIndicator } from './components';
+import {
+	Counter,
+	Signin,
+	Signup,
+	LoadingIndicator,
+	Login
+} from './components';
 
-import { increment, decrement } from "./actions";
+import { increment, decrement } from "./actions/counter-actions";
 // @ts-ignore
 // import logo from '../assets/logo.svg';
 import './App.css';
@@ -28,7 +34,7 @@ function App() {
 
 			<LoadingIndicator />
 			<Counter />
-      		<Signin />
+			<Login />
 			<Signup />
 
 			<div>
