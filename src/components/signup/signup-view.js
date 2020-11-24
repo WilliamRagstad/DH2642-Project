@@ -1,15 +1,15 @@
-const SigninView = ({onEmail, onPassword, onSignin, errorMessage}) => 
+const Signup = ({onEmail, onPassword, onSignup, password, errorMessage}) => 
 <div>
-    <h1>Sign in</h1>
+    <h1>Sign up</h1>
     <form onSubmit={e => {
         e.preventDefault();
-        onSignin();
+        onSignup();
     }}>
         <input type="email" onChange={e => onEmail(e.target.value)} placeholder="E-mail"></input>
         <input type="password" onChange={e => onPassword(e.target.value)} placeholder="Password"></input>
-        <input type="submit" value="Sign in" />
+        <input type="submit" value="Sign up"/>
         <p>{errorMessage}</p>
     </form>
 </div>;
 
-export default SigninView;
+export default Signup;
