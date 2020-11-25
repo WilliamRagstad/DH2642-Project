@@ -21,8 +21,8 @@ const Login = ({
                     <form onSubmit={e => {
                         e.preventDefault();
                         login();
-                    }}>
-                        <TextField dark rounded type="text" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
+                    }} noValidate>
+                        <TextField dark rounded type="email" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
                         <TextField dark rounded type="password" name={'password'} value={loginFormData.password} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
                         <input type="submit" hidden/>
                     </form>
