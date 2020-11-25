@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../../actions';
-import { Button, Card, CardHeader, CardContent} from 'ui-neumorphism'
+import { Button, Card, CardHeader, CardContent, TextField, Tooltip} from 'ui-neumorphism'
 
 const Signup = ({
     signupFormData,
@@ -12,17 +12,19 @@ const Signup = ({
 
     return (
         <div style={{alignItems: "center"}}>
-            <Card style={{padding: "5px", margin: "5px", width: "650px"}}>
+            <Card style={{padding: "5px", margin: "5px", width: "300px"}}>
                 <CardHeader>Sign up</CardHeader>
                 <CardContent>
                     <form onSubmit={e => {
                         e.preventDefault();
                         signup();
                     }}>
-                        <input type="text" name={'email'} value={signupFormData.email} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></input>
-                        <input type="password" name={'password'} value={signupFormData.password} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></input>
-                        <input type="password" name={'passwordRepeat'} value={signupFormData.passwordRepeat} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Repeat Password"></input>
-                        <Button onClick={e => {signup()}}>Sign up</Button>
+                        <TextField type="text" name={'email'} value={signupFormData.email} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
+                        <TextField type="password" name={'password'} value={signupFormData.password} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
+                        <TextField type="password" name={'passwordRepeat'} value={signupFormData.passwordRepeat} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Repeat Password"></TextField>
+                        <Tooltip top inset content={<div>Click to sign up</div>}>
+                            <Button onClick={e => {signup()}}>Sign up</Button>
+                        </Tooltip>
                         <p>{signupError}</p>
                     </form>
                 </CardContent>

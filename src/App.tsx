@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Card } from 'ui-neumorphism'
+import { Button, Card, Tooltip } from 'ui-neumorphism'
 import 'ui-neumorphism/dist/index.css'
 
 import {
@@ -37,10 +37,14 @@ function App() {
 			<Login />
 			<Signup />
 
-			<Card style={{width: "170px", padding: "10px"}}>
+			<Card style={{width: "200px", padding: "10px"}}>
 				<h1>Counter {counter}</h1>
-				<Button style={{margin: "4px"}} onClick={() => dispatch(increment(5))}>+</Button>
-				<Button style={{margin: "4px"}} onClick={() => dispatch(decrement(5))}>-</Button>
+				<Tooltip top inset content={<div>Increase counter by 5</div>}>
+					<Button style={{margin: "4px"}} onClick={() => dispatch(increment(5))}>+</Button>
+				</Tooltip>
+				<Tooltip top inset content={<div>Decrease counter by 5</div>}>
+					<Button style={{margin: "4px"}} onClick={() => dispatch(decrement(5))}>-</Button>
+				</Tooltip>
 			</Card>
 		</div>
 	);
