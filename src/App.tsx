@@ -6,7 +6,8 @@ import 'ui-neumorphism/dist/index.css'
 import {
 	Counter,
 	Signup,
-	Login
+	Login,
+	SpotifyAuth
 } from './components';
 
 import { increment, decrement } from "./actions/counter-actions";
@@ -35,6 +36,7 @@ function App() {
 			<Counter />
 			<Login />
 			<Signup />
+			<SpotifyAuth />
 
 			<Card style={{width: "200px", padding: "10px"}}>
 				<h1>Counter {counter}</h1>
