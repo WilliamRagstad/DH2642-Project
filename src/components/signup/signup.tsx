@@ -20,18 +20,18 @@ const Signup = ({
 
     return (
         <div style={{alignItems: "center"}}>
-            <Card style={{padding: "5px", margin: "5px", width: "300px"}}>
+            <Card dark style={{padding: "5px", margin: "5px", width: "300px"}}>
                 <CardHeader>Sign up</CardHeader>
                 <CardContent>
                     <form onSubmit={e => {
                         e.preventDefault();
                         signup();
                     }}>
-                        <TextField type="text" name={'email'} value={signupFormData.email} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
-                        <TextField type="password" name={'password'} value={signupFormData.password} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
-                        <TextField type="password" name={'passwordRepeat'} value={signupFormData.passwordRepeat} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Repeat Password"></TextField>
-                        <Tooltip right content={<div>Click to sign up</div>}>
-                            <Button onClick={e => {signup()}}>Sign up</Button>
+                        <TextField dark type="text" name={'email'} value={signupFormData.email} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
+                        <TextField dark type="password" name={'password'} value={signupFormData.password} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
+                        <TextField dark type="password" name={'passwordRepeat'} value={signupFormData.passwordRepeat} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Repeat Password"></TextField>
+                        <Tooltip dark right content={<div>Click to sign up</div>}>
+                            <Button dark onClick={e => {signup()}}>Sign up</Button>
                         </Tooltip>
                         <p>{signupError}</p>
                     </form>

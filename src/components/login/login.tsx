@@ -12,17 +12,17 @@ const Login = ({
 
     return (
         <div style={{alignItems: "center"}}>
-            <Card style={{padding: "5px", margin: "5px", width: "300px"}}>
+            <Card dark style={{padding: "5px", margin: "5px", width: "300px"}}>
                 <CardHeader>Sign in</CardHeader>
                 <CardContent>
                     <form onSubmit={e => {
                         e.preventDefault();
                         login();
                     }}>
-                        <TextField type="text" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
-                        <TextField type="password" name={'password'} value={loginFormData.password} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
-                        <Tooltip right content={<div>Click to sign in</div>}>
-                            <Button onClick={e => {login()}}>Sign in</Button>
+                        <TextField dark type="text" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
+                        <TextField dark type="password" name={'password'} value={loginFormData.password} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
+                        <Tooltip dark right content={<div>Click to sign in</div>}>
+                            <Button dark onClick={e => {login()}}>Sign in</Button>
                         </Tooltip>
                         <p>{loginError}</p>
                     </form>

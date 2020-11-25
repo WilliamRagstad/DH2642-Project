@@ -38,13 +38,13 @@ function App() {
 			<Signup />
 			<SpotifyAuth />
 
-			<Card style={{width: "200px", padding: "10px"}}>
+			<Card dark style={{width: "200px", padding: "10px"}}>
 				<h1>Counter {counter}</h1>
-				<Tooltip right inset content={<div>Increase counter by 5</div>}>
-					<Button style={{margin: "4px"}} onClick={() => dispatch(increment(5))}>+</Button>
+				<Tooltip dark right inset content={<div>Increase counter by 5</div>}>
+					<Button dark style={{margin: "4px"}} onClick={() => dispatch(increment(5))}>+</Button>
 				</Tooltip>
-				<Tooltip right inset content={<div>Decrease counter by 5</div>}>
-					<Button style={{margin: "4px"}} onClick={() => dispatch(decrement(5))}>-</Button>
+				<Tooltip dark right inset content={<div>Decrease counter by 5</div>}>
+					<Button dark style={{margin: "4px"}} onClick={() => dispatch(decrement(5))}>-</Button>
 				</Tooltip>
 			</Card>
 		</div>
