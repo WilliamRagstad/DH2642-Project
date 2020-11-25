@@ -1,12 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Card, Tooltip } from 'ui-neumorphism'
+import { Button, Card, Tooltip, ProgressCircular } from 'ui-neumorphism'
 import 'ui-neumorphism/dist/index.css'
 
 import {
 	Counter,
 	Signup,
-	LoadingIndicator,
 	Login
 } from './components';
 
@@ -32,17 +31,17 @@ function App() {
         		</a>
 			</header> */}
 
-			<LoadingIndicator />
+			<ProgressCircular indeterminate color='var(--success)' size={64} width={8}/>
 			<Counter />
 			<Login />
 			<Signup />
 
 			<Card style={{width: "200px", padding: "10px"}}>
 				<h1>Counter {counter}</h1>
-				<Tooltip top inset content={<div>Increase counter by 5</div>}>
+				<Tooltip right inset content={<div>Increase counter by 5</div>}>
 					<Button style={{margin: "4px"}} onClick={() => dispatch(increment(5))}>+</Button>
 				</Tooltip>
-				<Tooltip top inset content={<div>Decrease counter by 5</div>}>
+				<Tooltip right inset content={<div>Decrease counter by 5</div>}>
 					<Button style={{margin: "4px"}} onClick={() => dispatch(decrement(5))}>-</Button>
 				</Tooltip>
 			</Card>

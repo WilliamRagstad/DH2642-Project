@@ -21,7 +21,7 @@ const Login = ({
                     }}>
                         <TextField type="text" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
                         <TextField type="password" name={'password'} value={loginFormData.password} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
-                        <Tooltip top inset content={<div>Click to sign in</div>}>
+                        <Tooltip right content={<div>Click to sign in</div>}>
                             <Button onClick={e => {login()}}>Sign in</Button>
                         </Tooltip>
                         <p>{loginError}</p>

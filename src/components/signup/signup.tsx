@@ -30,7 +30,7 @@ const Signup = ({
                         <TextField type="text" name={'email'} value={signupFormData.email} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
                         <TextField type="password" name={'password'} value={signupFormData.password} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
                         <TextField type="password" name={'passwordRepeat'} value={signupFormData.passwordRepeat} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Repeat Password"></TextField>
-                        <Tooltip top inset content={<div>Click to sign up</div>}>
+                        <Tooltip right content={<div>Click to sign up</div>}>
                             <Button onClick={e => {signup()}}>Sign up</Button>
                         </Tooltip>
                         <p>{signupError}</p>
