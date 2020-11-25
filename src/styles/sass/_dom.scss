@@ -1,12 +1,20 @@
-:root {
-    --dark-bg: #444444;
+$dark-bg: #444444;
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;
 }
 
 body {
-    background-color: --var(--dark-bg);
+    background-color: $dark-bg;
 }
 
 a, a:hover, a:active, a:focus {
     color: inherit;
     text-decoration: none;
+}
+
+input {
+    max-width: 100%;
 }
