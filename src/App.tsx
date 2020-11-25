@@ -9,8 +9,7 @@ import {
 } from './components';
 
 import { increment, decrement } from "./actions/counter-actions";
-// @ts-ignore
-// import logo from '../assets/logo.svg';
+
 import './App.css';
 import './styles/sass/style.scss'
 
