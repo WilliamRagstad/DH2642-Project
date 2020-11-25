@@ -29,3 +29,5 @@ yarn-error.log*
 
 .vscode
 .eslintcache
+tsconfig.json
+yarn.lock

@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 import actions from '../../actions';
 import { Button, Card, CardHeader, CardContent, TextField, Tooltip} from 'ui-neumorphism'
 
+/**
+ ** Depricated Component
+ * ====================
+ * Storing local data like current values of input elements
+ * should be done in component level, and more globally shared
+ * stated should be utilizing Redux.
+ */
+
 const Signup = ({
     signupFormData,
     signupError,
@@ -32,7 +40,7 @@ const Signup = ({
         </div>
     );
 }
-    
+
 const mapStateToProps = state => {
     return {
         signupFormData: state.signup.signupFormData,
