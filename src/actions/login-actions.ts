@@ -1,7 +1,6 @@
 export const loginChange = (name, value) => {
     let formData = {};
     formData[name] = value;
-    console.log(formData);
 
     return {
         type: 'LOGIN_CHANGE',
