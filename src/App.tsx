@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Card, Tooltip, ProgressCircular } from 'ui-neumorphism'
-import 'ui-neumorphism/dist/index.css'
+import 'ui-neumorphism/dist/index.css';
 
 import {
 	Counter,
@@ -32,7 +32,7 @@ function App() {
         		</a>
 			</header> */}
 
-			<ProgressCircular indeterminate color='var(--success)' size={64} width={8}/>
+			{/* <ProgressCircular indeterminate color='var(--success)' size={36} width={4}/> */}
 			<Counter />
 			<Login />
 			<Signup />
