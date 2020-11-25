@@ -1,40 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../../actions';
-import { Button, Card, CardHeader, CardContent, TextField, Tooltip} from 'ui-neumorphism'
-
-/**
- ** Depricated Component
- * ====================
- * Storing local data like current values of input elements
- * should be done in component level, and more globally shared
- * stated should be utilizing Redux.
- */
+import { Link } from 'react-router-dom';
+import { Button, Card, CardHeader, CardContent, TextField, Alert, ProgressCircular} from 'ui-neumorphism';
 
 const Signup = ({
     signupFormData,
     signupError,
+    isLoading,
     signupChange,
     signup
 }) => {
 
     return (
-        <div style={{alignItems: "center"}}>
-            <Card dark style={{padding: "5px", margin: "5px", width: "300px"}}>
-                <CardHeader>Sign up</CardHeader>
+        <div style={{alignItems: "center", textAlign: "center"}}>
+            <Card dark style={{padding: "5px", margin: "5px auto", width: "300px"}}>
+                <CardHeader>Create account</CardHeader>
+                <Alert flat type="error">{signupError}</Alert>
                 <CardContent>
                     <form onSubmit={e => {
                         e.preventDefault();
                         signup();
                     }}>
-                        <TextField dark type="text" name={'email'} value={signupFormData.email} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
-                        <TextField dark type="password" name={'password'} value={signupFormData.password} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
-                        <TextField dark type="password" name={'passwordRepeat'} value={signupFormData.passwordRepeat} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Repeat Password"></TextField>
-                        <Tooltip dark right content={<div>Click to sign up</div>}>
-                            <Button dark onClick={e => {signup()}}>Sign up</Button>
-                        </Tooltip>
-                        <p>{signupError}</p>
+                        <TextField dark rounded type="text" name={'email'} value={signupFormData.email} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
+                        <TextField dark rounded type="password" name={'password'} value={signupFormData.password} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
+                        <TextField dark rounded type="password" name={'passwordRepeat'} value={signupFormData.passwordRepeat} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Repeat Password"></TextField>
+                        <input type="submit" hidden/>
                     </form>
+                    {isLoading ? 
+                    <ProgressCircular dark  indeterminate color='var(--primary)' size={27} width={4}/> :
+                    <Button dark rounded onClick={() => signup()}>Enter</Button>}
+                    <p>Already have an account?</p>
+                    <Link to="/login">
+                        <Button dark text rounded>Log in</Button>
+                    </Link>
                 </CardContent>
             </Card>
         </div>
