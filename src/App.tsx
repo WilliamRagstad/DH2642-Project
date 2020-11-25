@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Button, Card } from 'ui-neumorphism'
+import 'ui-neumorphism/dist/index.css'
 
 import {
 	Counter,
@@ -35,11 +37,11 @@ function App() {
 			<Login />
 			<Signup />
 
-			<div>
+			<Card style={{width: "170px", padding: "10px"}}>
 				<h1>Counter {counter}</h1>
-				<button onClick={() => dispatch(increment(5))}>+</button>
-				<button onClick={() => dispatch(decrement(5))}>-</button>
-			</div>
+				<Button style={{margin: "4px"}} onClick={() => dispatch(increment(5))}>+</Button>
+				<Button style={{margin: "4px"}} onClick={() => dispatch(decrement(5))}>-</Button>
+			</Card>
 		</div>
 	);
 }
