@@ -25,6 +25,16 @@ export const login = () => {
     }
 }
 
+export const signOut = () => {
+    return (dispatch, getState, { getFirebase }) => {
+        const firebase = getFirebase();
+        
+        firebase.auth().signOut().then(() => {
+            dispatch({type: 'SIGNOUT_SUCCESS'});
+        });
+    }
+}
+
 export const handleLoginError = err => {
     return (dispatch, getState) => {
         dispatch({ type: 'LOGIN_ERROR', err });
