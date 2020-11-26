@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from 'ui-neumorphism';
 
 const Application = () => {
     return (
