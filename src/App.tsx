@@ -56,7 +56,7 @@ function App() {
 					path="/connect/:service(.+)"
 					render={({ match, props, location }) => 
 						<h1>
-							Words then numbers: {match.params.service}
+							You are connecting to {match.params.service}
 							{console.log({ match })}
 							{console.log({ location })}
 						</h1>
