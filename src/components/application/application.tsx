@@ -1,4 +1,6 @@
 import React from 'react';
+import { Card } from 'ui-neumorphism';
+import Navigation from '../navigation/navigation';
 
 const Application = () => {
     return (
@@ -6,7 +8,7 @@ const Application = () => {
             <div className="flex-child flex-parent">
                 <div className="application-sidebar flex-parent flex-column">
                     <div className="application-navigation flex-child">
-                        <Card inset bordered className="fill-element" dark></Card>
+                        <Navigation/>
                     </div>
                     <div className="application-media-frame">
                         <img className="fill-element" alt="" src="https://i.ytimg.com/vi/vhl9wWLv2Yo/maxresdefault.jpg"/>

@@ -9,7 +9,6 @@ import {
 	Counter,
 	Signup,
 	Login,
-	Navigation,
 	SpotifyAuth,
 	Connect
 } from './components';
