@@ -48,13 +48,11 @@ function App() {
 				<Route path="/signup" render={() => (
 					!isLoggedIn ? <Signup /> : <Redirect to="/"/>
 				)}/>
+				<Route path="/spotify-auth">
+					<SpotifyAuth />
+				</Route>
 				<Route path="/">
-					<div className="flexparent">
-						{(isLoggedIn) ? <Button dark onClick={() => {
-							dispatch(signOut());
-						}}>Sign out</Button> : <Redirect to="/login" />}
-						<SpotifyAuth />
-					</div>
+					root
 				</Route>
 			</Switch>
 		</Router>
