@@ -14,7 +14,7 @@ const Login = ({
 
     return (
         <div className="login">
-            <Card className="loginCard" dark>
+            <Card className="login-card" dark>
                 <CardHeader>Log in</CardHeader>
                 <Alert flat type="error">{loginError}</Alert>
                 <CardContent>
@@ -28,7 +28,7 @@ const Login = ({
                     </form>
                     
                     {isLoading ? 
-                        <ProgressCircular dark indeterminate color='var(--primary)' size={27} width={4} style={{margin: "auto"}}/> :
+                        <ProgressCircular className="login-progress" dark indeterminate color='var(--primary)' size={27} width={4}/> :
                         <Button dark rounded onClick={() => login()}>Log in</Button>}
                     <p>First time around?</p>
                     <Link to="signup">

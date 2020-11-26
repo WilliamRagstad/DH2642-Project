@@ -13,8 +13,8 @@ const Signup = ({
 }) => {
 
     return (
-        <div style={{alignItems: "center", textAlign: "center"}}>
-            <Card dark style={{padding: "5px", margin: "5px auto", width: "300px"}}>
+        <div className="signup">
+            <Card className="signup-card" dark>
                 <CardHeader>Create account</CardHeader>
                 <Alert flat type="error">{signupError}</Alert>
                 <CardContent>
@@ -28,7 +28,7 @@ const Signup = ({
                         <input type="submit" hidden/>
                     </form>
                     {isLoading ? 
-                    <ProgressCircular dark  indeterminate color='var(--primary)' size={27} width={4}/> :
+                    <ProgressCircular className="signup-progress" dark  indeterminate color='var(--primary)' size={27} width={4}/> :
                     <Button dark rounded onClick={() => signup()}>Enter</Button>}
                     <p>Already have an account?</p>
                     <Link to="/login">
