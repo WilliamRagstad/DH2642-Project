@@ -3,9 +3,8 @@ import Spotify from "./spotify";
 
 const Connect = ({ match, props, location }) => {
     const service = match.params.service;
-
-    console.log(match)
-    console.log(location)
+    // console.log(match)
+    // console.log(location)
 
     switch (service) {
         case "spotify":
