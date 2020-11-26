@@ -55,7 +55,8 @@ function App() {
 				</Route>
 				<Route
 					path="/connect/:service([a-z]+)"
-					component={Connect} />
+					component={Connect}
+				/>
 				<Route path="/">
 					<div className="flexparent">
 						{(isLoggedIn) ? <Button dark onClick={() => {
