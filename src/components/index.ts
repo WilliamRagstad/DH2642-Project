@@ -1,3 +1,4 @@
+import Application from './application/application';
 import Counter from './counter/counter';
 import Signin from './signin/signin';
 import Signup from './signup/signup';
@@ -6,6 +7,7 @@ import Login from './login/login';
 import SpotifyAuth from './spotify-auth/spotify-auth';
 
 export {
+    Application,
     Counter,
     Signin,
     Signup,
