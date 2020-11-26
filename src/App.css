@@ -1,21 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App,
-.flexparent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.flexparent > *,
-.App > * {
-  margin: 10px;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
