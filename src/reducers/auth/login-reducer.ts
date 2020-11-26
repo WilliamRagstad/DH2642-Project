@@ -1,3 +1,5 @@
+import { IAction } from "../../interfaces";
+
 const initialState = {
     loginFormData: {
         email: "",
@@ -8,13 +10,13 @@ const initialState = {
     signoutError: null
 }
 
-const loginReducer = (state = initialState, action) => {
+const loginReducer = (state = initialState, IAction: IAction) => {
     let newState;
-    switch (action.type) {
+    switch (IAction.type) {
         case 'LOGIN_CHANGE':
             newState = {
                 ...state,
-                loginFormData: { ...state.loginFormData, ...action.payload }
+                loginFormData: { ...state.loginFormData, ...IAction.payload }
             };
             return newState;
         case 'LOGIN_SUCCESS':
@@ -31,7 +33,7 @@ const loginReducer = (state = initialState, action) => {
         case 'LOGIN_ERROR':
             newState = {
                 ...state,
-                loginError: action.err.message,
+                loginError: IAction.err.message,
                 isLoading: false
             };
             return newState;

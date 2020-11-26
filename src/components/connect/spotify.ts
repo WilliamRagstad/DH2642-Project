@@ -1,4 +1,6 @@
-const Spotify = (access_token: string, token_type: string, expires_in: number) => {
+import ISpotify from "../../interfaces/services/spotify";
+
+const Spotify = (data: ISpotify) => {
     
 }
 

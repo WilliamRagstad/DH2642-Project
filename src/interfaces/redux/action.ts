@@ -1,8 +1,9 @@
 // Redux action interface
 
-interface Action {
+interface IAction {
     type: string;
     payload?: any;
+    err?: any;
 }
 
-export default Action;
+export default IAction;

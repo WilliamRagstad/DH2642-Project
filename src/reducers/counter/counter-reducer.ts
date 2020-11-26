@@ -1,6 +1,6 @@
-import Action from '../../interfaces/action';
+import { IAction } from "../../interfaces";
 
-const counterReducer = (state = 0, action: Action) => {
+const counterReducer = (state = 0, action: IAction) => {
     switch (action.type) {
         case 'INCREMENT':
             return state + action.payload;

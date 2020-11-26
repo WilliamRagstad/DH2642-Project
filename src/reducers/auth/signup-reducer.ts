@@ -1,3 +1,5 @@
+import { IAction } from "../../interfaces";
+
 const initialState = {
     signupFormData: {
         email: "",
@@ -9,7 +11,7 @@ const initialState = {
     signoutError: null
 }
 
-const signupReducer = (state = initialState, action) => {
+const signupReducer = (state = initialState, action: IAction) => {
     let newState;
     switch (action.type) {
         case 'SIGNUP_CHANGE':
