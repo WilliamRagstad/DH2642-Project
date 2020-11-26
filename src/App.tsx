@@ -16,6 +16,7 @@ import { increment, decrement } from "./actions/counter-actions";
 import './App.css';
 import './styles/sass/style.scss'
 import { signOut } from "./actions/login-actions";
+import { sign } from "crypto";
 
 function App() {
 
@@ -52,7 +53,9 @@ function App() {
 					<SpotifyAuth />
 				</Route>
 				<Route path="/">
-					root
+					{(isLoggedIn) ? <Button dark onClick={() => {
+						dispatch(signOut());
+					}}>Sign out</Button> : <Redirect to="/login" />}
 				</Route>
 			</Switch>
 		</Router>
