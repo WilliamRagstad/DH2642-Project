@@ -5,6 +5,7 @@ import Signup from './signup/signup';
 import LoadingIndicator from "./ui/loading-indicator";
 import Login from './login/login';
 import SpotifyAuth from './spotify-auth/spotify-auth';
+import Navigation from './navigation/navigation';
 
 export {
     Application,
@@ -13,5 +14,6 @@ export {
     Signup,
     LoadingIndicator,
     Login,
-    SpotifyAuth
+    SpotifyAuth,
+    Navigation
 }
