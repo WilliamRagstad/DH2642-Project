@@ -22,13 +22,13 @@ const Login = ({
                         e.preventDefault();
                         login();
                     }} noValidate>
-                        <TextField dark rounded type="email" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
-                        <TextField dark rounded type="password" name={'password'} value={loginFormData.password} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
+                        <TextField className="text-field" dark rounded type="email" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail" style={{}}></TextField>
+                        <TextField className="text-field" dark rounded type="password" name={'password'} value={loginFormData.password} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
                         <input type="submit" hidden/>
                     </form>
                     
                     {isLoading ? 
-                        <ProgressCircular dark  indeterminate color='var(--primary)' size={27} width={4} style={{marginLeft: "110px"}}/> :
+                        <ProgressCircular dark indeterminate color='var(--primary)' size={27} width={4} style={{margin: "auto"}}/> :
                         <Button dark rounded onClick={() => login()}>Log in</Button>}
                     <p>First time around?</p>
                     <Link to="signup">
