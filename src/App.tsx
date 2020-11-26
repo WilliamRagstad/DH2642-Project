@@ -33,7 +33,7 @@ function App() {
 					!isLogged ? <Signup /> : <Redirect to="/"/>
 				)}/>
 				<Route path="/">
-					<div>
+					<div className="flexparent">
 						{(isLogged) ? <Button dark onClick={() => {
 							dispatch(signOut());
 						}}>Sign out</Button> : <Redirect to="/login" />}

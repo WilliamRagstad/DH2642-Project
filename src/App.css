@@ -1,10 +1,13 @@
 .App {
   text-align: center;
+}
+
+.App,
+.flexparent {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #e8f1f9;
 }
 
 .App-logo {
