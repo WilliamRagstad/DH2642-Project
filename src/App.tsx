@@ -20,8 +20,8 @@ import { signOut } from "./actions/login-actions";
 function App() {
 
 	const counter = useSelector((state: any) => state.counterReducer);
-	const dispatch = useDispatch();
 	const isLogged = useSelector((state: any) => state.firebase.auth.uid);
+	const dispatch = useDispatch();
 
 	return (
 		<Router>
