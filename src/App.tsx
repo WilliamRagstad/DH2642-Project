@@ -10,7 +10,8 @@ import {
 	Signup,
 	Login,
 	Navigation,
-	SpotifyAuth
+	SpotifyAuth,
+	Connect
 } from './components';
 
 import { increment, decrement } from "./actions/counter-actions";
@@ -54,16 +55,10 @@ function App() {
 				<Route path="/spotify-auth">
 					<SpotifyAuth />
 				</Route>
-				<Route
-					path="/connect/:service(.+)"
-					render={({ match, props, location }) => 
-						<h1>
-							Words then numbers: {match.params.service}
-							{console.log({ match })}
-							{console.log({ location })}
-						</h1>
-					} />
-				<Route path="/app" render={() => <Application />} />
+				<Route path="/connect/:service([a-z]+)" component={Connect} />
+				<Route path="/app">
+					<Application />
+				</Route>
 				<Route path="/">
 					<div className="flexparent">
 						{(isLoggedIn) ? <Button dark onClick={() => {

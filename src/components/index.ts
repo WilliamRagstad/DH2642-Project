@@ -6,6 +6,7 @@ import LoadingIndicator from "./ui/loading-indicator";
 import Login from './login/login';
 import SpotifyAuth from './spotify-auth/spotify-auth';
 import Navigation from './navigation/navigation';
+import Connect from "./connect/connect";
 
 export {
     Application,
@@ -15,5 +16,6 @@ export {
     LoadingIndicator,
     Login,
     SpotifyAuth,
-    Navigation
+    Navigation,
+    Connect
 }
