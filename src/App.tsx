@@ -5,6 +5,7 @@ import { Button, Card, Tooltip } from 'ui-neumorphism'
 import 'ui-neumorphism/dist/index.css';
 
 import {
+	Application,
 	Counter,
 	Signup,
 	Login,
@@ -56,6 +57,9 @@ function App() {
 				<Route
 					path="/connect/:service([a-z]+)"
 					component={Connect} />
+				<Route path="/app">
+					<Application />
+				</Route>
 				<Route path="/">
 					<div className="flexparent">
 						{(isLoggedIn) ? <Button dark onClick={() => {
