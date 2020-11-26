@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { Button, Card, Tooltip, ProgressCircular } from 'ui-neumorphism'
+import { Button, Card, Tooltip } from 'ui-neumorphism'
 import 'ui-neumorphism/dist/index.css';
 
 import {
@@ -53,9 +53,11 @@ function App() {
 					<SpotifyAuth />
 				</Route>
 				<Route path="/">
-					{(isLoggedIn) ? <Button dark onClick={() => {
-						dispatch(signOut());
-					}}>Sign out</Button> : <Redirect to="/login" />}
+					<div className="flexparent">
+						{(isLoggedIn) ? <Button dark onClick={() => {
+								dispatch(signOut());
+							}}>Sign out</Button> : <Redirect to="/login" />}
+					</div>
 				</Route>
 			</Switch>
 		</Router>
