@@ -20,35 +20,40 @@ import { signOut } from "./actions/login-actions";
 function App() {
 
 	const counter = useSelector((state: any) => state.counterReducer);
-	const isLogged = useSelector((state: any) => state.firebase.auth.uid);
+	const isLoggedIn = useSelector((state: any) => state.firebase.auth.isLoaded && !state.firebase.auth.isEmpty);
 	const dispatch = useDispatch();
 
 	return (
 		<Router>
 			<Switch>
+				<Route path="/counters">
+					<div className="flexparent">
+						<Counter />
+						<Card dark style={{width: "200px", padding: "5px"}}>
+							<h1>Counter {counter}</h1>
+							<Tooltip dark right inset content={<div>Decrease counter by 5</div>}>
+								<Button dark style={{margin: "4px", float: "left"}} onClick={() => dispatch(decrement(5))}>-</Button>
+							</Tooltip>
+							<Tooltip dark left inset content={<div>Increase counter by 5</div>}>
+								<Button dark style={{margin: "4px", float: "right"}} onClick={() => dispatch(increment(5))}>+</Button>
+							</Tooltip>
+						</Card>
+					</div>
+				</Route>
+
+
 				<Route path="/login" render={() => (
-					!isLogged ? <Login /> : <Redirect to="/"/>
+					!isLoggedIn ? <Login /> : <Redirect to="/"/>
 				)}/>
 				<Route path="/signup" render={() => (
-					!isLogged ? <Signup /> : <Redirect to="/"/>
+					!isLoggedIn ? <Signup /> : <Redirect to="/"/>
 				)}/>
 				<Route path="/">
 					<div className="flexparent">
-						{(isLogged) ? <Button dark onClick={() => {
+						{(isLoggedIn) ? <Button dark onClick={() => {
 							dispatch(signOut());
 						}}>Sign out</Button> : <Redirect to="/login" />}
-						<Counter />
 						<SpotifyAuth />
-
-						<Card dark style={{width: "200px", padding: "5px"}}>
-							<h1>Counter {counter}</h1>
-							<Tooltip dark left inset content={<div>Increase counter by 5</div>}>
-								<Button dark style={{margin: "4px", float: "left"}} onClick={() => dispatch(increment(5))}>+</Button>
-							</Tooltip>
-							<Tooltip dark right inset content={<div>Decrease counter by 5</div>}>
-								<Button dark style={{margin: "4px", float: "right"}} onClick={() => dispatch(decrement(5))}>-</Button>
-							</Tooltip>
-						</Card>
 					</div>
 				</Route>
 			</Switch>
