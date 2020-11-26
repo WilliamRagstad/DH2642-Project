@@ -40,7 +40,7 @@ function App() {
 						<Counter />
 						<SpotifyAuth />
 
-						<Card dark style={{width: "200px", padding: "5px", margin: "5px"}}>
+						<Card dark style={{width: "200px", padding: "5px"}}>
 							<h1>Counter {counter}</h1>
 							<Tooltip dark left inset content={<div>Increase counter by 5</div>}>
 								<Button dark style={{margin: "4px", float: "left"}} onClick={() => dispatch(increment(5))}>+</Button>

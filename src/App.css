@@ -8,6 +8,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+}
+
+.flexparent > *,
+.App > * {
+  margin: 10px;
 }
 
 .App-logo {

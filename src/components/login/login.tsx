@@ -28,7 +28,7 @@ const Login = ({
                     </form>
                     
                     {isLoading ? 
-                        <ProgressCircular dark  indeterminate color='var(--primary)' size={27} width={4}/> :
+                        <ProgressCircular dark  indeterminate color='var(--primary)' size={27} width={4} style={{marginLeft: "110px"}}/> :
                         <Button dark rounded onClick={() => login()}>Log in</Button>}
                     <p>First time around?</p>
                     <Link to="signup">
