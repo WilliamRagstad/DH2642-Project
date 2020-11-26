@@ -13,8 +13,8 @@ const Login = ({
 }) => {
 
     return (
-        <div style={{alignItems: "center", textAlign: "center"}}>
-            <Card dark style={{padding: "5px", margin: "5px auto", width: "300px"}}>
+        <div className="login">
+            <Card className="loginCard" dark>
                 <CardHeader>Log in</CardHeader>
                 <Alert flat type="error">{loginError}</Alert>
                 <CardContent>
@@ -22,7 +22,7 @@ const Login = ({
                         e.preventDefault();
                         login();
                     }} noValidate>
-                        <TextField className="text-field" dark rounded type="email" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail" style={{}}></TextField>
+                        <TextField className="text-field" dark rounded type="email" name={'email'} value={loginFormData.email} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
                         <TextField className="text-field" dark rounded type="password" name={'password'} value={loginFormData.password} onInput={e => loginChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
                         <input type="submit" hidden/>
                     </form>
