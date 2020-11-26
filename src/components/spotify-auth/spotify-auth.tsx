@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import config from '../../spotify-config';
-import { Card, CardHeader } from 'ui-neumorphism'
+import { Button } from 'ui-neumorphism';
+import spotifyIcon from './Spotify_Icon_RGB_Green.png';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 
@@ -13,14 +14,10 @@ const scopes = [
 
 const SpotifyAuth = () => {
     return (
-        <React.Fragment>
-            <Card className="spotify-auth-card" dark>
-                <CardHeader>Login to Spotify</CardHeader>
-                <a href={`${authEndpoint}?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}>Login to Spotify</a>
-            </Card>
-        </React.Fragment>
-    )
-    
+        <a href={`${authEndpoint}?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}>
+            <Button size="large" rounded dark color="#1ed760"><img alt="" height="24px" src={spotifyIcon}/>&nbsp;&nbsp;Connect to spotify&nbsp;</Button>
+        </a>
+    )    
 };
 
 export default SpotifyAuth;
