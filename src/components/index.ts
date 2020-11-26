@@ -4,6 +4,7 @@ import Signup from './signup/signup';
 import LoadingIndicator from "./ui/loading-indicator";
 import Login from './login/login';
 import SpotifyAuth from './spotify-auth/spotify-auth';
+import Connect from "./connect/connect";
 
 export {
     Counter,
@@ -11,5 +12,6 @@ export {
     Signup,
     LoadingIndicator,
     Login,
-    SpotifyAuth
+    SpotifyAuth,
+    Connect
 }
