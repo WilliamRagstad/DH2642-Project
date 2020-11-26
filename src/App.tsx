@@ -52,6 +52,13 @@ function App() {
 				<Route path="/spotify-auth">
 					<SpotifyAuth />
 				</Route>
+				<Route path="/connect">
+					<Switch>
+						<Route path="/connect/spotify">
+							
+						</Route>
+					</Switch>
+				</Route>
 				<Route path="/">
 					<div className="flexparent">
 						{(isLoggedIn) ? <Button dark onClick={() => {
