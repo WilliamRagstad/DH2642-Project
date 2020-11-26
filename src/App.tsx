@@ -52,13 +52,15 @@ function App() {
 				<Route path="/spotify-auth">
 					<SpotifyAuth />
 				</Route>
-				<Route path="/connect">
-					<Switch>
-						<Route path="/connect/spotify">
-							
-						</Route>
-					</Switch>
-				</Route>
+				<Route
+					path="/connect/:service(.+)"
+					render={({ match, props, location }) => 
+						<h1>
+							Words then numbers: {match.params.service}
+							{console.log({ match })}
+							{console.log({ location })}
+						</h1>
+					} />
 				<Route path="/">
 					<div className="flexparent">
 						{(isLoggedIn) ? <Button dark onClick={() => {
