@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Card } from 'ui-neumorphism';
-import Navigation from '../navigation/navigation';
+import { Navigation } from '../index';
+import { MainContent } from '../index';
 
 const Application = () => {
 	useEffect(() => {
@@ -39,7 +40,7 @@ const Application = () => {
 					<div className="dragbar" id="dragbar"></div>
 				</div>
 				<div className="flex-child application-main">
-					<Card className="fill-element" dark></Card>
+					<MainContent/>
 				</div>
 			</div>
 			<div className="application-controls">
