@@ -1,9 +1,17 @@
 import React, { useEffect } from 'react';
-import { Card } from 'ui-neumorphism';
 import { Navigation } from '../index';
 import { MainContent } from '../index';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { Card, Button } from 'ui-neumorphism';
+import { Router, Switch, Route } from 'react-router';
+import { signOut } from "../../actions/login-actions";
 
 const Application = () => {
+
+	const isLoggedIn = useSelector((state: any) => state.firebase.auth.isLoaded && !state.firebase.auth.isEmpty);
+	const dispatch = useDispatch();
+
 	useEffect(() => {
 		const dragbar = document.getElementById('dragbar');
 		const sidebar = document.getElementById('sidebar');
@@ -40,11 +48,14 @@ const Application = () => {
 					<div className="dragbar" id="dragbar"></div>
 				</div>
 				<div className="flex-child application-main">
-					<MainContent/>
+					<MainContent />
 				</div>
 			</div>
 			<div className="application-controls">
-				<Card className="fill-element" dark></Card>
+				<Card className="fill-element" dark>
+					{(isLoggedIn) ? <Button dark onClick={() => {
+						dispatch(signOut());
+					}}>Sign out</Button> : <Redirect to="/login" />}</Card>
 			</div>
 		</div>
 	);
