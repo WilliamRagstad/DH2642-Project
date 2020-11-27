@@ -1,5 +1,6 @@
 import React from 'react';
 import Spotify from "./spotify";
+import { ISpotify } from '../../interfaces';
 
 const Connect = ({ match, props, location }) => {
     const service = match.params.service;
@@ -8,7 +9,7 @@ const Connect = ({ match, props, location }) => {
 
     switch (service) {
         case "spotify":
-            const data = location.hash.slice(1).split('&').reduce((obj, item) => {
+            const data: ISpotify = location.hash.slice(1).split('&').reduce((obj, item) => {
                 const i = item.split('=');
                 return {
                     ...obj,                                     // Concat with result object
