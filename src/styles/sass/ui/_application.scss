@@ -1,0 +1,38 @@
+.application-container {
+    width: 100%;
+    height: 100vh;
+    padding: 10px;
+}
+.application-controls {
+    flex: 0 0 100px;
+}
+.application-sidebar {
+    flex: 0 0 300px;
+}
+.application-media {
+    border-radius: 10px;
+
+    .application-media-card {
+        overflow: hidden;
+        display: flex;
+    }
+}
+.application-controls, .application-navigation, .application-media, .application-main {
+    padding: 10px;
+}
+
+
+.application-drag-container {
+    padding: 10px;
+    
+    height: 100%;
+    cursor: col-resize;
+
+    .dragbar {
+        border: 0;
+        width: 7px;
+        height: 100%;
+        border-radius: 10px;
+        box-shadow: var(--box-shadow-inset);
+    }
+}

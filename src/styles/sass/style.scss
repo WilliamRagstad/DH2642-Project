@@ -6,3 +6,7 @@
 // Custom components
 @import "ui";
 @import "ui-neumorphism";
+
+.debug {
+    outline: red solid 1px;
+}

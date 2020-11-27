@@ -1,4 +1,9 @@
-$dark-bg: #444444;
+:root {
+    --dark-bg: #282828;
+    --dark-bg-dark-shadow: #222222;
+    --dark-bg-light-shadow: #2e2e2e;
+    --box-shadow-inset: inset 2px 2px 3px var(--dark-bg-dark-shadow),inset -2px -2px 3px var(--dark-bg-light-shadow);
+}
 
 *, *:before, *:after {
     -webkit-box-sizing: border-box;
@@ -7,7 +12,7 @@ $dark-bg: #444444;
 }
 
 body {
-    background-color: $dark-bg;
+    background-color: var(--dark-bg);
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -17,6 +22,13 @@ body {
 a, a:hover, a:active, a:focus {
     color: inherit;
     text-decoration: none;
+}
+
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 }
 
 input {

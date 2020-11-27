@@ -18,7 +18,6 @@ import { increment, decrement } from "./actions/counter-actions";
 import './App.css';
 import './styles/sass/style.scss'
 import { signOut } from "./actions/login-actions";
-import { sign } from "crypto";
 
 function App() {
 
@@ -46,10 +45,10 @@ function App() {
 
 
 				<Route path="/login" render={() => (
-					!isLoggedIn ? <Login /> : <Redirect to="/"/>
+					!isLoggedIn ? <Login /> : <Redirect to="/app"/>
 				)}/>
 				<Route path="/signup" render={() => (
-					!isLoggedIn ? <Signup /> : <Redirect to="/"/>
+					!isLoggedIn ? <Signup /> : <Redirect to="/app"/>
 				)}/>
 				<Route path="/spotify-auth">
 					<SpotifyAuth />

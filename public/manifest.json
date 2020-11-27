@@ -1,6 +1,6 @@
 {
   "short_name": "SoundBundle",
-  "name": "SoundBundle music app",
+  "name": "SoundBundle Music App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#ffffff",
+  "background_color": "#444444"
 }
