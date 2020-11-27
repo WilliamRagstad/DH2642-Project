@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../../actions';
 import { Link } from 'react-router-dom';
-import { Button, Card, CardHeader, CardContent, TextField, Alert, ProgressCircular } from 'ui-neumorphism'
+import { Button, Card, CardHeader, CardContent, TextField, Alert, ProgressCircular, Spacer } from 'ui-neumorphism'
 
 const Login = ({
     loginFormData,
@@ -30,7 +30,9 @@ const Login = ({
                     {isLoading ? 
                         <ProgressCircular className="login-progress" dark indeterminate color='var(--primary)' size={27} width={4}/> :
                         <Button dark rounded onClick={() => login()}>Log in</Button>}
+                        
                     <p>First time around?</p>
+                    <Spacer />
                     <Link to="signup">
                         <Button dark rounded text >
                             Create account
