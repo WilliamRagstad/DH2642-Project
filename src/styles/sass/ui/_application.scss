@@ -33,6 +33,6 @@
         width: 7px;
         height: 100%;
         border-radius: 10px;
-        box-shadow: inset -2px -2px 5px var(--dark-bg-light-shadow), inset 2px 2px 5px var(--dark-bg-dark-shadow);
+        box-shadow: var(--box-shadow-inset);
     }
 }
