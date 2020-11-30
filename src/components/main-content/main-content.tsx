@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Route, Switch, Redirect } from 'react-router-dom';
-import HomeView from '../home/home-view';
-import PlaylistView from '../playlist/playlist-view';
-import LyricsView from '../lyrics/lyrics-view';
+import HomeView from './home/home-view';
+import PlaylistView from './playlist/playlist-view';
+import LyricsView from './lyrics/lyrics-view';
 
 const MainContent = () => {
     return (
