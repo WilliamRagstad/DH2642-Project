@@ -10,13 +10,13 @@ const initialState = {
     signoutError: null
 }
 
-const loginReducer = (state = initialState, IAction: IAction) => {
+const loginReducer = (state = initialState, action: IAction) => {
     let newState;
-    switch (IAction.type) {
+    switch (action.type) {
         case 'LOGIN_CHANGE':
             newState = {
                 ...state,
-                loginFormData: { ...state.loginFormData, ...IAction.payload }
+                loginFormData: { ...state.loginFormData, ...action.payload }
             };
             return newState;
         case 'LOGIN_SUCCESS':
@@ -33,7 +33,7 @@ const loginReducer = (state = initialState, IAction: IAction) => {
         case 'LOGIN_ERROR':
             newState = {
                 ...state,
-                loginError: IAction.err.message,
+                loginError: action.err.message,
                 isLoading: false
             };
             return newState;
