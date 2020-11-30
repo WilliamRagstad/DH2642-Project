@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, Button, Divider } from 'ui-neumorphism';
 import { ReactComponent as SearchIcon } from '../../images/search-24px.svg';
 import { ReactComponent as HomeIcon } from '../../images/home-24px.svg';
@@ -15,7 +16,11 @@ const Navigation = () => {
                 <Divider dense/>
                 <Button dark rounded onClick={() => setActive(2)} active={active == 2}>Playlists</Button>
                 <Divider dense/>
-                <Button dark rounded onClick={() => setActive(3)} active={active == 3}>Settings</Button>
+                <Link to="/app/lyrics">
+                    <Button dark rounded onClick={() => setActive(3)} active={active == 3}>Lyrics</Button>
+                </Link>
+                <Divider dense/>
+                <Button dark rounded onClick={() => setActive(4)} active={active == 4}>Settings</Button>
             </Card>
         </React.Fragment>
     );
