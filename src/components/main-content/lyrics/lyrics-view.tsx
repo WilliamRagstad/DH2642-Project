@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardContent, CardHeader, TextField } from 'ui-neumorphism';
+import { Button, Card, CardContent, CardHeader, Divider, TextField } from 'ui-neumorphism';
 
 import { searchSong, getLyrics } from 'genius-lyrics-api';
 import config from '../../../genius-config';
@@ -41,8 +41,9 @@ const LyricsView = () => {
 
     return (
         <React.Fragment>
-            <Card className="lyrics-view-card flex-parent flex-column" dark>
+            <Card className="lyrics-view-card flex-parent flex-column float-container" dark inset rounded>
                 <CardHeader>Lyrics</CardHeader>
+                <Divider dense/>
                 <form onSubmit={e => {
                         e.preventDefault();
                 }}>
@@ -53,12 +54,11 @@ const LyricsView = () => {
                             <Button dark>Search</Button>
                     </div>
                 </form>
-                
-                <Card className="flex-child" dark inset>
-                    <CardContent className="lyrics-container">
+                <CardContent className="lyrics-container">
+                    <Card className="flex-child float-item" dark>
                         {text}
-                    </CardContent>
-                </Card>
+                    </Card>
+                </CardContent>
             </Card>
         </React.Fragment>
     )
