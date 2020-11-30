@@ -10,9 +10,11 @@ const HomeView = () => {
                 </CardHeader>
                 <Divider dense/>
                 <CardContent>
-                    Hello and welcome to SoundBundle.<br/>
-                    Here you can gather and make playlist from spotify and/or youtube.<br/>
-                    You can even look at lyrics for a wide range of songs.
+                    <Card className="home-view-card" dark>
+                        Hello and welcome to SoundBundle.<br/>
+                        Here you can gather and make playlist from spotify and/or youtube.<br/>
+                        You can even look at lyrics for a wide range of songs.
+                    </Card>
                 </CardContent>
             </Card>
         </React.Fragment>
