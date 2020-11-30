@@ -9,14 +9,12 @@ import {
 	Counter,
 	Signup,
 	Login,
-	SpotifyAuth,
 	Connect
 } from './components';
 
 import { increment, decrement } from "./actions/counter-actions";
 
-import './styles/sass/style.scss'
-import { signOut } from "./actions/login-actions";
+import './styles/sass/style.scss';
 
 function App() {
 
