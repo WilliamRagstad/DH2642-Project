@@ -3,6 +3,7 @@ import { BrowserRouter as Route, Switch, Redirect } from 'react-router-dom';
 import HomeView from './home/home-view';
 import PlaylistView from './playlist/playlist-view';
 import LyricsView from './lyrics/lyrics-view';
+import SettingsView from "./settings/settings-view";
 
 const MainContent = () => {
     return (
@@ -21,7 +22,7 @@ const MainContent = () => {
             </Route>
 
             <Route path="/app/settings">
-
+				<SettingsView/>
             </Route>
 
             <Route path="/app/search">
