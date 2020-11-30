@@ -33,10 +33,10 @@ function App() {
 						<Counter />
 						<Card dark style={{width: "200px", padding: "5px"}}>
 							<h1>Counter {counter}</h1>
-							<Tooltip dark right inset content={<div>Decrease counter by 5</div>}>
+							<Tooltip dark left inset content={<div>Decrease counter by 5</div>}>
 								<Button dark style={{margin: "4px", float: "left"}} onClick={() => dispatch(decrement(5))}>-</Button>
 							</Tooltip>
-							<Tooltip dark left inset content={<div>Increase counter by 5</div>}>
+							<Tooltip dark right inset content={<div>Increase counter by 5</div>}>
 								<Button dark style={{margin: "4px", float: "right"}} onClick={() => dispatch(increment(5))}>+</Button>
 							</Tooltip>
 						</Card>
@@ -44,6 +44,9 @@ function App() {
 				</Route>
 
 
+				<Route path="/" exact>
+					<Redirect to="/login" />
+				</Route>
 				<Route path="/login" render={() => (
 					!isLoggedIn ? <Login /> : <Redirect to="/app"/>
 				)}/>
@@ -57,9 +60,6 @@ function App() {
 				<Route path="/app"render={() => (
 					isLoggedIn ? <Application /> : <Redirect to="/login"/>
 				)}/>
-				<Route path="/">
-					<Redirect to="/login" />
-				</Route>
 			</Switch>
 		</Router>
 	);
