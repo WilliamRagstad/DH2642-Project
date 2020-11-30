@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import { Navigation } from '../index';
 import { MainContent } from '../index';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { Card, Button } from 'ui-neumorphism';
-import { Router, Switch, Route } from 'react-router';
 import { signOut } from "../../actions/login-actions";
 
 const Application = () => {
