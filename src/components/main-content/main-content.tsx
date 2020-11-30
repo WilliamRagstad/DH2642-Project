@@ -7,7 +7,7 @@ function Maincontent() {
     const [active, setActive] = useState(0);
 
     const tabItems = (
-      <TabItems className="tab" value={active} style={{height: "85vh"}}>
+      <TabItems className="tab flex-child" value={active} style={{height: "100%"}}>
         <TabItem className="tabitem">
           <PlaylistView/>
         </TabItem>
@@ -19,7 +19,7 @@ function Maincontent() {
 
     return (
         <React.Fragment>
-            <Card className="main-content-card" dark>
+            <Card className="main-content-card flex-parent flex-column" dark>
                 <Tabs rounded value={active}>
                     <Tab dark onClick={()=> setActive(0)}>Playlist</Tab>
                     <Tab dark onClick={()=> setActive(1)}>Lyrics</Tab>
