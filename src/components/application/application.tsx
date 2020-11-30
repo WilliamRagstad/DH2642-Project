@@ -53,9 +53,8 @@ const Application = () => {
 			</div>
 			<div className="application-controls">
 				<Card className="fill-element" dark>
-					{(isLoggedIn) ? <Button dark onClick={() => {
-						dispatch(signOut());
-					}}>Sign out</Button> : <Redirect to="/login" />}</Card>
+					<Button dark onClick={() => dispatch(signOut())}>Sign out</Button>
+				</Card>
 			</div>
 		</div>
 	);

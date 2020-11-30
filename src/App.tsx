@@ -54,9 +54,9 @@ function App() {
 					<SpotifyAuth />
 				</Route>
 				<Route path="/connect/:service([a-z]+)" component={Connect} />
-				<Route path="/app">
-					<Application />
-				</Route>
+				<Route path="/app"render={() => (
+					isLoggedIn ? <Application /> : <Redirect to="/login"/>
+				)}/>
 				<Route path="/">
 					<Redirect to="/login" />
 				</Route>
