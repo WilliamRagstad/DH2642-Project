@@ -48,10 +48,10 @@ function App() {
 					<Redirect to="/login" />
 				</Route>
 				<Route path="/login" render={() => (
-					!isLoggedIn ? <Login /> : <Redirect to="/app"/>
+					isLoggedIn ? <Redirect to="/app"/> : <Login />
 				)}/>
 				<Route path="/signup" render={() => (
-					!isLoggedIn ? <Signup /> : <Redirect to="/app"/>
+					isLoggedIn ? <Redirect to="/app"/> : <Signup />
 				)}/>
 				<Route path="/spotify-auth">
 					<SpotifyAuth />

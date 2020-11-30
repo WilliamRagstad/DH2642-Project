@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import PlaylistView from '../playlist/playlist-view';
 import LyricsView from '../lyrics/lyrics-view';
 
-function Maincontent() {
+function MainContent() {
     return (
         <React.Fragment>
           <Router>
@@ -37,4 +37,4 @@ function Maincontent() {
     );
 }
 
-export default Maincontent;
+export default MainContent;
