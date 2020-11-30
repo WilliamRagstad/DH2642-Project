@@ -3,7 +3,7 @@ import { Card, Tab, Tabs, TabItem, TabItems} from 'ui-neumorphism';
 import PlaylistView from '../playlist/playlist-view';
 import LyricsView from '../lyrics/lyrics-view';
 
-function Maincontent() {
+function MainContent() {
     const [active, setActive] = useState(0);
 
     const tabItems = (
@@ -30,4 +30,4 @@ function Maincontent() {
     );
 }
 
-export default Maincontent;
+export default MainContent;
