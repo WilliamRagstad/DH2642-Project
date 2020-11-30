@@ -8,17 +8,25 @@ const Navigation = () => {
     return (
         <React.Fragment>
             <Card className="navigation-card" dark>
-                <Button dark rounded><span className="button-icon-container"><HomeIcon fill="var(--light-bg)"/>&nbsp;</span>Home</Button>
+                <Link to="/app/home">
+                    <Button dark rounded><span className="button-icon-container"><HomeIcon fill="var(--light-bg)"/>&nbsp;</span>Home</Button>
+                </Link>
                 <Divider dense/>
-                <Button dark rounded><span className="button-icon-container"><SearchIcon fill="var(--light-bg)"/>&nbsp;</span>Search</Button>
+                <Link to="/app/search">
+                    <Button dark rounded><span className="button-icon-container"><SearchIcon fill="var(--light-bg)"/>&nbsp;</span>Search</Button>
+                </Link>
                 <Divider dense/>
-                <Button dark rounded>Playlists</Button>
+                <Link to="/app/playlist">
+                    <Button dark rounded>Playlists</Button>
+                </Link>
                 <Divider dense/>
                 <Link to="/app/lyrics">
                     <Button dark rounded>Lyrics</Button>
                 </Link>
                 <Divider dense/>
-                <Button dark rounded>Settings</Button>
+                <Link to="/app/settings">
+                    <Button dark rounded>Settings</Button>
+                </Link>
             </Card>
         </React.Fragment>
     );
