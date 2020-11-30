@@ -58,11 +58,7 @@ function App() {
 					<Application />
 				</Route>
 				<Route path="/">
-					<div className="flexparent">
-						{(isLoggedIn) ? <Button dark onClick={() => {
-								dispatch(signOut());
-							}}>Sign out</Button> : <Redirect to="/login" />}
-					</div>
+					<Redirect to="/login" />
 				</Route>
 			</Switch>
 		</Router>
