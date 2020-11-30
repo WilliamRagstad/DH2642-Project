@@ -12,6 +12,16 @@
         flex-direction: row;
     }
 }
+.flex-align {
+    &-center {
+        align-items: center;
+    }
+}
+.flex-justify {
+    &-space-evenly {
+        justify-content: space-evenly;
+    }
+}
 .fill-element {
     height: 100%;
     width: 100%;
