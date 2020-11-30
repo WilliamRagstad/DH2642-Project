@@ -1,0 +1,35 @@
+$trackbar-bg: #444;
+$scrollbar-bg: #ccc;
+$size: 7px;
+
+::-webkit-scrollbar {
+  width: $size;
+  height: $size;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: $scrollbar-bg;
+  border-radius: $size;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $scrollbar-bg;
+}
+::-webkit-scrollbar-thumb:active {
+  background: $scrollbar-bg;
+}
+::-webkit-scrollbar-track {
+  background: $trackbar-bg;
+  border-radius: $size;
+}
+::-webkit-scrollbar-track:hover {
+  background: $trackbar-bg;
+}
+::-webkit-scrollbar-track:active {
+  background: $trackbar-bg;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
