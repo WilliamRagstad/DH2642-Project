@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, Divider, Tab, Tabs, TabItem, TabItems } from 'ui-neumorphism';
+import SpotifyAuth from "../../spotify-auth/spotify-auth";
 
 const SettingsView = () => {
     const [active, setActive] = useState(0);
@@ -29,6 +30,9 @@ const SettingsView = () => {
                     <TabItem className="tab-item float-container">
                         <Card className="float-item" dark>
                             <CardHeader>Connect to Services</CardHeader>
+                            <CardContent>
+                                <SpotifyAuth/>
+                            </CardContent>
                         </Card>
                     </TabItem>
                     <TabItem className="tab-item float-container">
