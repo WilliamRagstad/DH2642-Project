@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
-import { Card, Divider, Tab, Tabs, TabItem, TabItems} from 'ui-neumorphism';
+import { Card, Tab, Tabs, TabItem, TabItems} from 'ui-neumorphism';
+import PlaylistView from '../playlist/playlist-view';
+import LyricsView from '../lyrics/lyrics-view';
 
 function Maincontent() {
     const [active, setActive] = useState(0);
 
     const tabItems = (
-      <TabItems className="tab" value={active}>
-        <TabItem className="tab" dark>
-          <Card className="main-content-card" dark rounded>
-            <h1>Playlist name</h1>
-            <Divider dense/>
-            <p>Playlist items</p>
-          </Card>
+      <TabItems className="tab" value={active} style={{height: "85vh"}}>
+        <TabItem className="tabitem">
+          <PlaylistView/>
         </TabItem>
-        <TabItem dark>
-          <Card dark rounded>
-            <h1>Song name</h1>
-            <Divider dense/>
-            <p>Song lyrics</p>
-          </Card>
+        <TabItem className="tabitem">
+          <LyricsView/>
         </TabItem>
       </TabItems>
     );
