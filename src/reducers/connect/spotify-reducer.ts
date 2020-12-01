@@ -1,6 +1,7 @@
-import { IAction } from "../../interfaces";
+import { IAction, ISpotify } from "../../interfaces";
 
-const initialState = {
+const initialState: ISpotify = {
+    connected: false,
     access_token: "",
     token_type: "",
     expires_in: null
