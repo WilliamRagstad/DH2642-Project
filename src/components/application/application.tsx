@@ -30,7 +30,7 @@ const Application = () => {
 
 	return (
 		<div className="application-container flex-parent flex-column">
-			<div className="flex-child flex-parent">
+			<div className="flex-child flex-parent application-upper">
 				<div className="application-sidebar flex-parent flex-column" id="sidebar">
 					<div className="application-navigation flex-child">
 						<Navigation />

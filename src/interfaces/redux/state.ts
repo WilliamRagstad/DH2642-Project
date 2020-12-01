@@ -3,7 +3,8 @@ interface IState {
     spotifyReducer: any,
     login: any,
     signup: any,
-    firebase: any
+    firebase: any,
+    lyrics: any
 }
 
 export default IState;

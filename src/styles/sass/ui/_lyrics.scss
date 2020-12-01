@@ -8,6 +8,8 @@
   white-space: pre-line;
   padding: 10px;
   margin-top: 10px !important;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .lyrics-search-form {
@@ -22,4 +24,10 @@
   .lyrics-search-field {
     margin: 0;
   }
+}
+
+.lyrics-content {
+  height: 100%;
+  
+  overflow-y: auto;
 }
