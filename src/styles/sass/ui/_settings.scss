@@ -1,13 +1,19 @@
 .card-margin {
-    margin-bottom: 10px !important;;
+	margin-bottom: 10px !important;
 }
 
 .card-margin-large {
-  margin-bottom: 32px !important;
+	margin-bottom: 32px !important;
 }
 
 .settings-view-card {
-  padding: 10px;
-  width: 100%;
-  height: 100%;
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+}
+
+.setting-separated {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
