@@ -42,11 +42,10 @@ const LyricsView = ({
                 <CardContent className="lyrics-container">
                     
                     <Card className="float-item lyrics-content" dark>
-                        <CardContent className="">
-                            <H4>{title}</H4>
-                            <Subtitle1 secondary style={{ marginBottom: '12px' }}>
-                                {artist}
-                            </Subtitle1>
+                        <CardHeader>
+                            {title}
+                            <Subtitle1 secondary>{artist}</Subtitle1></CardHeader>
+                        <CardContent>
                             {lyrics}
                         </CardContent>
 
