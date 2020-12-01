@@ -1,6 +1,6 @@
 import Genius from 'genius-lyrics';
 import config from '../genius-config';
-const lyricsClient = new Genius.Client(config.cilent_access_token);
+const songsClient = new Genius.SongsClient(config.cilent_access_token);
 
 export const setCurrentLyrics = (query, currentlyPlaying) => {
     return (dispatch, getState) => {
@@ -15,8 +15,9 @@ export const setCurrentLyrics = (query, currentlyPlaying) => {
 }
 
 const getSong = async (query: string) => {
-    const searches = await lyricsClient.songs.search(query);
+    const searches = await songsClient.search(query);
     const firstSong = searches[0];
+    console.log(firstSong);
     const lyrics = await firstSong.lyrics();
     return {
         id: firstSong.id,
