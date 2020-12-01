@@ -12,12 +12,12 @@ const scopes = [
 ]
 
 
-const SpotifyAuth = () => {
-    return (
+const SpotifyAuth = ({ enabled = true }) => {
+    return enabled ?
         <a href={`${authEndpoint}?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`}>
             <Button size="large" rounded dark color="#1ed760"><img alt="" height="24px" src={spotifyIcon} />&nbsp;&nbsp;Connect to spotify&nbsp;</Button>
-        </a>
-    )
+        </a> :
+        <Button size="large" rounded dark color="#1ed760" disabled><img alt="" height="24px" src={spotifyIcon} />&nbsp;&nbsp;Connect to spotify&nbsp;</Button>
 };
 
 export default SpotifyAuth;
