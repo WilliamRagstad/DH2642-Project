@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { Navigation } from '../index';
 import { MainContent } from '../index';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Card, Button } from 'ui-neumorphism';
 import { signOut } from "../../actions/login-actions";
 
 const Application = () => {
 
-	const isLoggedIn = useSelector((state: any) => state.firebase.auth.isLoaded && !state.firebase.auth.isEmpty);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -34,11 +33,11 @@ const Application = () => {
 			<div className="flex-child flex-parent">
 				<div className="application-sidebar flex-parent flex-column" id="sidebar">
 					<div className="application-navigation flex-child">
-						<Navigation/>
+						<Navigation />
 					</div>
 					<div className="application-media">
 						<Card inset dark className="application-media-card">
-							<img className="fill-element" alt="" src="https://videoplayer.telvue.com/assets/placeholder_media_for_white_background-a025e5387e2313b21b205ed928e7419816588314b7bf740bf6bc660282663f97.png"/>
+							<img className="fill-element" alt="" src="https://videoplayer.telvue.com/assets/placeholder_media_for_white_background-a025e5387e2313b21b205ed928e7419816588314b7bf740bf6bc660282663f97.png" />
 						</Card>
 					</div>
 				</div>
