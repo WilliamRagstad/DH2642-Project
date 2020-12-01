@@ -13,7 +13,7 @@
         "@types/react-redux": "^7.1.11",
         "express": "^4.17.1",
         "firebase": "^8.1.1",
-        "genius-lyrics-api": "^3.0.3",
+        "genius-lyrics": "^4.0.0",
         "querystring": "^0.2.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
