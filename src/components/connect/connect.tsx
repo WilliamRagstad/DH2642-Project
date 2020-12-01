@@ -20,6 +20,7 @@ const Connect = ({ match, props, location }) => {
                 }
             }, {});
             if (!data.access_token || !data.token_type || !data.expires_in) return <h1>Invalid service parameters</h1>;
+            data.connected = true;
             dispatch(connect("SPOTIFY", data));
             break;
 

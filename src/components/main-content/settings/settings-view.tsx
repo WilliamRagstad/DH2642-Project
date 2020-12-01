@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector } from "react-redux";
 import { Card, CardContent, CardHeader, Divider, Tab, Tabs, TabItem, TabItems } from 'ui-neumorphism';
 import SpotifyAuth from "../../spotify-auth/spotify-auth";
+import { IState } from '../../../interfaces';
 
 const SettingsView = () => {
     const [active, setActive] = useState(0);
+    const spotifyConnected = useSelector((state: IState) => state.spotifyReducer.connected);
 
     return (
         <React.Fragment>
@@ -17,8 +20,8 @@ const SettingsView = () => {
                     <Tab dark onClick={() => setActive(2)}>Account</Tab>
                     <Tab dark onClick={() => setActive(3)}>Privacy</Tab>
                 </Tabs>
-                <Divider dense className="card-margin"/>
-                <TabItems className="tab flex-child" value={active} style={{height: "100%"}}>
+                <Divider dense className="card-margin" />
+                <TabItems className="tab flex-child" value={active} style={{ height: "100%" }}>
                     <TabItem className="tab-item float-container">
                         <Card className="float-item" dark>
                             <CardHeader>Preferences</CardHeader>
@@ -31,7 +34,10 @@ const SettingsView = () => {
                         <Card className="float-item" dark>
                             <CardHeader>Connect to Services</CardHeader>
                             <CardContent>
-                                <SpotifyAuth/>
+                                <div className="setting-separated">
+                                    <p>{spotifyConnected ? "You are already connected to spotify." : "You are not connected to spotify."}</p>
+                                    <SpotifyAuth />
+                                </div>
                             </CardContent>
                         </Card>
                     </TabItem>
