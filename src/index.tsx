@@ -12,7 +12,7 @@ import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { createFirestoreInstance } from 'redux-firestore';
 
 // CONNECT TO FIRESTORE SAVED SERVICES
-import LoadServices from './LoadServices';
+import FirebaseLoader from './components/firebase-loader/firebase-loader';
 
 const rrfProps = {
 	firebase,
@@ -27,7 +27,7 @@ const rrfProps = {
 
 ReactDOM.render(
 	<Provider store={store}>
-		<LoadServices />
+		<FirebaseLoader />
 		<ReactReduxFirebaseProvider {...rrfProps}>
 			<App />
 		</ReactReduxFirebaseProvider>

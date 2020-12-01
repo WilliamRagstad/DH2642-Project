@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import { useSelector } from "react-redux";
-import { Card, CardContent, CardHeader, Divider, Tab, Tabs, TabItem, TabItems, Button } from 'ui-neumorphism';
+import { Card, CardContent, CardHeader, Divider, Tab, Tabs, TabItem, TabItems, Button, Switch, ToggleButtonGroup, ToggleButton, RadioGroup, Radio } from 'ui-neumorphism';
 import SpotifyAuth from "../../spotify-auth/spotify-auth";
 import { useDispatch } from 'react-redux';
 import { signOut } from "../../../actions/login-actions";
 import { IState } from '../../../interfaces';
+import { applyPrimary } from '../../../helpers/ui';
 
 import { ReactComponent as CheckIcon } from '../../../images/check-24px.svg';
 import { ReactComponent as CrossIcon } from '../../../images/close-24px.svg';
+import { ReactComponent as LensIcon } from '../../../images/lens-24px.svg';
 
 function connectedText(guard, service) {
     return guard ?
         <span><CheckIcon fill="var(--success)" className="label-icon" /> You are connected to {service}!</span> :
-        <span><CrossIcon fill="var(--error)" className="label-icon" /> You are not connected to {service}.</span>
+        <span><CrossIcon fill="var(--error)" className="label-icon" /> You are not connected to {service}</span>
 }
 
 const SettingsView = () => {
     const [active, setActive] = useState(0);
     const dispatch = useDispatch();
     const spotifyConnected = useSelector((state: IState) => state.spotifyReducer.connected);
+    const current_ui = useSelector((state: IState) => state.ui);
 
     return (
         <React.Fragment>
@@ -38,7 +41,37 @@ const SettingsView = () => {
                         <Card className="float-item" dark>
                             <CardHeader>Preferences</CardHeader>
                             <CardContent>
-                                Select language:
+                                <div className="setting-separated">
+                                    Select language
+                                    <RadioGroup vertical dark value='en' color='var(--primary)' className="radio-group">
+                                        <Radio value='en' label='English' />
+                                        <Radio value='se' label='Swedish' />
+                                    </RadioGroup>
+                                </div>
+                                <div className="setting-separated">
+                                    Dark theme
+                                    <Switch dark color='var(--primary)' checked />
+                                </div>
+                                <div className="setting-separated">
+                                    Primary color
+                                    <ToggleButtonGroup mandatory dark value={current_ui.theme.primary}>
+                                        <ToggleButton value='blue' onClick={() => applyPrimary('blue', current_ui)}>
+                                            <LensIcon fill="var(--theme-blue)" className="label-icon" />
+                                        </ToggleButton>
+                                        <ToggleButton value='orange' onClick={() => applyPrimary('orange', current_ui)}>
+                                            <LensIcon fill="var(--theme-orange)" className="label-icon" />
+                                        </ToggleButton>
+                                        <ToggleButton value='green' onClick={() => applyPrimary('green', current_ui)}>
+                                            <LensIcon fill="var(--theme-green)" className="label-icon" />
+                                        </ToggleButton>
+                                        <ToggleButton value='red' onClick={() => applyPrimary('red', current_ui)}>
+                                            <LensIcon fill="var(--theme-red)" className="label-icon" />
+                                        </ToggleButton>
+                                        <ToggleButton value='pink' onClick={() => applyPrimary('pink', current_ui)}>
+                                            <LensIcon fill="var(--theme-pink)" className="label-icon" />
+                                        </ToggleButton>
+                                    </ToggleButtonGroup>
+                                </div>
                             </CardContent>
                         </Card>
                     </TabItem>
