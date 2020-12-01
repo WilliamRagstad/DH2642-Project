@@ -6,7 +6,7 @@ import { ISpotify } from '../../interfaces';
 
 const Connect = ({ match, props, location }) => {
     const service = match.params.service;
-	const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // console.log(match)
     // console.log(location)
 
@@ -22,12 +22,12 @@ const Connect = ({ match, props, location }) => {
             if (!data.access_token || !data.token_type || !data.expires_in) return <h1>Invalid service parameters</h1>;
             dispatch(connect("SPOTIFY", data));
             break;
-    
+
         default:
             return <h1>No such service found.</h1>;
     }
 
-    return <Redirect to="/app"/>; // <h1>You are connecting to {service}...</h1>;
+    return <Redirect to="/app" />; // <h1>You are connecting to {service}...</h1>;
 }
 
 export default Connect;
