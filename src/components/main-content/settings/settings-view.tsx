@@ -35,7 +35,7 @@ const SettingsView = () => {
                             <CardHeader>Connect to Services</CardHeader>
                             <CardContent>
                                 <div className="setting-separated">
-                                    <p>{spotifyConnected ? "You are already connected to spotify." : "You are not connected to spotify."}</p>
+                                    <p>{spotifyConnected ? "✔️ You are connected to spotify!" : "❌ You are not connected to spotify."}</p>
                                     <SpotifyAuth />
                                 </div>
                             </CardContent>
