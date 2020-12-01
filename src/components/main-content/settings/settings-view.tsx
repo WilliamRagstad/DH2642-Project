@@ -31,7 +31,7 @@ const SettingsView = () => {
                 </Tabs>
                 <Divider dense className="card-margin" />
                 <TabItems className="tab flex-child" value={active} style={{ height: "100%" }}>
-                    <TabItem className="tab-item">
+                    <TabItem className="tab-item float-container">
                         <Card className="float-item" dark>
                             <CardHeader>Preferences</CardHeader>
                             <CardContent>
