@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, CardContent, CardHeader, Divider, TextField } from 'ui-neumorphism';
+import { Button, Card, CardContent, CardHeader, Divider, Table, TextField } from 'ui-neumorphism';
+
+function createItem(title, artist, album, length) {
+    return { title, artist, album, length };
+}
 
 const SearchView = () => {
     const [query, setQuery] = useState("");
@@ -12,6 +16,18 @@ const SearchView = () => {
         
         return () => clearTimeout(typingTimeout);
     }, [query]);
+
+    const headers = [
+        { text: 'Title', align: 'left', value: 'title' },
+        { text: 'Artist', align: 'right', value: 'artist' },
+        { text: 'Album', align: 'right', value: 'album' },
+        { text: 'Length', align: 'right', value: 'length' }
+    ]
+
+    const items = [
+        createItem("song 1", "artist 1", "album 1", "length 1"),
+        createItem("song 2", "artist 2", "album 2", "length 2")
+    ]
 
     return (
         <React.Fragment>
@@ -29,9 +45,7 @@ const SearchView = () => {
                 </form>
                 <Divider dense/>
                 <CardContent>
-                    <Card className="float-item" dark>
-                        
-                    </Card>
+                    <Table className="float-item" dark noHeaders items={items} headers={headers}/>
                 </CardContent>
             </Card>
         </React.Fragment>
