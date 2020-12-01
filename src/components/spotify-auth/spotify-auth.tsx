@@ -5,20 +5,18 @@ import { Button } from 'ui-neumorphism';
 import spotifyIcon from './Spotify_Icon_RGB_Green.png';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
-
 const scopes = [
     'user-read-private',
     'user-read-email'
 ]
 
-
 const SpotifyAuth = ({ enabled = true }) => {
     const url = authEndpoint + new URLSearchParams({
         client_id: config.client_id,
-        redirect_uri: config.redirect_uri,
-        scope: scopes.join("%20"),
         response_type: "token",
-        show_dialog: "true"
+        redirect_uri: encodeURI(config.redirect_uri),
+        scope: scopes.join("%20"),
+        show_dialog: "false"
     });
     return <a href={enabled ? url : null}>
         <Button size="large" rounded dark color="#1ed760" disabled={!enabled}><img alt="" height="24px" src={spotifyIcon} />&nbsp;&nbsp;Connect to spotify&nbsp;</Button>
