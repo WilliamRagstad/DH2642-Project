@@ -18,7 +18,7 @@ const getSong = async (query: string) => {
     const searches = await songsClient.search(query);
     const firstSong = searches[0];
     console.log(firstSong);
-    const lyrics = await firstSong.lyrics();
+    const lyrics = await firstSong.lyrics(true);
     return {
         id: firstSong.id,
         title: firstSong.featuredTitle,

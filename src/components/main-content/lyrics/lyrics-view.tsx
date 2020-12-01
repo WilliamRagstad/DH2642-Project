@@ -12,13 +12,13 @@ const LyricsView = ({
 }) => {    
     const [query, setQuery] = useState("");
     // search when user stops typing
-    useEffect(() => {
-        const typingTimeout = setTimeout(() => {
-            if (query) setCurrentLyrics(query, false);
-        }, 500);
+    // useEffect(() => {
+    //     const typingTimeout = setTimeout(() => {
+    //         // if (query) setCurrentLyrics(query, false);
+    //     }, 500);
         
-        return () => clearTimeout(typingTimeout);
-    }, [query, setCurrentLyrics]);
+    //     return () => clearTimeout(typingTimeout);
+    // }, [query, setCurrentLyrics]);
 
     const { 
         title,
@@ -35,7 +35,15 @@ const LyricsView = ({
                     <div className="flex-parent flex-align-center lyrics-search-form" spellCheck="false">
                         <Button onClick={() => setCurrentLyrics("See you again Wiz Khalifa", true)} dark depressed active={sameAsPlaying}>Currently playing</Button>
                         <span>OR</span>
-                        <TextField dark bordered placeholder="Search for song..." className="lyrics-search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value)} type="text"></TextField>
+                        <form onSubmit={e => {
+                            e.preventDefault();
+                            if (query) setCurrentLyrics(query, false);
+                        }}>
+                            <TextField dark bordered placeholder="Search for song..." className="lyrics-search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
+                        </form>
+                        <Button dark onClick={() => {
+                            if (query) setCurrentLyrics(query, false);
+                        }}>Search</Button>
                     </div>
                 {/* <Divider dense/> */}
                 <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6}/>
