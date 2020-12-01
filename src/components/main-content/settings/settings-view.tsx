@@ -4,6 +4,15 @@ import { Card, CardContent, CardHeader, Divider, Tab, Tabs, TabItem, TabItems } 
 import SpotifyAuth from "../../spotify-auth/spotify-auth";
 import { IState } from '../../../interfaces';
 
+import { ReactComponent as CheckIcon } from '../../../images/check-24px.svg';
+import { ReactComponent as CrossIcon } from '../../../images/close-24px.svg';
+
+function connectedText(guard, service) {
+    return guard ?
+        <span><CheckIcon fill="var(--success)" className="label-icon" /> You are connected to {service}!</span> :
+        <span><CrossIcon fill="var(--error)" className="label-icon" /> You are not connected to {service}.</span>
+}
+
 const SettingsView = () => {
     const [active, setActive] = useState(0);
     const spotifyConnected = useSelector((state: IState) => state.spotifyReducer.connected);
@@ -35,8 +44,8 @@ const SettingsView = () => {
                             <CardHeader>Connect to Services</CardHeader>
                             <CardContent>
                                 <div className="setting-separated">
-                                    <p>{spotifyConnected ? "✔️ You are connected to spotify!" : "❌ You are not connected to spotify."}</p>
-                                    <SpotifyAuth />
+                                    {connectedText(spotifyConnected, "Spotify")}
+                                    <SpotifyAuth enabled={!spotifyConnected} />
                                 </div>
                             </CardContent>
                         </Card>
