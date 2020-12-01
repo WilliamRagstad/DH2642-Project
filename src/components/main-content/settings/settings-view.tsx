@@ -10,7 +10,7 @@ const SettingsView = () => {
 
     return (
         <React.Fragment>
-            <Card className="settings-view-card" dark inset rounded>
+            <Card className="view-card float-container" dark inset rounded>
                 <CardHeader>
                     Settings
                 </CardHeader>
@@ -22,7 +22,7 @@ const SettingsView = () => {
                 </Tabs>
                 <Divider dense className="card-margin" />
                 <TabItems className="tab flex-child" value={active} style={{ height: "100%" }}>
-                    <TabItem className="tab-item float-container">
+                    <TabItem className="tab-item">
                         <Card className="float-item" dark>
                             <CardHeader>Preferences</CardHeader>
                             <CardContent>

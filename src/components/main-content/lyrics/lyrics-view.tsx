@@ -44,7 +44,7 @@ const LyricsView = () => {
 
     return (
         <React.Fragment>
-            <Card className="lyrics-view-card flex-parent flex-column float-container" dark inset rounded>
+            <Card className="view-card flex-parent flex-column float-container" dark inset rounded>
                 <CardHeader>Lyrics</CardHeader>
                 <form onSubmit={e => {
                     e.preventDefault();

@@ -20,7 +20,7 @@ const PlaylistView = () => {
 
     return (
         <React.Fragment>
-            <Card className="playlist-view-card float-container" dark inset rounded>
+            <Card className="view-card float-container" dark inset rounded>
                 <CardHeader>Playlist name</CardHeader>
                 <Divider dense/>
                 <CardContent>
