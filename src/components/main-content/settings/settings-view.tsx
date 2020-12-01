@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from "react-redux";
-import { Card, CardContent, CardHeader, Divider, Tab, Tabs, TabItem, TabItems } from 'ui-neumorphism';
+import { Card, CardContent, CardHeader, Divider, Tab, Tabs, TabItem, TabItems, Button } from 'ui-neumorphism';
 import SpotifyAuth from "../../spotify-auth/spotify-auth";
+import { useDispatch } from 'react-redux';
+import { signOut } from "../../../actions/login-actions";
 import { IState } from '../../../interfaces';
 
 import { ReactComponent as CheckIcon } from '../../../images/check-24px.svg';
@@ -15,6 +17,7 @@ function connectedText(guard, service) {
 
 const SettingsView = () => {
     const [active, setActive] = useState(0);
+    const dispatch = useDispatch();
     const spotifyConnected = useSelector((state: IState) => state.spotifyReducer.connected);
 
     return (
@@ -53,6 +56,9 @@ const SettingsView = () => {
                     <TabItem className="tab-item float-container">
                         <Card className="float-item card-margin-large" dark>
                             <CardHeader>User</CardHeader>
+                            <CardContent>
+                                <Button dark onClick={() => dispatch(signOut())}>Sign out</Button>
+                            </CardContent>
                         </Card>
                         <Card className="float-item" dark>
                             <CardHeader>Access</CardHeader>
