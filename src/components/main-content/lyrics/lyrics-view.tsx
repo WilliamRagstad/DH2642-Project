@@ -9,18 +9,7 @@ const LyricsView = ({
     isLoading,
     lyricsError,
     setCurrentLyrics
-}) => {
-
-    // const song = getSong(options)
-    // .then(song => {
-    //     console.log(`
-    //     ${song.id}
-    //     ${song.title}
-    //     ${song.albumArt}
-    //     ${song.lyrics}`);        
-    // })
-    // .catch(console.error);
-    
+}) => {    
     const [query, setQuery] = useState("");
     // search when user stops typing
     useEffect(() => {
