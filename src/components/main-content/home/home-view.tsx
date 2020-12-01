@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, Divider } from 'ui-neumorphism';
 const HomeView = () => {
     return (
         <React.Fragment>
-            <Card className="home-view-card float-container" dark inset rounded>
+            <Card className="view-card float-container" dark inset rounded>
                 <CardHeader>
                     SoundBundle
                 </CardHeader>

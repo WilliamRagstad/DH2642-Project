@@ -41,7 +41,7 @@ const LyricsView = ({
 
     return (
         <React.Fragment>
-            <Card className="lyrics-view-card flex-parent flex-column float-container" dark inset rounded>
+            <Card className="view-card flex-parent flex-column float-container" dark inset rounded>
                 <CardHeader>Lyrics</CardHeader>
                     <div className="flex-parent flex-align-center lyrics-search-form" spellCheck="false">
                         <Button onClick={() => setCurrentLyrics("See you again Wiz Khalifa", true)} dark depressed active={sameAsPlaying}>Currently playing</Button>

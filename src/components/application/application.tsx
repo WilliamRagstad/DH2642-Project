@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
 import { Navigation } from '../index';
 import { MainContent } from '../index';
-import { useDispatch } from 'react-redux';
-import { Card, Button } from 'ui-neumorphism';
-import { signOut } from "../../actions/login-actions";
+import { Card } from 'ui-neumorphism';
 
 const Application = () => {
-
-	const dispatch = useDispatch();
 
 	useEffect(() => {
 		const dragbar = document.getElementById('dragbar');
@@ -50,7 +46,7 @@ const Application = () => {
 			</div>
 			<div className="application-controls">
 				<Card className="fill-element" dark>
-					<Button dark onClick={() => dispatch(signOut())}>Sign out</Button>
+					
 				</Card>
 			</div>
 		</div>

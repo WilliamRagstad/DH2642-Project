@@ -4,6 +4,7 @@ import HomeView from './home/home-view';
 import PlaylistView from './playlist/playlist-view';
 import LyricsView from './lyrics/lyrics-view';
 import SettingsView from "./settings/settings-view";
+import SearchView from './search/search-view';
 
 const MainContent = () => {
 	return (
@@ -26,7 +27,7 @@ const MainContent = () => {
 				</Route>
 
 				<Route path="/app/search">
-
+					<SearchView />
 				</Route>
 
 				<Route path="/app/" exact>
