@@ -16,25 +16,25 @@ const Navigation = () => {
 
     return (
         <React.Fragment>
-            <Card className="navigation-card" dark>
+            <Card className="navigation-card">
                 <Link to="/app/home">
-                    <Button dark rounded onClick={() => setActive(0)} active={active === 0} color={color(0)}><span className="button-icon-container"><HomeIcon fill={color(0)} />&nbsp;</span>Home</Button>
+                    <Button rounded onClick={() => setActive(0)} active={active === 0} color={color(0)}><span className="button-icon-container"><HomeIcon fill={color(0)} />&nbsp;</span>Home</Button>
                 </Link>
                 <Divider dense />
                 <Link to="/app/search">
-                    <Button dark rounded onClick={() => setActive(1)} active={active === 1} color={color(1)}><span className="button-icon-container"><SearchIcon fill={color(1)} />&nbsp;</span>Search</Button>
+                    <Button rounded onClick={() => setActive(1)} active={active === 1} color={color(1)}><span className="button-icon-container"><SearchIcon fill={color(1)} />&nbsp;</span>Search</Button>
                 </Link>
                 <Divider dense />
                 <Link to="/app/playlist">
-                    <Button dark rounded onClick={() => setActive(2)} active={active === 2} color={color(2)}><span className="button-icon-container"><PlaylistIcon fill={color(2)} />&nbsp;</span>Playlists</Button>
+                    <Button rounded onClick={() => setActive(2)} active={active === 2} color={color(2)}><span className="button-icon-container"><PlaylistIcon fill={color(2)} />&nbsp;</span>Playlists</Button>
                 </Link>
                 <Divider dense />
                 <Link to="/app/lyrics">
-                    <Button dark rounded onClick={() => setActive(3)} active={active === 3} color={color(3)}><span className="button-icon-container"><LyricsIcon fill={color(3)} />&nbsp;</span>Lyrics</Button>
+                    <Button rounded onClick={() => setActive(3)} active={active === 3} color={color(3)}><span className="button-icon-container"><LyricsIcon fill={color(3)} />&nbsp;</span>Lyrics</Button>
                 </Link>
                 <Divider dense />
                 <Link to="/app/settings">
-                    <Button dark rounded onClick={() => setActive(4)} active={active === 4} color={color(4)}><span className="button-icon-container"><SettingsIcon fill={color(4)} />&nbsp;</span>Settings</Button>
+                    <Button rounded onClick={() => setActive(4)} active={active === 4} color={color(4)}><span className="button-icon-container"><SettingsIcon fill={color(4)} />&nbsp;</span>Settings</Button>
                 </Link>
             </Card>
         </React.Fragment>

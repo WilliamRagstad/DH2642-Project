@@ -19,7 +19,7 @@ const SpotifyAuth = ({ enabled = true }) => {
         show_dialog: "false"
     });
     return <a href={enabled ? url : null}>
-        <Button size="large" rounded dark color="#1ed760" disabled={!enabled}><img alt="" height="24px" src={spotifyIcon} />&nbsp;&nbsp;Connect to spotify&nbsp;</Button>
+        <Button size="large" rounded color="#1ed760" disabled={!enabled}><img alt="" height="24px" src={spotifyIcon} />&nbsp;&nbsp;Connect to spotify&nbsp;</Button>
     </a>
 };
 

@@ -20,11 +20,11 @@ const PlaylistView = () => {
 
     return (
         <React.Fragment>
-            <Card className="view-card float-container" dark inset rounded>
+            <Card className="view-card float-container" inset rounded>
                 <CardHeader>Playlist name</CardHeader>
                 <Divider dense/>
                 <CardContent>
-                    <Table className="float-item" dark items={items} headers={headers}/>
+                    <Table className="float-item" items={items} headers={headers}/>
                 </CardContent>
             </Card>
         </React.Fragment>

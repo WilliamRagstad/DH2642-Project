@@ -35,7 +35,7 @@ const Application = () => {
 						<Navigation />
 					</div>
 					<div className="application-media">
-						<Card inset dark className="application-media-card">
+						<Card inset className="application-media-card">
 							<img className="fill-element" alt="" src="https://videoplayer.telvue.com/assets/placeholder_media_for_white_background-a025e5387e2313b21b205ed928e7419816588314b7bf740bf6bc660282663f97.png" />
 						</Card>
 					</div>
@@ -48,7 +48,7 @@ const Application = () => {
 				</div>
 			</div>
 			<div className="application-controls">
-				<Card className="fill-element" dark>
+				<Card className="fill-element">
 
 				</Card>
 			</div>

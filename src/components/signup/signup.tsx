@@ -14,7 +14,7 @@ const Signup = ({
 
     return (
         <div className="signup">
-            <Card className="signup-card" dark>
+            <Card className="signup-card">
                 <CardHeader>Create account</CardHeader>
                 <Alert flat type="error">{signupError}</Alert>
                 <CardContent>
@@ -22,17 +22,17 @@ const Signup = ({
                         e.preventDefault();
                         signup();
                     }} noValidate>
-                        <TextField className="text-field" dark rounded type="email" name={'email'} value={signupFormData.email} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
-                        <TextField className="text-field" dark rounded type="password" name={'password'} value={signupFormData.password} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
-                        <TextField className="text-field" dark rounded type="password" name={'passwordRepeat'} value={signupFormData.passwordRepeat} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Repeat Password"></TextField>
+                        <TextField className="text-field" rounded type="email" name={'email'} value={signupFormData.email} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="E-mail"></TextField>
+                        <TextField className="text-field" rounded type="password" name={'password'} value={signupFormData.password} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Password"></TextField>
+                        <TextField className="text-field" rounded type="password" name={'passwordRepeat'} value={signupFormData.passwordRepeat} onInput={e => signupChange((e.target as HTMLInputElement).name, (e.target as HTMLInputElement).value)} placeholder="Repeat Password"></TextField>
                         <input type="submit" hidden/>
                     </form>
                     {isLoading ? 
-                    <ProgressCircular className="signup-progress" dark  indeterminate color='var(--primary)' size={27} width={4}/> :
-                    <Button dark rounded onClick={() => signup()}>Enter</Button>}
+                    <ProgressCircular className="signup-progress" indeterminate color='var(--primary)' size={27} width={4}/> :
+                    <Button rounded onClick={() => signup()}>Enter</Button>}
                     <p>Already have an account?</p>
                     <Link to="/login">
-                        <Button dark text rounded>Log in</Button>
+                        <Button text rounded>Log in</Button>
                     </Link>
                 </CardContent>
             </Card>

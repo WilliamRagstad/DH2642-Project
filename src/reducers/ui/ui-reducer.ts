@@ -3,7 +3,7 @@ import { changeUI } from '../../helpers/ui';
 
 const initialState = {
     theme: {
-        dark: true,
+        dark: false,
         primary: "blue"
     },
     language: 'en'
