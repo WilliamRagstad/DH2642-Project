@@ -34,25 +34,25 @@ const LyricsView = ({
 
     return (
         <React.Fragment>
-            <Card className="view-card flex-parent flex-column float-container" dark inset rounded>
+            <Card className="view-card flex-parent flex-column float-container" inset rounded>
                 <CardHeader>Lyrics</CardHeader>
                     <div className="flex-parent flex-align-center lyrics-search-form" spellCheck="false">
-                        <Button onClick={() => getCurrentLyrics()} dark depressed active={sameAsPlaying}>Currently playing</Button>
+                        <Button onClick={() => getCurrentLyrics()} depressed active={sameAsPlaying}>Currently playing</Button>
                         <span>OR</span>
                         <form onSubmit={e => {
                             e.preventDefault();
                             if (query) searchLyrics(query);
                         }}>
-                            <TextField dark bordered placeholder="Search for song..." className="lyrics-search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
+                            <TextField bordered placeholder="Search for song..." className="lyrics-search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
                         </form>
-                        <Button dark onClick={() => {
+                        <Button onClick={() => {
                             if (query) searchLyrics(query);
                         }}>Search</Button>
                     </div>
                 <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6}/>
                 <CardContent className="lyrics-container">
                     { id ? 
-                    <Card className="float-item lyrics-content" dark>
+                    <Card className="float-item lyrics-content">
                         <CardHeader>
                             {title} { url ? <Button text color='var(--primary)'>
                                 <a href={url} rel="noreferrer" target="_blank">Source</a>
@@ -64,7 +64,7 @@ const LyricsView = ({
                             {lyricsError ?
                             <React.Fragment>
                                 {lyricsError} &nbsp;
-                                <Button depressed dark onClick={() => getCurrentLyrics()}>Reload</Button>
+                                <Button depressed onClick={() => getCurrentLyrics()}>Reload</Button>
                             </React.Fragment>
                             : lyrics}
                         </CardContent>
