@@ -1,27 +1,61 @@
 import React, { useState } from 'react';
 import { useSelector } from "react-redux";
-import { Card, CardContent, CardHeader, Divider, Tab, Tabs, TabItem, TabItems, Button, Switch, ToggleButtonGroup, ToggleButton, RadioGroup, Radio, IconButton } from 'ui-neumorphism';
+import { Card, CardContent, CardHeader, Divider, Tab, Tabs, TabItem, TabItems, Button, Switch, ToggleButtonGroup, ToggleButton, RadioGroup, Radio, IconButton, Dialog } from 'ui-neumorphism';
 import SpotifyAuth from "../../spotify-auth/spotify-auth";
 import { useDispatch } from 'react-redux';
 import { signOut } from "../../../actions/login-actions";
+import { disconnect } from '../../../actions/connect-actions';
 import { IState } from '../../../interfaces';
 import { applyThemePrimary, applyThemeDark, applyLanguage } from '../../../helpers/ui';
 
 import { ReactComponent as CheckIcon } from '../../../images/check-24px.svg';
 import { ReactComponent as CrossIcon } from '../../../images/close-24px.svg';
 import { ReactComponent as LensIcon } from '../../../images/lens-24px.svg';
-
-function connectedText(guard, service) {
-    return guard ?
-        <span><CheckIcon fill="var(--success)" className="label-icon" /> You are connected to {service}!</span> :
-        <span><CrossIcon fill="var(--error)" className="label-icon" /> You are not connected to {service}</span>
-}
+import { deleteFirestoreUserData } from '../../../helpers/firebase';
 
 const SettingsView = () => {
-    const [active, setActive] = useState(0);
+    const [activeTab, setActiveTab] = useState(0);
+    const [dialogState, setDialogState] = useState({});
+
     const dispatch = useDispatch();
-    const spotifyConnected = useSelector((state: IState) => state.spotifyReducer.connected);
     const current_ui = useSelector((state: IState) => state.ui);
+
+    const spotifyState = useSelector((state: IState) => state.spotifyReducer);
+
+    // Helper functions
+    function connectedText(guard, service) {
+        return guard ?
+            <span><CheckIcon fill="var(--success)" className="label-icon" />&nbsp;&nbsp;You are connected to {service}!</span> :
+            <span><CrossIcon fill="var(--error)" className="label-icon" />&nbsp;&nbsp;You are not connected to {service}</span>
+    }
+
+    function disconnectButton(service: string, onDisconnect: ((event) => any)) {
+        return <React.Fragment>
+            <IconButton dark rounded onClick={() => setDialogState({ [service]: true })}><CrossIcon fill='var(--error)' /></IconButton>
+            <Dialog visible={dialogState[service]} dark minWidth={300}>
+                <Card className='pa-4'>
+                    <CardHeader>Are you sure?</CardHeader>
+                    <CardContent>
+                        <p className="ma-v-16">Are you sure that you want to disconnect <b>{service}</b> <br /> from your services?</p>
+                        <div className="setting-separated">
+                            <Button dark onClick={e => {
+                                setDialogState({ [service]: false });
+                                onDisconnect(e);
+                            }}>
+                                <CrossIcon fill='var(--error)' />&nbsp;
+                                                            Disconnect
+                                                        </Button>
+                            <Button dark onClick={() => setDialogState({ [service]: false })}>
+                                <CheckIcon fill='var(--success)' />&nbsp;
+                                                            Keep
+                                                        </Button>
+                        </div>
+                    </CardContent>
+                </Card>
+            </Dialog>
+        </React.Fragment>
+    }
+
 
     return (
         <React.Fragment>
@@ -29,14 +63,14 @@ const SettingsView = () => {
                 <CardHeader>
                     Settings
                 </CardHeader>
-                <Tabs className="card-margin" rounded value={active}>
-                    <Tab dark onClick={() => setActive(0)}>Preferences</Tab>
-                    <Tab dark onClick={() => setActive(1)}>Services</Tab>
-                    <Tab dark onClick={() => setActive(2)}>Account</Tab>
-                    <Tab dark onClick={() => setActive(3)}>Privacy</Tab>
+                <Tabs className="card-margin" rounded value={activeTab}>
+                    <Tab dark onClick={() => setActiveTab(0)}>Preferences</Tab>
+                    <Tab dark onClick={() => setActiveTab(1)}>Services</Tab>
+                    <Tab dark onClick={() => setActiveTab(2)}>Account</Tab>
+                    <Tab dark onClick={() => setActiveTab(3)}>Privacy</Tab>
                 </Tabs>
                 <Divider dense className="card-margin" />
-                <TabItems className="tab flex-child" value={active} style={{ height: "100%" }}>
+                <TabItems className="tab flex-child" value={activeTab} style={{ height: "100%" }}>
                     <TabItem className="tab-item float-container">
                         <Card className="float-item">
                             <CardHeader>Preferences</CardHeader>
@@ -80,10 +114,14 @@ const SettingsView = () => {
                             <CardHeader>Connect to Services</CardHeader>
                             <CardContent>
                                 <div className="setting-separated">
-                                    {connectedText(spotifyConnected, "Spotify")}
+                                    {connectedText(spotifyState.connected, "Spotify")}
+
                                     <div>
-                                        <SpotifyAuth enabled={!spotifyConnected} />
-                                        <IconButton rounded><CrossIcon fill='var(--error)' /></IconButton>
+                                        <SpotifyAuth enabled={!spotifyState.connected} />
+                                        {spotifyState.connected && disconnectButton("Spotify", () => {
+                                            deleteFirestoreUserData("services", "spotify");
+                                            dispatch(disconnect("SPOTIFY"));
+                                        })}
                                     </div>
                                 </div>
                             </CardContent>
