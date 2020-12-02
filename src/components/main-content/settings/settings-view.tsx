@@ -64,10 +64,10 @@ const SettingsView = () => {
                     Settings
                 </CardHeader>
                 <Tabs className="card-margin" rounded value={activeTab}>
-                    <Tab dark onClick={() => setActiveTab(0)}>Preferences</Tab>
-                    <Tab dark onClick={() => setActiveTab(1)}>Services</Tab>
-                    <Tab dark onClick={() => setActiveTab(2)}>Account</Tab>
-                    <Tab dark onClick={() => setActiveTab(3)}>Privacy</Tab>
+                    <Tab onClick={() => setActiveTab(0)}>Preferences</Tab>
+                    <Tab onClick={() => setActiveTab(1)}>Services</Tab>
+                    <Tab onClick={() => setActiveTab(2)}>Account</Tab>
+                    <Tab onClick={() => setActiveTab(3)}>Privacy</Tab>
                 </Tabs>
                 <Divider dense className="card-margin" />
                 <TabItems className="tab flex-child" value={activeTab} style={{ height: "100%" }}>
