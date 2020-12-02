@@ -39,7 +39,7 @@ const LyricsView = ({
                     <div className="flex-parent flex-align-center lyrics-search-form" spellCheck="false">
                         <Button onClick={() => getCurrentLyrics()} depressed active={sameAsPlaying}>Currently playing</Button>
                         <span>OR</span>
-                        <form onSubmit={e => {
+                        <form autoComplete="off" onSubmit={e => {
                             e.preventDefault();
                             if (query) searchLyrics(query);
                         }}>
