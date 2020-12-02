@@ -90,7 +90,7 @@ const SettingsView = () => {
                         <Card className="float-item card-margin-large" dark>
                             <CardHeader>User</CardHeader>
                             <CardContent>
-                                <Button dark onClick={() => dispatch(signOut())}>Sign out</Button>
+                                <Button dark rounded onClick={() => dispatch(signOut())}>Sign out</Button>
                             </CardContent>
                         </Card>
                         <Card className="float-item" dark>

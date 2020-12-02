@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, CardContent, CardAction, CardHeader, Divider, TextField, ProgressLinear, Subtitle1, H4 } from 'ui-neumorphism';
+import { Button, Card, CardContent, CardAction, CardHeader, TextField, ProgressLinear, Subtitle1 } from 'ui-neumorphism';
 import actions from '../../../actions';
 
 const LyricsView = ({
@@ -45,7 +45,6 @@ const LyricsView = ({
                             if (query) setCurrentLyrics(query, false);
                         }}>Search</Button>
                     </div>
-                {/* <Divider dense/> */}
                 <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6}/>
                 <CardContent className="lyrics-container">
                     
