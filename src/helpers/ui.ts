@@ -16,12 +16,12 @@ export function changeThemePrimary(color: string) {
 }
 export function changeThemeDark(enabled: boolean) {
 	if (enabled) {
-		document.body.classList.remove("theme-dark");
-		document.body.classList.add("theme-light");
-	}
-	else {
 		document.body.classList.remove("theme-light");
 		document.body.classList.add("theme-dark");
+	}
+	else {
+		document.body.classList.remove("theme-dark");
+		document.body.classList.add("theme-light");
 	}
 }
 export function changeUI(ui: any) {

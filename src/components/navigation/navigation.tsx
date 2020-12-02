@@ -11,7 +11,7 @@ const Navigation = () => {
     const [active, setActive] = useState(0);
     function color(activeNr) {
         if (active === activeNr) return 'var(--primary)';
-        return 'var(--light-bg)';
+        return 'var(--g-text-color-light)';
     }
 
     return (
