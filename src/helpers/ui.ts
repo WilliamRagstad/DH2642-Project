@@ -11,25 +11,17 @@ import { saveFirestoreUserData } from "./firebase";
 
 export function changeThemePrimary(color: string) {
 	document.body.style.setProperty("--primary", `var(--theme-${color})`);
+	document.body.style.setProperty("--primary-dark", `var(--theme-${color}-dark)`);
+	document.body.style.setProperty("--primary-light", `var(--theme-${color}-light)`);
 }
 export function changeThemeDark(enabled: boolean) {
 	if (enabled) {
-		document.body.style.setProperty("--dark-bg", `var(--theme-dark-bg)`);
-		document.body.style.setProperty("--dark-bg-dark-shadow", `var(--theme-dark-bg-dark-shadow)`);
-		document.body.style.setProperty("--dark-bg-light-shadow", `var(--theme-dark-bg-light-shadow)`);
-		document.body.style.setProperty("--theme-box-shadow-inset", `var(--theme-dark-box-shadow-inset)`);
-
-		document.body.style.setProperty("--white", `#FFF`);
-		document.body.style.setProperty("--black", `#000`);
+		document.body.classList.remove("theme-light");
+		document.body.classList.add("theme-dark");
 	}
 	else {
-		document.body.style.setProperty("--dark-bg", `var(--theme-light-bg)`);
-		document.body.style.setProperty("--dark-bg-dark-shadow", `var(--theme-light-bg-dark-shadow)`);
-		document.body.style.setProperty("--dark-bg-light-shadow", `var(--theme-light-bg-light-shadow)`);
-		document.body.style.setProperty("--theme-box-shadow-inset", `var(--theme-light-box-shadow-inset)`);
-
-		document.body.style.setProperty("--white", `#000`);
-		document.body.style.setProperty("--black", `#FFF`);
+		document.body.classList.remove("theme-dark");
+		document.body.classList.add("theme-light");
 	}
 }
 export function changeUI(ui: any) {
