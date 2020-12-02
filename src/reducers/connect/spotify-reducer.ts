@@ -10,7 +10,7 @@ const initialState: ISpotify = {
 const spotifyReducer = (state = initialState, action: IAction) => {
     switch (action.type) {
         case 'CONNECTED_SPOTIFY':
-            return action.payload;
+            return action.payload || initialState; // Fallback if undefined payload
 
         default:
             return state;

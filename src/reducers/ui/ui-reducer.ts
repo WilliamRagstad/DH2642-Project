@@ -12,6 +12,7 @@ const initialState = {
 const uiReducer = (state = initialState, action: IAction) => {
     switch (action.type) {
         case 'UI_UPDATE':
+            action.payload = action.payload || initialState; // Fallback if undefined payload
             changeUI(action.payload);
             return action.payload;
         default:
