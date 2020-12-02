@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import { IAction } from "../../interfaces";
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
         lyrics: "",
     },
     isLoading: false,
-    lyricsError: null
+    lyricsError: "",
+    searchResults: []
 }
 
 const lyricsReducer = (state = initialState, action : IAction) => {
@@ -36,6 +38,13 @@ const lyricsReducer = (state = initialState, action : IAction) => {
                 currentLyrics: { ...state.currentLyrics, ...action.payload }
             };
             return newState;
+        case 'SET_LYRICS_SEARCH_RESULTS':
+            newState = {
+                ...state,
+                currentLyrics: initialState.currentLyrics,
+                searchResults: action.payload
+            }
+            return newState;
         case 'SET_LYRICS_LOADING':
             newState = {
                 ...state,
@@ -45,7 +54,6 @@ const lyricsReducer = (state = initialState, action : IAction) => {
         case 'LYRICS_SUCCESS':
             newState = {
                 ...state,
-                currentLyrics: { ...state.currentLyrics, ...action.payload },
                 isLoading: false,
                 lyricsError: null
             };

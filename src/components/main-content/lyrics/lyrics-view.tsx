@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, CardContent, CardAction, CardHeader, Divider, TextField, ProgressLinear, Subtitle1, H4 } from 'ui-neumorphism';
+import { Button, Card, CardContent, CardAction, CardHeader, Divider, TextField, ProgressLinear, Subtitle1, H4, Alert } from 'ui-neumorphism';
 import actions from '../../../actions';
 
 const LyricsView = ({
@@ -8,7 +8,10 @@ const LyricsView = ({
     currentLyrics,
     isLoading,
     lyricsError,
-    setCurrentLyrics
+    searchResults,
+    setCurrentLyrics,
+    getCurrentLyrics,
+    searchLyrics
 }) => {    
     const [query, setQuery] = useState("");
     // search when user stops typing
@@ -20,7 +23,8 @@ const LyricsView = ({
     //     return () => clearTimeout(typingTimeout);
     // }, [query, setCurrentLyrics]);
 
-    const { 
+    const {
+        id,
         title,
         artist,
         url,
@@ -33,36 +37,40 @@ const LyricsView = ({
             <Card className="view-card flex-parent flex-column float-container" dark inset rounded>
                 <CardHeader>Lyrics</CardHeader>
                     <div className="flex-parent flex-align-center lyrics-search-form" spellCheck="false">
-                        <Button onClick={() => setCurrentLyrics("See you again Wiz Khalifa", true)} dark depressed active={sameAsPlaying}>Currently playing</Button>
+                        <Button onClick={() => getCurrentLyrics()} dark depressed active={sameAsPlaying}>Currently playing</Button>
                         <span>OR</span>
                         <form onSubmit={e => {
                             e.preventDefault();
-                            if (query) setCurrentLyrics(query, false);
+                            if (query) searchLyrics(query);
                         }}>
                             <TextField dark bordered placeholder="Search for song..." className="lyrics-search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
                         </form>
                         <Button dark onClick={() => {
-                            if (query) setCurrentLyrics(query, false);
+                            if (query) searchLyrics(query);
                         }}>Search</Button>
                     </div>
                 {/* <Divider dense/> */}
                 <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6}/>
                 <CardContent className="lyrics-container">
-                    
+                    { id ? 
                     <Card className="float-item lyrics-content" dark>
                         <CardHeader>
-                            {title}
-                            <Subtitle1 secondary>{artist}</Subtitle1></CardHeader>
-                        <CardContent>
-                            {lyrics}
-                        </CardContent>
-
-                        { url ? <CardAction>
-                            <Button text color='var(--primary)'>
+                            {title} { url ? <Button text color='var(--primary)'>
                                 <a href={url} rel="noreferrer" target="_blank">Source</a>
-                            </Button>
-                        </CardAction> : ""}
+                            </Button> : ""}
+                            <Subtitle1 secondary>{artist}</Subtitle1>
+                            {albumArtUrl ? <img alt="" src={albumArtUrl} height="100px"/> : ""}
+                        </CardHeader>
+                        <CardContent>
+                            {lyricsError ?
+                            <React.Fragment>
+                                {lyricsError} &nbsp;
+                                <Button depressed dark onClick={() => getCurrentLyrics()}>Reload</Button>
+                            </React.Fragment>
+                            : lyrics}
+                        </CardContent>
                     </Card>
+                    : searchResults.length >= 1 ? JSON.stringify(searchResults) : ""}
                 </CardContent>
             </Card>
         </React.Fragment>
@@ -73,7 +81,8 @@ const mapStateToProps = state => {
         sameAsPlaying: state.lyrics.sameAsPlaying,
         currentLyrics: state.lyrics.currentLyrics,
         isLoading: state.lyrics.isLoading,
-        lyricsError: state.lyrics.lyricsError
+        lyricsError: state.lyrics.lyricsError,
+        searchResults: state.lyrics.searchResults
     }
 }
 
