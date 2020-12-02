@@ -1,17 +1,18 @@
 import { IAction } from "../../interfaces";
-import { changePrimary } from '../../helpers/ui';
+import { changeUI } from '../../helpers/ui';
 
 const initialState = {
     theme: {
         dark: true,
         primary: "blue"
-    }
+    },
+    language: 'en'
 }
 
 const uiReducer = (state = initialState, action: IAction) => {
     switch (action.type) {
         case 'UI_UPDATE':
-            changePrimary(action.payload.theme.primary)
+            changeUI(action.payload);
             return action.payload;
         default:
             return state;
