@@ -31,21 +31,21 @@ const SearchView = () => {
 
     return (
         <React.Fragment>
-            <Card className="view-card float-container" dark inset rounded>
+            <Card className="view-card float-container" inset rounded>
                 <CardHeader>Search</CardHeader>
                 <form onSubmit={e => {
                     e.preventDefault();
                     console.log("Search form submitted")
                 }}>
                     <div className="flex-parent flex-align-center search-form" spellCheck="false">
-                        <TextField dark bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value)} type="text"></TextField>
-                        <Button dark>Search</Button>
+                        <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value)} type="text"></TextField>
+                        <Button>Search</Button>
                     </div>
                     <input type="submit" hidden />
                 </form>
                 <Divider dense/>
                 <CardContent>
-                    <Table className="float-item" dark noHeaders items={items} headers={headers}/>
+                    <Table className="float-item" noHeaders items={items} headers={headers}/>
                 </CardContent>
             </Card>
         </React.Fragment>

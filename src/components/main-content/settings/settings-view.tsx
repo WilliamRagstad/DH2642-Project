@@ -25,7 +25,7 @@ const SettingsView = () => {
 
     return (
         <React.Fragment>
-            <Card className="view-card float-container" dark inset rounded>
+            <Card className="view-card float-container" inset rounded>
                 <CardHeader>
                     Settings
                 </CardHeader>
@@ -38,23 +38,23 @@ const SettingsView = () => {
                 <Divider dense className="card-margin" />
                 <TabItems className="tab flex-child" value={active} style={{ height: "100%" }}>
                     <TabItem className="tab-item float-container">
-                        <Card className="float-item" dark>
+                        <Card className="float-item">
                             <CardHeader>Preferences</CardHeader>
                             <CardContent>
                                 <div className="setting-separated">
                                     Select language
-                                    <RadioGroup vertical dark value={current_ui.language || 'en'} color='var(--primary)' className="radio-group" onChange={e => applyLanguage(e.value, current_ui)}>
+                                    <RadioGroup vertical value={current_ui.language || 'en'} color='var(--primary)' className="radio-group" onChange={e => applyLanguage(e.value, current_ui)}>
                                         <Radio value='en' label='English' />
                                         <Radio value='se' label='Swedish' />
                                     </RadioGroup>
                                 </div>
                                 <div className="setting-separated">
                                     Dark theme
-                                    <Switch dark color='var(--primary)' checked={current_ui.theme.dark} onClick={e => applyThemeDark(e.target.checked, current_ui)} />
+                                    <Switch color='var(--primary)' checked={current_ui.theme.dark} onClick={e => applyThemeDark(e.target.checked, current_ui)} />
                                 </div>
                                 <div className="setting-separated">
                                     Primary color
-                                    <ToggleButtonGroup mandatory dark value={current_ui.theme.primary}>
+                                    <ToggleButtonGroup mandatory value={current_ui.theme.primary}>
                                         <ToggleButton rounded value='blue' onClick={() => applyThemePrimary('blue', current_ui)}>
                                             <LensIcon fill="var(--theme-blue)" className="label-icon" />
                                         </ToggleButton>
@@ -76,32 +76,32 @@ const SettingsView = () => {
                         </Card>
                     </TabItem>
                     <TabItem className="tab-item float-container">
-                        <Card className="float-item" dark>
+                        <Card className="float-item">
                             <CardHeader>Connect to Services</CardHeader>
                             <CardContent>
                                 <div className="setting-separated">
                                     {connectedText(spotifyConnected, "Spotify")}
                                     <div>
                                         <SpotifyAuth enabled={!spotifyConnected} />
-                                        <IconButton dark rounded><CrossIcon fill='var(--error)' /></IconButton>
+                                        <IconButton rounded><CrossIcon fill='var(--error)' /></IconButton>
                                     </div>
                                 </div>
                             </CardContent>
                         </Card>
                     </TabItem>
                     <TabItem className="tab-item float-container">
-                        <Card className="float-item card-margin-large" dark>
+                        <Card className="float-item card-margin-large">
                             <CardHeader>User</CardHeader>
                             <CardContent>
-                                <Button dark rounded onClick={() => dispatch(signOut())}>Sign out</Button>
+                                <Button rounded onClick={() => dispatch(signOut())}>Sign out</Button>
                             </CardContent>
                         </Card>
-                        <Card className="float-item" dark>
+                        <Card className="float-item">
                             <CardHeader>Access</CardHeader>
                         </Card>
                     </TabItem>
                     <TabItem className="tab-item float-container">
-                        <Card className="float-item" dark>
+                        <Card className="float-item">
                             <CardHeader>Privacy Settings</CardHeader>
                         </Card>
                     </TabItem>
