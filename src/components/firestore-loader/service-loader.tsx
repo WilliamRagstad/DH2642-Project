@@ -11,6 +11,7 @@ export function LoadServices() {
     const db = firebase.firestore();
 
     getCurrentUser(firebase.auth()).then((user: any) => {
+        if (!user) return;
         db.collection("services").doc("spotify").collection("users").doc(user.uid).get().then((snapshot) => {
             if (snapshot.exists) {
                 const hashdata = snapshot.data();

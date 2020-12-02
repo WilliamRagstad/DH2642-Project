@@ -3,6 +3,9 @@ import { Navigation } from '../index';
 import { MainContent } from '../index';
 import { Card } from 'ui-neumorphism';
 
+// LOAD DATA FROM FIRESTORE
+import FirestoreLoader from '../firestore-loader/firestore-loader';
+
 const Application = () => {
 
 	useEffect(() => {
@@ -46,9 +49,11 @@ const Application = () => {
 			</div>
 			<div className="application-controls">
 				<Card className="fill-element" dark>
-					
+
 				</Card>
 			</div>
+
+			<FirestoreLoader />
 		</div>
 	);
 }

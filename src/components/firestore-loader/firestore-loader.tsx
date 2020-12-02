@@ -2,7 +2,7 @@ import React from 'react';
 import { LoadServices } from './service-loader';
 import { LoadApp } from './app-loader';
 
-function FirebaseLoader() {
+function FirestoreLoader() {
 
     LoadApp();
     LoadServices();
@@ -10,4 +10,4 @@ function FirebaseLoader() {
     return <React.Fragment />;
 }
 
-export default FirebaseLoader;
+export default FirestoreLoader;
