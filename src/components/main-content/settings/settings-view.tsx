@@ -31,21 +31,21 @@ const SettingsView = () => {
 
     function disconnectButton(service: string, onDisconnect: ((event) => any)) {
         return <React.Fragment>
-            <IconButton dark rounded onClick={() => setDialogState({ [service]: true })}><CrossIcon fill='var(--error)' /></IconButton>
-            <Dialog visible={dialogState[service]} dark minWidth={300}>
+            <IconButton rounded onClick={() => setDialogState({ [service]: true })}><CrossIcon fill='var(--error)' /></IconButton>
+            <Dialog visible={dialogState[service]} minWidth={300}>
                 <Card className='pa-4'>
                     <CardHeader>Are you sure?</CardHeader>
                     <CardContent>
                         <p className="ma-v-16">Are you sure that you want to disconnect <b>{service}</b> <br /> from your services?</p>
                         <div className="setting-separated">
-                            <Button dark onClick={e => {
+                            <Button onClick={e => {
                                 setDialogState({ [service]: false });
                                 onDisconnect(e);
                             }}>
                                 <CrossIcon fill='var(--error)' />&nbsp;
                                                             Disconnect
                                                         </Button>
-                            <Button dark onClick={() => setDialogState({ [service]: false })}>
+                            <Button onClick={() => setDialogState({ [service]: false })}>
                                 <CheckIcon fill='var(--success)' />&nbsp;
                                                             Keep
                                                         </Button>
