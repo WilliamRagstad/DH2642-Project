@@ -6,3 +6,7 @@ export const connect = (service: string, data: any): IAction => {
         payload: data
     }
 }
+
+export const disconnect = (service: string): IAction => {
+    return connect(service, null);
+}
