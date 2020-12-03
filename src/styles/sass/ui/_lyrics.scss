@@ -41,7 +41,10 @@
     border-radius: 20px;
     box-shadow: var(--box-shadow);
     &:hover > img {
-      opacity: 0.8;
+      opacity: 0.5;
+    }
+    &:active {
+      box-shadow: var(--box-shadow-inset);
     }
 
     & > img {
