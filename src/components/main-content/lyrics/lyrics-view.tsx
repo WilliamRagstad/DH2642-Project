@@ -9,8 +9,8 @@ const LyricsView = ({
     isLoading,
     lyricsError,
     searchResults,
-    setCurrentLyrics,
     getCurrentLyrics,
+    getLyricsFromId,
     searchLyrics
 }) => {    
     const [query, setQuery] = useState("");
@@ -58,18 +58,30 @@ const LyricsView = ({
                                 <a href={url} rel="noreferrer" target="_blank">Source</a>
                             </Button> : ""}
                             <Subtitle1 secondary>{artist}</Subtitle1>
-                            {albumArtUrl ? <img alt="" src={albumArtUrl} height="100px"/> : ""}
                         </CardHeader>
                         <CardContent>
-                            {lyricsError ?
+                            {lyricsError && !isLoading ?
                             <React.Fragment>
                                 {lyricsError} &nbsp;
-                                <Button depressed onClick={() => getCurrentLyrics()}>Reload</Button>
+                                <Button depressed onClick={() => getLyricsFromId(id)}>Reload</Button>
                             </React.Fragment>
                             : lyrics}
                         </CardContent>
                     </Card>
-                    : searchResults.length >= 1 ? JSON.stringify(searchResults) : ""}
+                    : searchResults.length >= 1 && 
+                    <div className="lyrics-result-container flex-parent">
+                        {searchResults.map(song => (
+                                <div key={song.id} onClick={() => getLyricsFromId(song.id)} className="lyrics-result-item">
+                                    <img src={song.albumArtUrl} alt=""/>
+                                    <div className="lyrics-result-text">
+                                        <h4 className="title"><span>{song.title}</span></h4>
+                                        <p><span>{song.artist}</span></p>
+                                    </div>                                    
+                                </div>
+                            )
+                        )}
+                    </div>
+                    }
                 </CardContent>
             </Card>
         </React.Fragment>
