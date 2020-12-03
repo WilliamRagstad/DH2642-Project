@@ -1,10 +1,7 @@
 import { useDispatch } from "react-redux";
-import firebase from '../../firebase';
-import "firebase/firestore";
 
-import { ISpotify } from '../../interfaces';
-import { connect } from '../../actions/connect-actions';
 import { loadFirestoreUserData } from '../../helpers/firebase';
+import { connect } from '../../actions/connect-actions';
 
 export function LoadServices() {
     const dispatch = useDispatch();
@@ -13,7 +10,7 @@ export function LoadServices() {
         if (snapshot.exists) {
             const hashdata = snapshot.data();
             hashdata.connected = true;
-            dispatch(connect("SPOTIFY", hashdata as ISpotify));
+            dispatch(connect("SPOTIFY", hashdata));
         }
     });
 }
