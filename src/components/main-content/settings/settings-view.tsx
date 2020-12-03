@@ -63,7 +63,7 @@ const SettingsView = () => {
                 <CardHeader>
                     Settings
                 </CardHeader>
-                <Tabs className="card-margin" rounded value={activeTab}>
+                <Tabs className="card-margin card-tabs-margin" rounded value={activeTab}>
                     <Tab onClick={() => setActiveTab(0)}>Preferences</Tab>
                     <Tab onClick={() => setActiveTab(1)}>Services</Tab>
                     <Tab onClick={() => setActiveTab(2)}>Account</Tab>

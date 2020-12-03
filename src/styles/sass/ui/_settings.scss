@@ -1,17 +1,21 @@
 .card-margin {
-  margin-bottom: 10px !important;
+	margin-bottom: 10px !important;
 }
 
 .card-margin-large {
-  margin-bottom: 32px !important;
+	margin-bottom: 32px !important;
+}
+
+.card-tabs-margin {
+	margin-left: 6px;
 }
 
 .setting-separated {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-  .label-icon {
-    vertical-align: top;
-  }
+	.label-icon {
+		vertical-align: top;
+	}
 }
