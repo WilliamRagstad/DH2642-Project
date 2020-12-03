@@ -8,6 +8,7 @@ import SpotifyAuth from './spotify-auth/spotify-auth';
 import Navigation from './navigation/navigation';
 import MainContent from './main-content/main-content';
 import Connect from "./connect/connect";
+import MediaControls from './media-controls/media-controls';
 
 export {
     Application,
@@ -19,5 +20,6 @@ export {
     SpotifyAuth,
     Navigation,
     MainContent,
-    Connect
+    Connect,
+    MediaControls
 }

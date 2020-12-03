@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navigation } from '../index';
-import { MainContent } from '../index';
+import { Navigation, MainContent, MediaControls } from '../index';
 import { Card } from 'ui-neumorphism';
 
 // LOAD DATA FROM FIRESTORE
@@ -48,9 +47,7 @@ const Application = () => {
 				</div>
 			</div>
 			<div className="application-controls">
-				<Card className="fill-element">
-
-				</Card>
+				<MediaControls />
 			</div>
 
 			<FirestoreLoader />
