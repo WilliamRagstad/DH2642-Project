@@ -8,5 +8,5 @@ export default AppDocument;
 
 export function LoadAppCache() {
     // Load theme from local storage before catching up with firestore state. Replaced with shorthand version
-    AppDocument.DocumentPath("cache/ui").PassTo(changeUI);
+    AppDocument.DocumentPath("cache/ui")?.PassTo(changeUI);
 }

@@ -117,11 +117,11 @@ export class StorageDocument {
         let tmp: StorageDocument | StorageCollection = this;
         for (let i = 0; i < arr.length; i++) {
             if (tmp instanceof StorageCollection) {
-                if (!tmp.Contains(arr[i])) throw new Error(`Path does not contain document '${arr[i]}'!`);
+                if (!tmp.Contains(arr[i])) console.warn(`Path does not contain document '${arr[i]}'!`);
                 tmp = tmp.Document(arr[i]);
             }
-            else {
-                if (!this.Contains(arr[i])) throw new Error(`Path does not contain collection '${arr[i]}'!`);
+            else if (tmp instanceof StorageDocument) {
+                if (!this.Contains(arr[i])) console.warn(`Path does not contain collection '${arr[i]}'!`);
                 tmp = tmp.Collection(arr[i]);
             }
         }
@@ -136,7 +136,7 @@ export class StorageDocument {
         const arr = this.pathToArray(path);
         if (arr.length % 2 !== 1) throw new Error("Path must follow [COLLECTION]/([DOCUMENT]/[COLLECTION])* format! Eg. 'users/Bob/tweets'.");
         const result = this.pathTraverse(arr, 1);
-        if (!(result instanceof StorageCollection)) throw new Error("Failed unexpectedly, return value was not of type StorageCollection!");
+        if (result !== undefined && !(result instanceof StorageCollection)) throw new Error("Failed unexpectedly, return value was not of type StorageCollection!");
         return result as StorageCollection;
     }
     /**
@@ -147,7 +147,7 @@ export class StorageDocument {
         const arr = this.pathToArray(path);
         if (arr.length % 2 !== 0) throw new Error("Path must follow ([COLLECTION]/[DOCUMENT])+ format! Eg. 'users/Bob/tweets/7GA1J4V'.");
         const result = this.pathTraverse(arr, 0);
-        if (!(result instanceof StorageDocument)) throw new Error("Failed unexpectedly, return value was not of type StorageDocument!");
+        if (result !== undefined && !(result instanceof StorageDocument)) throw new Error("Failed unexpectedly, return value was not of type StorageDocument!");
         return result as StorageDocument;
     }
     public PassTo = (callback: ((data: object) => any)) => callback(this.fields);
