@@ -41,7 +41,7 @@ export class StorageDocument {
         let prev: StorageDocument | StorageCollection = new StorageDocument(arr[arr.length - 1]);
         for (let i = arr.length - 2; i >= 0; i--) {
             if (prev instanceof StorageDocument) prev = new StorageCollection(arr[i], { [prev.id]: prev });
-            else prev = new StorageDocument(arr[i], null, { [prev.id]: prev });
+            else if (prev instanceof StorageCollection) prev = new StorageDocument(arr[i], null, { [prev.id]: prev });
         }
         this.Add(prev as StorageCollection);
     }
