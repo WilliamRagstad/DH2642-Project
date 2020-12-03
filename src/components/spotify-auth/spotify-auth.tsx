@@ -7,7 +7,8 @@ import spotifyIcon from './Spotify_Icon_RGB_Green.png';
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const scopes = [
     'user-read-private',
-    'user-read-email'
+    'user-read-email',
+    'streaming'
 ]
 
 const SpotifyAuth = ({ enabled = true }) => {
