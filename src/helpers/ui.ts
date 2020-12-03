@@ -1,4 +1,11 @@
+import AppDocument from "../app-cache";
 import { saveFirestoreUserData } from "./firebase";
+
+// Helper
+function syncAndCacheUI(ui: any) {
+	AppDocument.SetPath("cache/ui", ui);
+	saveFirestoreUserData("app", "ui", ui);
+}
 
 /*
  
@@ -40,16 +47,16 @@ export function changeUI(ui: any) {
 export function applyThemePrimary(color: string, current_ui: any) {
 	changeThemePrimary(color);
 	current_ui.theme.primary = color;
-	saveFirestoreUserData("app", "ui", current_ui);
+	syncAndCacheUI(current_ui);
 }
 
 export function applyThemeDark(enabled: boolean, current_ui: any) {
 	changeThemeDark(enabled);
 	current_ui.theme.dark = enabled;
-	saveFirestoreUserData("app", "ui", current_ui);
+	syncAndCacheUI(current_ui);
 }
 
 export function applyLanguage(code: string, current_ui: any) {
 	current_ui.language = code;
-	saveFirestoreUserData("app", "ui", current_ui);
+	syncAndCacheUI(current_ui);
 }

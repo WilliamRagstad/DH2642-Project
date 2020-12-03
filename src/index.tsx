@@ -11,6 +11,8 @@ import firebase from './firebase';
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { createFirestoreInstance } from 'redux-firestore';
 
+import { LoadAppCache } from './app-cache';
+
 const rrfProps = {
 	firebase,
 	config: {
@@ -21,6 +23,8 @@ const rrfProps = {
 	createFirestoreInstance
 }
 
+// APP CACHE
+LoadAppCache();
 
 ReactDOM.render(
 	<Provider store={store}>
