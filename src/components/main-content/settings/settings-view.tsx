@@ -20,7 +20,7 @@ const SettingsView = () => {
     const dispatch = useDispatch();
     const current_ui = useSelector((state: IState) => state.ui);
 
-    const spotifyState = useSelector((state: IState) => state.spotifyReducer);
+    const spotifyState = useSelector((state: IState) => state.spotify);
 
     // Helper functions
     function connectedText(guard, service) {

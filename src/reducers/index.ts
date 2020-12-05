@@ -13,7 +13,7 @@ import uiReducer from './ui/ui-reducer';
 
 const allReducers = combineReducers({
     counterReducer,
-    spotifyReducer,
+    spotify: spotifyReducer,
     login: loginReducer,
     signup: signupReducer,
     firebase: firebaseReducer,
