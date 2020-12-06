@@ -1,8 +1,7 @@
-import { StorageDocument } from "./helpers/storage";
+import { LavaStore } from "lavastore";
 import { changeUI } from "./helpers/ui";
 
-const AppDocument = new StorageDocument("app");
-AppDocument.Load();
+const AppDocument = new LavaStore("app");
 
 export default AppDocument;
 
