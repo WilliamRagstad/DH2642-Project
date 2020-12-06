@@ -1,6 +1,6 @@
 interface IState {
     counterReducer: any,
-    spotifyReducer: any,
+    spotify: any,
     login: any,
     signup: any,
     firebase: any,
