@@ -6,6 +6,7 @@ interface ISpotify extends IService {
     scope: string;
     expires_in: number;
     refresh_token: string;
+    retrieved_at: number;
 }
 
 export default ISpotify;

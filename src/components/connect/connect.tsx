@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { ISpotify } from '../../interfaces';
 import { connect } from '../../actions/connect-actions';
 
-import { parseParams } from "../../helpers/parsing";
 import { saveFirestoreUserData } from '../../helpers/firebase';
 
 import spotifyConfig from '../../spotify-config';
@@ -24,7 +23,6 @@ const Connect = ({ match, props, location }) => {
     const connectService = service => {
         switch (service) {
             case "spotify":
-                const hashdata = parseParams(location.hash.slice(1));
                 const urlParams = new URLSearchParams(location.search);
                 if (urlParams.get('code')) {
                     const code = urlParams.get('code');
@@ -54,9 +52,10 @@ const Connect = ({ match, props, location }) => {
                         })
                         .then(data => {
                             console.log(data);
+                            data.retrieved_at = Math.round(Date.now() / 1000);
                             // Save to Cloud Firestore
-                            saveFirestoreUserData("services", "spotify", data).then(function () {
-                                hashdata.connected = true;
+                            saveFirestoreUserData("services", "spotify", data).then(() => {
+                                data.connected = true;
                                 dispatch(connect("SPOTIFY", data as ISpotify));
                             }).catch(console.error)
                         })

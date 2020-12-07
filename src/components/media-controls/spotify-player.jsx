@@ -1,6 +1,8 @@
 import React from 'react';
 import Script from 'react-load-script';
 import { connect } from 'react-redux';
+import actions from '../../actions';
+import { validateSpotifyToken } from '../../helpers/spotify';
 
 class Player extends React.Component {
 
@@ -19,7 +21,8 @@ class Player extends React.Component {
 
 	handleLoadSuccess() {
 		this.setState({ scriptLoaded: true });
-		const token = this.props.accessToken;
+		const token = this.props.spotifyData.access_token;
+		validateSpotifyToken(this.props.spotifyData);
 		const player = new window.Spotify.Player({
 			name: 'SoundBundle Web Player',
 			getOAuthToken: cb => { cb(token); }
@@ -84,8 +87,7 @@ class Player extends React.Component {
 }
 const mapStateToProps = state => {
 	return {
-		connectedToSpotify: state.spotify.connected,
-		accessToken: state.spotify.access_token
+		spotifyData: state.spotify
 	}
 }
-export default connect(mapStateToProps)(Player);
+export default connect(mapStateToProps, actions)(Player);
