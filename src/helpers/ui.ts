@@ -1,4 +1,4 @@
-import AppDocument from "../app-cache";
+import { AppDocument } from "../lavastore";
 import { saveFirestoreUserData } from "./firebase";
 
 // Helper
