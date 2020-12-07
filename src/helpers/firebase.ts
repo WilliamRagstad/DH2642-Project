@@ -3,7 +3,7 @@ import "firebase/firestore";
 
 const db = firebase.firestore();
 
-function getCurrentUser(auth) {
+export function getCurrentUser(auth) {
     return new Promise((resolve, reject) => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             unsubscribe();

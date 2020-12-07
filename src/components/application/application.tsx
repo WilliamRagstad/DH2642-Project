@@ -3,7 +3,7 @@ import { Navigation, MainContent, MediaControls } from '../index';
 import { Card } from 'ui-neumorphism';
 
 // LOAD DATA FROM FIRESTORE
-import FirestoreLoader from '../firestore-loader/firestore-loader';
+import FirestoreLoader from '../loaders/firestore-loader';
 
 const Application = () => {
 
@@ -49,8 +49,6 @@ const Application = () => {
 			<div className="application-controls">
 				<MediaControls />
 			</div>
-
-			<FirestoreLoader />
 		</div>
 	);
 }
