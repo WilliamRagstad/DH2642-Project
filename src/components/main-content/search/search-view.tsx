@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Card, CardContent, CardHeader, Divider, Table, TextField } from 'ui-neumorphism';
 
 function createItem(title, artist, album, length) {
@@ -8,14 +8,14 @@ function createItem(title, artist, album, length) {
 const SearchView = () => {
     const [query, setQuery] = useState("");
 
-    useEffect(() => {
-        const typingTimeout = setTimeout(() => {
-            console.log(typingTimeout + ": Searched " + query)
-            // perform search here
-        }, 300);
-        
-        return () => clearTimeout(typingTimeout);
-    }, [query]);
+    // useEffect(() => {
+    //     const typingTimeout = setTimeout(() => {
+    //         console.log(typingTimeout + ": Searched " + query)
+    //         // perform search here
+    //     }, 300);
+    //     
+    //     return () => clearTimeout(typingTimeout);
+    // }, [query]);
 
     const headers = [
         { text: 'Title', align: 'left', value: 'title' },
@@ -33,13 +33,16 @@ const SearchView = () => {
         <React.Fragment>
             <Card className="view-card float-container" inset rounded>
                 <CardHeader>Search</CardHeader>
-                <form onSubmit={e => {
+                <form autoComplete="off" onSubmit={e => {
                     e.preventDefault();
-                    console.log("Search form submitted")
+                    console.log("Search form submitted");
+                    //if (query) search(query);
                 }}>
                     <div className="flex-parent flex-align-center search-form" spellCheck="false">
                         <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value)} type="text"></TextField>
-                        <Button>Search</Button>
+                        <Button onClick={() => {
+                            //if (query) search(query);
+                        }}>Search</Button>
                     </div>
                     <input type="submit" hidden />
                 </form>
