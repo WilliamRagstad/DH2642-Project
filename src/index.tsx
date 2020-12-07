@@ -11,7 +11,8 @@ import firebase from './firebase';
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { createFirestoreInstance } from 'redux-firestore';
 
-import { LoadAppCache } from './app-cache';
+import { LocationCache } from './lavastore';
+import Loaders from './components/loaders/loaders';
 
 const rrfProps = {
 	firebase,
@@ -23,14 +24,17 @@ const rrfProps = {
 	createFirestoreInstance
 }
 
-// APP CACHE
-LoadAppCache();
+LocationCache.Set({ to: window.location.href });
 
 ReactDOM.render(
-	<Provider store={store}>
-		<ReactReduxFirebaseProvider {...rrfProps}>
-			<App />
-		</ReactReduxFirebaseProvider>
-	</Provider>,
+	<React.Fragment>
+		<Provider store={store}>
+			<ReactReduxFirebaseProvider {...rrfProps}>
+				<App />
+			</ReactReduxFirebaseProvider>
+		</Provider>
+
+		<Loaders />
+	</React.Fragment>,
 	document.getElementById('root')
 );
