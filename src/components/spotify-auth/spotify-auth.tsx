@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import config from '../../spotify-config';
 import { Button } from 'ui-neumorphism';
 import spotifyIcon from './Spotify_Icon_RGB_Green.png';
 import { LSDocument } from 'lavastore';
+import IState from '../../interfaces/redux/state';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const scopes = [
@@ -44,21 +46,24 @@ const generateCodeChallengeFromVerifier = async v => {
 
 const SpotifyAuth = ({ enabled = true }) => {
     const [challenge, setChallenge] = useState(null);
-    useEffect(() => {
-        const v = generateCodeVerifier();
-        const sd = new LSDocument('spotify-verifier');
 
-        console.log("Set v: " + v);
-        generateCodeChallengeFromVerifier(v)
-            .then(ch => {
-                setChallenge(ch)
-                console.log(ch);
-                sd.Set({
-                    verifier: v,
-                    challenge: ch
+    const isConnectedToSpotify = useSelector((state: IState) => state.spotify.connected);
+
+    useEffect(() => {
+        if (!isConnectedToSpotify) {
+            const v = generateCodeVerifier();
+            const sd = new LSDocument('spotify-verifier');
+
+            generateCodeChallengeFromVerifier(v)
+                .then(ch => {
+                    setChallenge(ch);
+                    sd.Set({
+                        verifier: v,
+                        challenge: ch
+                    })
                 })
-            })
-    }, [])
+        }
+    }, [isConnectedToSpotify])
 
     const url = authEndpoint + new URLSearchParams({
         client_id: config.client_id,
