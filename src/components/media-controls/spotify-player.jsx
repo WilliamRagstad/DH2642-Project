@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class Player extends React.Component {
 
 	constructor(props) {
-	super(props);
+		super(props);
 		this.handleLoadSuccess = this.handleLoadSuccess.bind(this);
 		this.handleLoadFailure = this.handleLoadSuccess.bind(this);
 		this.cb = this.cb.bind(this);
@@ -49,7 +49,7 @@ class Player extends React.Component {
 	}
 
 	cb(token) {
-		return(token);
+		return (token);
 	}
 
 	handleScriptCreate() {
@@ -63,7 +63,7 @@ class Player extends React.Component {
 	}
 
 	handleScriptLoad() {
-		this.setState({ scriptLoaded: true});
+		this.setState({ scriptLoaded: true });
 		console.log("Script loaded");
 	}
 
@@ -83,9 +83,9 @@ class Player extends React.Component {
 	}
 }
 const mapStateToProps = state => {
-		return {
-				connectedToSpotify: state.spotify.connected,
-				accessToken: state.spotify.access_token
-		}
+	return {
+		connectedToSpotify: state.spotify.connected,
+		accessToken: state.spotify.access_token
+	}
 }
 export default connect(mapStateToProps)(Player);

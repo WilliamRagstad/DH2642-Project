@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import config from '../../spotify-config';
 import { Button } from 'ui-neumorphism';
 import spotifyIcon from './Spotify_Icon_RGB_Green.png';
-import { StorageDocument } from '../../helpers/storage';
+import { LSDocument } from 'lavastore';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const scopes = [
@@ -46,20 +46,20 @@ const SpotifyAuth = ({ enabled = true }) => {
     const [challenge, setChallenge] = useState(null);
     useEffect(() => {
         const v = generateCodeVerifier();
-        const sd = new StorageDocument('spotify-verifier');
-        
+        const sd = new LSDocument('spotify-verifier');
+
         console.log("Set v: " + v);
         generateCodeChallengeFromVerifier(v)
-        .then(ch => {
-            setChallenge(ch)
-            console.log(ch);
-            sd.Set({
-                verifier: v,
-                challenge: ch
+            .then(ch => {
+                setChallenge(ch)
+                console.log(ch);
+                sd.Set({
+                    verifier: v,
+                    challenge: ch
+                })
             })
-        })
     }, [])
-    
+
     const url = authEndpoint + new URLSearchParams({
         client_id: config.client_id,
         response_type: "code",
