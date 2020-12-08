@@ -32,7 +32,7 @@ ReactDOM.render(
 			<ReactReduxFirebaseProvider {...rrfProps}>
 				<App />
 			</ReactReduxFirebaseProvider>
-		<Loaders />
+			<Loaders />
 		</Provider>
 
 	</React.Fragment>,
