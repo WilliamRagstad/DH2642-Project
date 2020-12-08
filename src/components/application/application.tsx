@@ -37,7 +37,8 @@ const Application = () => {
 						<Navigation />
 					</div>
 					<div className="application-media">
-						<Card inset className="application-media-card">
+						<Card elevation={2} className="application-media-card media-container">
+							
 							<img className="fill-element" alt="" src={album.images[0].url} />
 						</Card>
 					</div>
