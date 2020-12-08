@@ -2,7 +2,7 @@ import { act } from "react-dom/test-utils";
 import { IAction } from "../../interfaces";
 
 const initialState = {
-    sameAsPlaying: false,
+    sameAsPlaying: true,
     searchQuery: "",
     currentLyrics: {
         id: null,

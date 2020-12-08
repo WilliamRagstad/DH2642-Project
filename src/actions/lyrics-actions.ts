@@ -33,7 +33,8 @@ const songsClient = new Genius.SongsClient(config.cilent_access_token);
 // CREATE HELPER FUNCTION TO REMOVE CODE DUPLICATION IF POSSIBLE
 export const getCurrentLyrics = () => {
     return async (dispatch, getState) => {
-        const query = "See you again Wiz Khalifa";
+        const state = getState();
+        const query = state.media.currentlyPlaying.title + " " + state.media.currentlyPlaying.artists[0].name;
         dispatch({ type: 'SET_LYRICS_LOADING' });
         dispatch({ type: 'SET_LYRICS_SAME_AS_PLAYING', payload: true });
         const songs = await songsClient.search(query).catch(console.error);

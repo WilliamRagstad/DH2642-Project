@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Card, CardContent, CardHeader, TextField, ProgressLinear, Subtitle1 } from 'ui-neumorphism';
 import actions from '../../../actions';
@@ -11,24 +11,25 @@ const LyricsView = ({
     searchResults,
     getCurrentLyrics,
     getLyricsFromId,
-    searchLyrics
+    searchLyrics,
+    currentForeignId
 }) => {    
     const [query, setQuery] = useState("");
-    // search when user stops typing
-    // useEffect(() => {
-    //     const typingTimeout = setTimeout(() => {
-    //         // if (query) setCurrentLyrics(query, false);
-    //     }, 500);
-        
-    //     return () => clearTimeout(typingTimeout);
-    // }, [query, setCurrentLyrics]);
+    const [cachedForeignId, setCachedForeignId] = useState("");
+
+    useEffect(() => {
+        if (currentForeignId !== cachedForeignId && sameAsPlaying) {
+            getCurrentLyrics();
+            setCachedForeignId(currentForeignId);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentForeignId])
 
     const {
         id,
         title,
         artist,
         url,
-        albumArtUrl,
         lyrics
     } = currentLyrics;
 
@@ -93,7 +94,8 @@ const mapStateToProps = state => {
         currentLyrics: state.lyrics.currentLyrics,
         isLoading: state.lyrics.isLoading,
         lyricsError: state.lyrics.lyricsError,
-        searchResults: state.lyrics.searchResults
+        searchResults: state.lyrics.searchResults,
+        currentForeignId: state.media.currentlyPlaying.id
     }
 }
 
