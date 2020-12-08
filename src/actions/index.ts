@@ -3,13 +3,15 @@ import { bindActionCreators } from 'redux';
 import * as login from './login-actions';
 import * as signup from './signup-actions';
 import * as lyrics from './lyrics-actions';
+import * as media from './media-actions';
 
 export default function mapDispatchToProps(dispatch) {
     return bindActionCreators(
         {
             ...login,
             ...signup,
-            ...lyrics
+            ...lyrics,
+            ...media
         },
         dispatch
     )

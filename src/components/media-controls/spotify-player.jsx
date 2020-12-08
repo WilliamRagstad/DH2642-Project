@@ -1,16 +1,18 @@
 import React from 'react';
 import Script from 'react-load-script';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import actions from '../../actions';
 import { validateSpotifyToken } from '../../helpers/spotify';
+import spotify from '../../spotify';
 
-class Player extends React.Component {
+class SpotifyPlayer extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.handleLoadSuccess = this.handleLoadSuccess.bind(this);
 		this.handleLoadFailure = this.handleLoadSuccess.bind(this);
 		this.cb = this.cb.bind(this);
+		this.dispatch = useDispatch;
 	}
 
 	componentDidMount() {
@@ -23,6 +25,36 @@ class Player extends React.Component {
 		this.setState({ scriptLoaded: true });
 		const token = this.props.spotifyData.access_token;
 		validateSpotifyToken(this.props.spotifyData);
+		
+		spotify.setAccessToken(token);
+		spotify.getMyCurrentPlaybackState().then(data => {
+			console.log(data);
+			if (data.is_playing) {
+				let trackData = {
+					service: 'spotify',
+					id: data.item.id,
+					title: data.item.name,
+					album: {
+						id: data.item.album.id,
+						name: data.item.album.name,
+						images: data.item.album.images
+					},
+					artists: [],
+					duration: data.item.duration_ms,
+					progress: data.progress_ms
+				}
+				data.item.album.artists.forEach(artist => {
+					trackData.artists.push({
+						id: artist.id,
+						name: artist.name
+					})
+				})
+				this.props.setCurrentMedia(trackData)
+			}
+		})
+		.catch(console.error);
+		spotify.getMyCurrentPlayingTrack().then(console.log);
+
 		const player = new window.Spotify.Player({
 			name: 'SoundBundle Web Player',
 			getOAuthToken: cb => { cb(token); }
@@ -40,6 +72,7 @@ class Player extends React.Component {
 		// Ready
 		player.addListener('ready', ({ device_id }) => {
 			console.log('Ready with Device ID', device_id);
+			this.props.setSpotifyDeviceId(device_id);
 		});
 
 		// Not Ready
@@ -72,16 +105,12 @@ class Player extends React.Component {
 
 	render() {
 		return (
-			<div className="App">
-				<header className="App-header">
-					<Script
-						url="https://sdk.scdn.co/spotify-player.js"
-						onCreate={this.handleScriptCreate.bind(this)}
-						onError={this.handleScriptError.bind(this)}
-						onLoad={this.handleScriptLoad.bind(this)}
-					/>
-				</header>
-			</div>
+			<Script
+				url="https://sdk.scdn.co/spotify-player.js"
+				onCreate={this.handleScriptCreate.bind(this)}
+				onError={this.handleScriptError.bind(this)}
+				onLoad={this.handleScriptLoad.bind(this)}
+			/>
 		);
 	}
 }
@@ -90,4 +119,4 @@ const mapStateToProps = state => {
 		spotifyData: state.spotify
 	}
 }
-export default connect(mapStateToProps, actions)(Player);
+export default connect(mapStateToProps, actions)(SpotifyPlayer);

@@ -1,0 +1,26 @@
+.media-controls {
+    padding: 8px 2%;
+    
+    &-right {
+        align-items: right;
+        text-align: right;
+        margin-right: 0%;
+    }
+    &-left, &-right {
+        flex: 0 0 300px;
+        padding: 0 10px;
+    }
+    &-center {
+        align-items: center;
+        text-align: center;
+        &-buttons {
+            margin: 5px;
+            & > * {
+                margin: 0px 10px;
+            }
+        }
+    }
+    .media-progress {
+        max-width: 800px;
+    }
+}

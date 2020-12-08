@@ -7,11 +7,6 @@ import { LSDocument } from 'lavastore';
 import IState from '../../interfaces/redux/state';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
-const scopes = [
-    'user-read-private',
-    'user-read-email',
-    'streaming'
-]
 
 const dec2hex = dec => {
     return ("0" + dec.toString(16).substr(-2))
@@ -71,7 +66,7 @@ const SpotifyAuth = ({ enabled = true }) => {
         redirect_uri: config.redirect_uri,
         code_challenge_method: "S256",
         code_challenge: challenge,
-        scope: scopes.join("%20"),
+        scope: config.scopes.join("%20"),
         show_dialog: "false"
     });
     return <a href={enabled && challenge ? url : null}>

@@ -10,6 +10,7 @@ import lyricsReducer from './lyrics/lyrics-reducer';
 
 import spotifyReducer from "./connect/spotify-reducer";
 import uiReducer from './ui/ui-reducer';
+import mediaReducer from './media/media-reducer';
 
 const allReducers = combineReducers({
     counterReducer,
@@ -18,7 +19,8 @@ const allReducers = combineReducers({
     signup: signupReducer,
     firebase: firebaseReducer,
     lyrics: lyricsReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    media: mediaReducer
 } as IState)
 
 //! Warning: When adding new reducers to allReducers, update IState in src/interfaces/redux/state.ts

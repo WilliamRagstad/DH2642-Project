@@ -2,8 +2,8 @@
   --dark-bg: #282828;
   --dark-bg-dark-shadow: #1a1a1a;
   --dark-bg-light-shadow: #353535;
-  --box-shadow-inset: inset 2px 2px 3px var(--dark-bg-dark-shadow),
-    inset -2px -2px 3px var(--dark-bg-light-shadow);
+  --box-shadow-inset: inset 2px 2px 3px var(--light-bg-dark-shadow),
+    inset -2px -2px 3px var(--light-bg-light-shadow);
 }
 
 *,

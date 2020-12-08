@@ -11,6 +11,7 @@ import spotifyConfig from '../../spotify-config';
 import { LSDocument } from 'lavastore';
 
 import axios from 'axios';
+import spotify from '../../spotify';
 
 const Connect = ({ match, props, location }) => {
     const service = match.params.service;
@@ -52,6 +53,7 @@ const Connect = ({ match, props, location }) => {
                         })
                         .then(data => {
                             console.log(data);
+                            spotify.setAccessToken(data.access_token);
                             data.retrieved_at = Math.round(Date.now() / 1000);
                             // Save to Cloud Firestore
                             saveFirestoreUserData("services", "spotify", data).then(() => {

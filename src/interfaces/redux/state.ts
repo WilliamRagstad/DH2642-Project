@@ -5,7 +5,8 @@ interface IState {
     signup: any,
     firebase: any,
     lyrics: any,
-    ui: any
+    ui: any,
+    media: any
 }
 
 export default IState;
