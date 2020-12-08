@@ -4,8 +4,11 @@ import { Card } from 'ui-neumorphism';
 
 // LOAD DATA FROM FIRESTORE
 import FirestoreLoader from '../loaders/firestore-loader';
+import { useSelector } from 'react-redux';
+import IState from '../../interfaces/redux/state';
 
 const Application = () => {
+	const album = useSelector((state: IState) => state.media.currentlyPlaying.album)
 
 	useEffect(() => {
 		const dragbar = document.getElementById('dragbar');
@@ -35,7 +38,7 @@ const Application = () => {
 					</div>
 					<div className="application-media">
 						<Card inset className="application-media-card">
-							<img className="fill-element" alt="" src="https://videoplayer.telvue.com/assets/placeholder_media_for_white_background-a025e5387e2313b21b205ed928e7419816588314b7bf740bf6bc660282663f97.png" />
+							<img className="fill-element" alt="" src={album.images[0].url} />
 						</Card>
 					</div>
 				</div>
