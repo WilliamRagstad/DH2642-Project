@@ -30,9 +30,9 @@ export const searchTrack = (query) => {
     }
 }
 
-function songLength(duration) {
+export function songLength(duration) {
     let seconds: any = ((duration / 1000) % 60).toFixed(0);
-    const minutes = (((duration / 1000) - seconds) / 60).toFixed(0);
+    const minutes = Math.abs((((duration / 1000) - seconds) / 60)).toFixed(0);
 
     if(seconds<10){
         seconds = "0" + seconds;
