@@ -5551,10 +5551,10 @@ gcp-metadata@^4.2.0:
     gaxios "^4.0.0"
     json-bigint "^1.0.0"
 
-genius-lyrics@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/genius-lyrics/-/genius-lyrics-4.0.0.tgz"
-  integrity sha512-ylAdZIg3WBodDCaHcu270MkDo4C/77ldRoJPS8QTsK+OMgRpH36xnICjvicy9WbQU2VLMQmzbEGv39p6oXYJCw==
+genius-lyrics@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.npmjs.org/genius-lyrics/-/genius-lyrics-4.1.4.tgz"
+  integrity sha512-bt0uRY4RG3HOcls1FEZrOWiXg4uxROQx55pUDlNmRvK7c6sovCtGt+7fawiQbA642Qe4YHChE6MCSfsKAHQ1YA==
   dependencies:
     axios "^0.20.0"
     node-html-parser "^1.2.20"
@@ -10659,6 +10659,11 @@ split-string@^3.0.1, split-string@^3.0.2:
   integrity sha512-NzNVhJDYpwceVVii8/Hu6DKfD2G+NrQHlS/V/qgv763EYudVwEcMQNxd2lh+0VrUByXN/oJkl5grOhYWvQUYiw==
   dependencies:
     extend-shallow "^3.0.0"
+
+spotify-web-api-js@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/spotify-web-api-js/-/spotify-web-api-js-1.5.1.tgz"
+  integrity sha512-KyeYpfPY5bWc5geb0Lmw96oqydxrby36vkmN33q4xrY7oWwoz3634Ya7qHndq2eOqCfI1GS3a5CjimYe7RQdtg==
 
 sprintf-js@~1.0.2:
   version "1.0.3"
