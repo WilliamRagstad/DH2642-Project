@@ -18,6 +18,12 @@ export const setPaused = () => {
         type: 'SET_PAUSED'
     }
 }
+export const setProgress = (progress) => {
+    return {
+        type: 'SET_PROGRESS',
+        payload: progress
+    }
+}
 
 export const pausePlay = (service: string) => {
     return (dispatch, getState) => {
@@ -35,31 +41,15 @@ export const pausePlay = (service: string) => {
         }
     }
 }
-export const next = (service: string) => {
+
+export const getCurrentMediaData = (service: string) => {
     return (dispatch, getState) => {
-        switch (service) {
+        const state = getState();
+        switch (state.media.currentlyPlaying.service) {
             case 'spotify':
-                validateSpotifyToken().then(() => {
-                    spotify.skipToNext().then(() => {
-                        console.log("Skipped to next");
-                    }).catch(handleSpotifyError);
-                }).catch(console.error);
-                break;
-            default:
-                console.error('Invalid service.');
-                return;
-        }
-    }
-}
-export const previous = (service: string) => {
-    return (dispatch, getState) => {
-        switch (service) {
-            case 'spotify':
-                validateSpotifyToken().then(() => {
-                    spotify.skipToPrevious().then(() => {
-                        console.log("Skipped to previous");
-                    }).catch(handleSpotifyError)
-                }).catch(console.error);
+                validateSpotifyToken().then(() => {   
+                    getCurrentSpotifyData();
+                }); 
                 break;
             default:
                 console.error('Invalid service.');
@@ -75,7 +65,43 @@ export const setCurrentMedia = (data: any) => {
     }
 }
 
-const handleSpotifyError = err => {
+export const handleSpotifyError = err => {
     const response = JSON.parse(err.response);
     console.error(response.error.message);
+}
+
+export const getCurrentSpotifyData = () => {
+    return (dispatch, getState) => {
+        validateSpotifyToken().then(() => {
+            spotify.getMyCurrentPlayingTrack().then((data: any) => {
+                // console.log(data);
+                if (data) {
+                    let trackData = {
+                        service: 'spotify',
+                        id: data.item.id,
+                        title: data.item.name,
+                        album: {
+                            id: data.item.album.id,
+                            name: data.item.album.name,
+                            images: data.item.album.images
+                        },
+                        artists: [],
+                        duration: data.item.duration_ms,
+                        progress: data.progress_ms
+                    }
+                    data.item.album.artists.forEach(artist => {
+                        trackData.artists.push({
+                            id: artist.id,
+                            name: artist.name
+                        })
+                    })
+                    // console.log(trackData);
+                    dispatch({type: 'SET_CURRENT_MEDIA', payload: trackData});
+                    if (data.is_playing) dispatch({type: 'SET_PLAYING'}); else dispatch({type: 'SET_PAUSED'});
+                }
+            })
+            .catch(handleSpotifyError);
+        })
+        .catch(console.error);
+    }
 }

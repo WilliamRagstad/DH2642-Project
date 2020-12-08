@@ -17,10 +17,25 @@
             margin: 5px;
             & > * {
                 margin: 0px 10px;
+                & svg {
+                    transition: fill .1s;
+                }
+                &:hover svg {
+                    fill: var(--primary);
+                }
             }
+             
         }
     }
     .media-progress {
+        
+        margin: 5px;
         max-width: 800px;
+        & > div > div {
+            transition: background .1s;
+        }
+        &:hover > div > div {
+            background: var(--primary);
+        }
     }
 }

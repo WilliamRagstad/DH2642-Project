@@ -47,6 +47,15 @@ const mediaReducer = (state = initialState, action: IAction) => {
                 isPlaying: false
             }
             return newState;
+        case 'SET_PROGRESS':
+            newState = {
+                ...state,
+                currentlyPlaying: {
+                    ...state.currentlyPlaying,
+                    progress: action.payload
+                }
+            }
+            return newState;
         case 'SET_SPOTIFY_DEVICE_ID':
             newState = {
                 ...state,
@@ -56,7 +65,6 @@ const mediaReducer = (state = initialState, action: IAction) => {
         case 'SET_CURRENT_MEDIA':
             newState = {
                 ...state,
-                isPlaying: true,
                 currentlyPlaying: {
                     ...state.currentlyPlaying,
                     ...action.payload
