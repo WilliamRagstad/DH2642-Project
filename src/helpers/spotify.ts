@@ -10,7 +10,7 @@ export const validateSpotifyToken = async () => {
     const spotifyData = state.spotify
     
     if (Math.round(Date.now() / 1000) - spotifyData.expires_in > spotifyData.retrieved_at) {
-        axios.post('https://accounts.spotify.com/api/token', null, {
+        await axios.post('https://accounts.spotify.com/api/token', null, {
             params: {
                 grant_type: 'refresh_token',
                 refresh_token: spotifyData.refresh_token,
