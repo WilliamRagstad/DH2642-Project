@@ -5,6 +5,7 @@ interface IState {
     signup: any,
     firebase: any,
     lyrics: any,
+    search: any,
     ui: any,
     media: any
 }

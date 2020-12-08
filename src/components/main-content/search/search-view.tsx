@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Card, CardContent, CardHeader, Divider, Table, TextField } from 'ui-neumorphism';
+import { Button, Card, CardContent, CardHeader, ProgressLinear, Table, TextField } from 'ui-neumorphism';
+import actions from '../../../actions';
+import { connect } from 'react-redux';
 
-function createItem(title, artist, album, length) {
-    return { title, artist, album, length };
-}
-
-const SearchView = () => {
+const SearchView = ({
+    isLoading,
+    searchError,
+    searchResults,
+    searchTrack
+}) => {
     const [query, setQuery] = useState("");
-
-    // useEffect(() => {
-    //     const typingTimeout = setTimeout(() => {
-    //         console.log(typingTimeout + ": Searched " + query)
-    //         // perform search here
-    //     }, 300);
-    //     
-    //     return () => clearTimeout(typingTimeout);
-    // }, [query]);
 
     const headers = [
         { text: 'Title', align: 'left', value: 'title' },
@@ -24,35 +18,36 @@ const SearchView = () => {
         { text: 'Length', align: 'right', value: 'length' }
     ]
 
-    const items = [
-        createItem("song 1", "artist 1", "album 1", "length 1"),
-        createItem("song 2", "artist 2", "album 2", "length 2")
-    ]
-
     return (
         <React.Fragment>
             <Card className="view-card float-container" inset rounded>
                 <CardHeader>Search</CardHeader>
                 <form autoComplete="off" onSubmit={e => {
                     e.preventDefault();
-                    console.log("Search form submitted");
-                    //if (query) search(query);
+                    if (query) searchTrack(query);
                 }}>
                     <div className="flex-parent flex-align-center search-form" spellCheck="false">
-                        <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value)} type="text"></TextField>
+                        <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
                         <Button onClick={() => {
-                            //if (query) search(query);
+                            if (query) searchTrack(query);
                         }}>Search</Button>
                     </div>
                     <input type="submit" hidden />
                 </form>
-                <Divider dense/>
+                <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6}/>
                 <CardContent>
-                    <Table className="float-item" noHeaders items={items} headers={headers}/>
+                    <Table className="float-item" noHeaders items={searchResults} headers={headers}/>
                 </CardContent>
             </Card>
         </React.Fragment>
     )
 }
+const mapStateToProps = state => {
+    return {
+        isLoading: state.search.isLoading,
+        searchError: state.search.searchError,
+        searchResults: state.search.searchResults,
+    }
+}
 
-export default SearchView;
+export default connect(mapStateToProps, actions)(SearchView);

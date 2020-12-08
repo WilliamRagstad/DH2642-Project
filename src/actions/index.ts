@@ -4,6 +4,7 @@ import * as login from './login-actions';
 import * as signup from './signup-actions';
 import * as lyrics from './lyrics-actions';
 import * as media from './media-actions';
+import * as search from './search-actions';
 
 export default function mapDispatchToProps(dispatch) {
     return bindActionCreators(
@@ -11,7 +12,8 @@ export default function mapDispatchToProps(dispatch) {
             ...login,
             ...signup,
             ...lyrics,
-            ...media
+            ...media,
+            ...search
         },
         dispatch
     )
