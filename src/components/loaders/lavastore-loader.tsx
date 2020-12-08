@@ -1,9 +1,10 @@
 import React from "react";
 import { useHistory } from 'react-router-dom';
-import { getCurrentUser } from "../../helpers/firebase";
-import { AppDocument, LocationCache } from "../../lavastore";
-import firebase from 'firebase/app';
 import { useDispatch } from "react-redux";
+import { getCurrentUser } from "../../helpers/firebase";
+import firebase from 'firebase/app';
+
+import { AppDocument, LocationCache } from "../../lavastore";
 import { changeUI } from "../../helpers/ui";
 import { update_ui } from "../../actions/ui";
 
@@ -17,16 +18,16 @@ function UILoader() {
     return <React.Fragment />;
 }
 
-function LocalstoreLoader() {
+function LocationLoader() {
     const history = useHistory();
 
     getCurrentUser(firebase.auth()).then(user => {
         // App has loaded page based on auth.
         // Redirect if a desired localtion is stored in lavastore
         const to = (LocationCache.Get() as any)?.to as string;
-        if (to !== undefined && window.location.href !== to) {
-            debugger
+        if (to !== undefined && window.location.href !== to && history !== undefined) {
             const path = to.replace(window.location.origin, '');
+            debugger
             history.push(path);
         }
         LocationCache.Set({});
@@ -36,9 +37,10 @@ function LocalstoreLoader() {
 }
 
 function LavastoreLoader() {
-    return <React.Fragment>
-        <LocalstoreLoader />
-        <UILoader />
-    </React.Fragment>;
+
+    UILoader();
+    LocationLoader();
+
+    return <React.Fragment />;
 }
 export default LavastoreLoader;

@@ -13,11 +13,11 @@ export function getCurrentUser(auth) {
 }
 
 export function saveFirestoreUserData(collection: string, doc: string, data: any) {
-    return getCurrentUser(firebase.auth()).then((user: any) => db.collection(collection).doc(doc).collection("users").doc(user.uid).set(data))
+    return getCurrentUser(firebase.auth()).then((user: any) => user && db.collection(collection).doc(doc).collection("users").doc(user.uid).set(data))
 }
 export function loadFirestoreUserData(collection: string, doc: string) {
-    return getCurrentUser(firebase.auth()).then((user: any) => db.collection(collection).doc(doc).collection("users").doc(user.uid).get())
+    return getCurrentUser(firebase.auth()).then((user: any) => user && db.collection(collection).doc(doc).collection("users").doc(user.uid).get())
 }
 export function deleteFirestoreUserData(collection: string, doc: string) {
-    return getCurrentUser(firebase.auth()).then((user: any) => db.collection(collection).doc(doc).collection("users").doc(user.uid).delete())
+    return getCurrentUser(firebase.auth()).then((user: any) => user && db.collection(collection).doc(doc).collection("users").doc(user.uid).delete())
 }
