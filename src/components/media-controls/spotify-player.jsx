@@ -27,33 +27,8 @@ class SpotifyPlayer extends React.Component {
 		validateSpotifyToken(this.props.spotifyData);
 		
 		spotify.setAccessToken(token);
-		spotify.getMyCurrentPlaybackState().then(data => {
-			console.log(data);
-			if (data.is_playing) {
-				let trackData = {
-					service: 'spotify',
-					id: data.item.id,
-					title: data.item.name,
-					album: {
-						id: data.item.album.id,
-						name: data.item.album.name,
-						images: data.item.album.images
-					},
-					artists: [],
-					duration: data.item.duration_ms,
-					progress: data.progress_ms
-				}
-				data.item.album.artists.forEach(artist => {
-					trackData.artists.push({
-						id: artist.id,
-						name: artist.name
-					})
-				})
-				this.props.setCurrentMedia(trackData)
-			}
-		})
-		.catch(console.error);
 		spotify.getMyCurrentPlayingTrack().then(console.log);
+		this.props.getCurrentSpotifyData();
 
 		const player = new window.Spotify.Player({
 			name: 'SoundBundle Web Player',
@@ -67,12 +42,24 @@ class SpotifyPlayer extends React.Component {
 		player.addListener('playback_error', ({ message }) => { console.error(message); });
 
 		// Playback status updates
-		player.addListener('player_state_changed', state => { console.log(state); });
+		player.addListener('player_state_changed', state => {
+			// console.log(state);
+			setTimeout(() => {
+				if (state.position) {
+					if (state.position === 0) 
+						this.props.getCurrentSpotifyData();
+					this.props.setProgress(state.position);
+				}
+			}, 500);
+		});
 
 		// Ready
 		player.addListener('ready', ({ device_id }) => {
 			console.log('Ready with Device ID', device_id);
 			this.props.setSpotifyDeviceId(device_id);
+			setTimeout(() => {
+				spotify.transferMyPlayback([device_id]);
+			}, 1000);
 		});
 
 		// Not Ready
