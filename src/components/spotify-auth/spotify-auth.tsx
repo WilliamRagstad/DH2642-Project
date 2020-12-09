@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import config from '../../spotify-config';
 import { Button } from 'ui-neumorphism';
-import spotifyIcon from './Spotify_Icon_RGB_Green.png';
+import spotifyIcon from '../../images/Spotify_Icon_RGB_Green.png';
 import { LSDocument } from 'lavastore';
 import IState from '../../interfaces/redux/state';
 

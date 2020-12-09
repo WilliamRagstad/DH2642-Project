@@ -8,6 +8,7 @@ import { PlayIcon, PauseIcon, NextIcon, PreviousIcon, ShuffleIcon, RepeatIcon, R
 import spotify from '../../spotify';
 import { validateSpotifyToken } from '../../helpers/spotify';
 import { songLength } from '../../actions/search-actions';
+import spotifyIcon from '../../images/Spotify_Icon_RGB_Green.png';
 
 const MediaControls = ({
     isLoggedIn,
@@ -148,7 +149,10 @@ const MediaControls = ({
             <Card className="media-controls fill-element flex-parent">
                 <div className="media-controls-left flex-parent flex-align-center">
                     <div>
-                        <Subtitle1>{mediaData.currentlyPlaying.title}</Subtitle1>
+                        <Subtitle1 className="flex-parent flex-align-center">
+                            {(service === 'spotify') && <img src={spotifyIcon} alt="" height="16px"/>}&nbsp;
+                            {mediaData.currentlyPlaying.title}
+                        </Subtitle1>
                         
                         <Subtitle2>{mediaData.currentlyPlaying.artists.map((artist, index) => <span key={`artist_${index}`}>{(index ? ', ' : '') + artist.name}</span>)}</Subtitle2>
                     </div>
