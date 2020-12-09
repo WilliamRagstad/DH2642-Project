@@ -45,12 +45,43 @@ class SpotifyPlayer extends React.Component {
 		player.addListener('player_state_changed', state => {
 			// console.log(state);
 			setTimeout(() => {
-				if (state.position) {
+				if (state) {
 					if (state.position === 0) 
 						this.props.getCurrentSpotifyData();
 					this.props.setProgress(state.position);
+					if (state.paused && this.props.mediaData.isPlaying) {
+						this.props.setPaused();
+					} else if (!state.paused && !this.props.mediaData.isPlaying) {
+						this.props.setPlaying();
+					}
+					const track = state.track_window.current_track;
+					if (track.id !== this.props.mediaData.currentlyPlaying.id) {
+						let trackData = {
+							service: 'spotify',
+							id: track.id,
+							title: track.name,
+							album: {
+								id: track.album.id,
+								name: track.album.name,
+								images: track.album.images
+							},
+							artists: [],
+							duration: track.duration_ms,
+						}
+						track.artists.forEach(artist => {
+							trackData.artists.push({
+								id: artist.id,
+								name: artist.name
+							})
+						})
+						this.props.setCurrentMedia(trackData);
+					}
 				}
-			}, 500);
+				else if (state === null) {
+					spotify.transferMyPlayback([this.props.mediaData.spotifyDeviceId]);
+				}
+				
+			}, 100);
 		});
 
 		// Ready
@@ -103,7 +134,9 @@ class SpotifyPlayer extends React.Component {
 }
 const mapStateToProps = state => {
 	return {
-		spotifyData: state.spotify
+		spotifyData: state.spotify,
+		mediaData: state.media
+
 	}
 }
 export default connect(mapStateToProps, actions)(SpotifyPlayer);

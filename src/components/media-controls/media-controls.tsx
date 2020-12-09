@@ -16,47 +16,76 @@ const MediaControls = ({
     isPlaying,
     mediaProgress,
     mediaDuration,
+    service,
     pausePlay,
     setPlaying,
     setProgress,
-    getCurrentSpotifyData
+    getCurrentSpotifyData,
+    seekMedia
 }) => {
     const [barProgress, setBarProgress] = useState(0);
     const [progressTime, setProgressTime] = useState("0:00");
-    const service = mediaData.currentlyPlaying.service;
+    const [progressTimeLeft, setProgressTimeLeft] = useState("-0:00");
+
+    let barChanging = undefined;
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (isPlaying) {
+            if (isPlaying && !barChanging) {
                 setProgress(mediaProgress + 1000);
                 setBarProgress((mediaProgress / mediaDuration) * 100);
-                const time = songLength(mediaProgress);
-                setProgressTime(time);
+                setProgressTime(songLength(mediaProgress));
+                setProgressTimeLeft("-" + songLength(mediaDuration - mediaProgress));
             }
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [isPlaying, service, mediaProgress]);
+    }, [isPlaying, service, mediaProgress, barChanging]);
 
     useEffect(() => {
-        // window.addEventListener('nexttrack', () => {
-        //     console.log("media next");
-        //     next(service);
-        // })
-        // window.addEventListener('previoustrack', () => {
-        //     console.log("media prev");
-        //     previous(service);
-        // })
-        // window.addEventListener('pause', () => {
-        //     console.log("media pause");
-        //     pausePlay(service);
-        // })
-        // window.addEventListener('play', () => {
-        //     console.log("media play");
-        //     pausePlay(service);
-        // })
-        
-    }, [])
+        const progressbar = document.getElementsByClassName('media-progress')[0];
+        let progress = 0, proportion = 0;
+        const changeProgress = e => {
+            
+            console.log(barChanging);
+            if (!barChanging) barChanging = true;
+            
+            console.log(barChanging);
+            let bounds = progressbar.getBoundingClientRect();
+            let left = e.clientX - bounds.left;
+            let right = bounds.right - e.clientX;
+            proportion = (left / (left + right));
+            if (proportion >= 0 && proportion < 1) {
+                progress = (mediaDuration * (proportion * 100)) / 100;
+                setProgressTime(songLength(progress));
+                setProgressTimeLeft("-" + songLength(mediaDuration - progress));
+                setBarProgress(proportion * 100);
+            }
+        }
+        const moveProgress = e => {
+            changeProgress(e);
+        }
+        const clickProgress = e => {
+            changeProgress(e);
+            document.addEventListener('mousemove', moveProgress);
+        }
+        const progressRelease = () => {
+            console.log(barChanging);
+            if (barChanging) {
+                barChanging = false;
+                console.log('Seeked to ' + progress);
+                setProgress(progress);
+                seekMedia(Math.floor(progress));
+            }
+            document.removeEventListener('mousemove', moveProgress);
+        }
+        progressbar.addEventListener('mousedown', clickProgress);
+        window.addEventListener('mouseup', progressRelease);
+        return () => {
+            progressbar.removeEventListener('mousedown', clickProgress);
+            window.removeEventListener('mouseup', progressRelease);
+        }
+    }, [mediaDuration]);
 
     const next = async (service: string) => {
         switch (service) {
@@ -67,10 +96,9 @@ const MediaControls = ({
                         if (!isPlaying) setPlaying();
                         setProgress(0);
                     }).catch(console.error);
-                    setTimeout(() => {
-                        console.log("later")
-                        getCurrentMediaData(service);
-                    }, 1000)
+                    // setTimeout(() => {
+                    //     getCurrentMediaData(service);
+                    // }, 1000)
                 }).catch(console.error);                
                 
                 break;
@@ -86,20 +114,15 @@ const MediaControls = ({
                     if (mediaProgress < 3000)
                         spotify.skipToPrevious()
                         .then(() => {
-                            console.log("Skipped to next");
+                            console.log("Skipped to previous");
                             if (!isPlaying) setPlaying();
                             setProgress(0);
                         })
                         .catch(console.error);
-                    else spotify.seek(0)
-                        .then(response => {
-                            setProgress(0);
-                            console.log(response);
-                        })
-                    setTimeout(() => {
-                        console.log("later")
-                        getCurrentMediaData(service);
-                    }, 1000)
+                    else spotify.seek(0);
+                    // setTimeout(() => {
+                    //     getCurrentMediaData(service);
+                    // }, 1000)
                 }).catch(console.error);                
                 
                 break;
@@ -128,11 +151,12 @@ const MediaControls = ({
                     <div>
                         <Subtitle1>{mediaData.currentlyPlaying.title}</Subtitle1>
                         
-                        <Subtitle2>{mediaData.currentlyPlaying.artists.map(artist => <span key={artist.id}>{artist.name}&nbsp;</span>)}</Subtitle2>
+                        <Subtitle2>{mediaData.currentlyPlaying.artists.map((artist, index) => <span key={`artist_${index}`}>{(index ? ', ' : '') + artist.name}</span>)}</Subtitle2>
                     </div>
                 </div>
                 <div className="media-controls-center flex-child">
-                    <div className="media-controls-center-buttons">
+                    <div className="media-controls-center-buttons flex-parent flex-align-center flex-justify-center">
+                        <span className="time-left flex-child">{progressTime}</span>
                         <ToggleButton value='1'>
                             <ShuffleIcon fill="var(--g-text-color-light)"/>
                         </ToggleButton>
@@ -153,9 +177,9 @@ const MediaControls = ({
                         <ToggleButton value='2'>
                             <RepeatIcon fill="var(--g-text-color-light)"/>
                         </ToggleButton>
+                        <span className="time-right flex-child">{progressTimeLeft}</span>
                     </div>
                     <div className=" flex-parent flex-justify-space-evenly">
-                        {progressTime}
                         <ProgressLinear className="media-progress flex-child" value={barProgress}></ProgressLinear>
                     </div>
                 </div>
@@ -177,7 +201,8 @@ const mapStateToProps = (state: IState) => {
         mediaData: state.media,
         isPlaying: state.media.isPlaying,
         mediaProgress: state.media.currentlyPlaying.progress,
-        mediaDuration: state.media.currentlyPlaying.duration
+        mediaDuration: state.media.currentlyPlaying.duration,
+        service: state.media.currentlyPlaying.service
     }
 }
 

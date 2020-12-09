@@ -15,8 +15,8 @@ const initialState = {
             }]
         },
         artists: [],
-        duration: "",
-        progress: ""
+        duration: 0,
+        progress: 0
     }
 }
 

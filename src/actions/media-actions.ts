@@ -1,5 +1,4 @@
 import spotify from '../spotify';
-import { parseParams } from '../helpers/parsing';
 import { validateSpotifyToken } from '../helpers/spotify';
 
 export const setSpotifyDeviceId = (id: string) => {
@@ -22,6 +21,23 @@ export const setProgress = (progress) => {
     return {
         type: 'SET_PROGRESS',
         payload: progress
+    }
+}
+export const seekMedia = (progress: number) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const service = state.media.currentlyPlaying.service;
+        switch (service) {
+            case 'spotify':
+                validateSpotifyToken().then(() => {
+                    spotify.seek(progress)
+                        .catch(console.error);
+                })
+                break;
+            default:
+                console.error('Invalid service.');
+                return;
+        }
     }
 }
 
@@ -75,7 +91,7 @@ export const getCurrentSpotifyData = () => {
         validateSpotifyToken().then(() => {
             spotify.getMyCurrentPlayingTrack().then((data: any) => {
                 // console.log(data);
-                if (data) {
+                if (data && data.currently_playing_type !== "unknown") {
                     let trackData = {
                         service: 'spotify',
                         id: data.item.id,
@@ -100,7 +116,7 @@ export const getCurrentSpotifyData = () => {
                     if (data.is_playing) dispatch({type: 'SET_PLAYING'}); else dispatch({type: 'SET_PAUSED'});
                 }
             })
-            .catch(handleSpotifyError);
+            .catch(console.error);
         })
         .catch(console.error);
     }
