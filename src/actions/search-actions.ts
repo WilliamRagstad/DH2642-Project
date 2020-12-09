@@ -33,7 +33,7 @@ export function songLength(duration) {
     let seconds: any = ((duration / 1000) % 60).toFixed(0);
     let minutes = Math.abs((((duration / 1000) - seconds) / 60)).toFixed(0);
     
-    if(seconds>60){
+    if(seconds>=60){
         seconds -= 60;
         minutes += 1;
     } 
