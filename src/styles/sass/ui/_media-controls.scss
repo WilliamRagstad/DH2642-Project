@@ -30,12 +30,19 @@
                     fill: var(--primary);
                 }
             }
-            .time-left {
-                text-align: left;
-            }
-            .time-right {
-                text-align: right;
-            }
+            
+        }
+        .time-left {
+            font-size: 14px;
+            flex: 0 0 50px;
+            margin: -5px 10px 0 0;
+            text-align: right;
+        }
+        .time-right {
+            font-size: 14px;
+            flex: 0 0 50px;
+            margin: -5px 0 0 10px;
+            text-align: left;
         }
     }
     .media-progress {
@@ -45,8 +52,13 @@
         & > div > div {
             transition: background .1s;
         }
-        &:hover > div > div {
-            background: var(--primary);
+        &:hover:not(.disabled) {
+            cursor: pointer;
+            & > div > div {
+                background: var(--primary);
+            }
         }
+        
     }
+    
 }

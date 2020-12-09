@@ -9,18 +9,72 @@ export const setSpotifyDeviceId = (id: string) => {
 }
 export const setPlaying = () => {
     return {
-        type: 'SET_PLAYING'
+        type: 'MEDIA_PLAY'
     }
 }
 export const setPaused = () => {
     return {
-        type: 'SET_PAUSED'
+        type: 'MEDIA_PAUSE'
     }
 }
 export const setProgress = (progress) => {
     return {
         type: 'SET_PROGRESS',
         payload: progress
+    }
+}
+export const setShuffle = (service: string, shuffle: boolean) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        switch (service) {
+            case 'spotify':
+                validateSpotifyToken().then(() => {
+                    spotify.setShuffle(shuffle)
+                        .then(() => {
+                            dispatch({type: 'SET_CURRENT_MEDIA', payload: {
+                                shuffle: shuffle
+                            }})
+                        })
+                })
+                break;
+        
+            default:
+                break;
+        }
+        
+    }
+}
+export const toggleRepeat = (service: string, repeat: number) => {
+    return (dispatch, getState) => {
+        switch (service) {
+            case 'spotify':
+                validateSpotifyToken().then(() => {
+                    let repeatVal;
+                    if (repeat === 0) {
+                        repeat = 1;
+                        repeatVal = 'context';
+                    }
+                    else if (repeat === 1) {
+                        repeat = 2;
+                        repeatVal = 'track';
+                    }
+                    else {
+                        repeat = 0;
+                        repeatVal = 'off';
+                    }
+                    spotify.setRepeat(repeatVal)
+                        .then(() => {
+                            dispatch({type: 'SET_CURRENT_MEDIA', payload: {
+                                repeat
+                            }})
+                        })
+                })
+                break;
+        
+            default:
+                break;
+        }
+        
     }
 }
 export const seekMedia = (progress: number) => {

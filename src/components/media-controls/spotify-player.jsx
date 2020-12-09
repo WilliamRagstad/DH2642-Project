@@ -43,11 +43,11 @@ class SpotifyPlayer extends React.Component {
 
 		// Playback status updates
 		player.addListener('player_state_changed', state => {
-			// console.log(state);
+			console.log(state);
 			setTimeout(() => {
 				if (state) {
 					if (state.position === 0) 
-						this.props.getCurrentSpotifyData();
+						// this.props.getCurrentSpotifyData();
 					this.props.setProgress(state.position);
 					if (state.paused && this.props.mediaData.isPlaying) {
 						this.props.setPaused();
@@ -67,6 +67,8 @@ class SpotifyPlayer extends React.Component {
 							},
 							artists: [],
 							duration: track.duration_ms,
+							shuffle: state.shuffle,
+							repeat: state.repeat_mode
 						}
 						track.artists.forEach(artist => {
 							trackData.artists.push({
@@ -81,7 +83,7 @@ class SpotifyPlayer extends React.Component {
 					spotify.transferMyPlayback([this.props.mediaData.spotifyDeviceId]);
 				}
 				
-			}, 100);
+			}, 500);
 		});
 
 		// Ready

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SpotifyPlayer from './spotify-player';
 import { IconButton, Card, ProgressLinear, Subtitle2, Subtitle1, ToggleButton } from 'ui-neumorphism';
 import IState from '../../interfaces/redux/state';
 import { connect } from 'react-redux';
 import actions from '../../actions';
-import { PlayIcon, PauseIcon, NextIcon, PreviousIcon, ShuffleIcon, RepeatIcon, DevicesIcon } from '../../components/icons/icons';
+import { PlayIcon, PauseIcon, NextIcon, PreviousIcon, ShuffleIcon, RepeatIcon, RepeatOneIcon, DevicesIcon } from '../../components/icons/icons';
 import spotify from '../../spotify';
 import { validateSpotifyToken } from '../../helpers/spotify';
 import { songLength } from '../../actions/search-actions';
@@ -17,21 +17,25 @@ const MediaControls = ({
     mediaProgress,
     mediaDuration,
     service,
+    shuffle,
+    repeat,
     pausePlay,
     setPlaying,
     setProgress,
     getCurrentSpotifyData,
-    seekMedia
+    seekMedia,
+    setShuffle,
+    toggleRepeat
 }) => {
     const [barProgress, setBarProgress] = useState(0);
     const [progressTime, setProgressTime] = useState("0:00");
     const [progressTimeLeft, setProgressTimeLeft] = useState("-0:00");
 
-    let barChanging = undefined;
+    let barChanging = useRef(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (isPlaying && !barChanging) {
+            if (isPlaying && !barChanging.current) {
                 setProgress(mediaProgress + 1000);
                 setBarProgress((mediaProgress / mediaDuration) * 100);
                 setProgressTime(songLength(mediaProgress));
@@ -46,11 +50,7 @@ const MediaControls = ({
         const progressbar = document.getElementsByClassName('media-progress')[0];
         let progress = 0, proportion = 0;
         const changeProgress = e => {
-            
-            console.log(barChanging);
-            if (!barChanging) barChanging = true;
-            
-            console.log(barChanging);
+            if (!barChanging.current) barChanging.current = true;
             let bounds = progressbar.getBoundingClientRect();
             let left = e.clientX - bounds.left;
             let right = bounds.right - e.clientX;
@@ -70,9 +70,8 @@ const MediaControls = ({
             document.addEventListener('mousemove', moveProgress);
         }
         const progressRelease = () => {
-            console.log(barChanging);
-            if (barChanging) {
-                barChanging = false;
+            if (barChanging.current) {
+                barChanging.current = false;
                 console.log('Seeked to ' + progress);
                 setProgress(progress);
                 seekMedia(Math.floor(progress));
@@ -156,10 +155,11 @@ const MediaControls = ({
                 </div>
                 <div className="media-controls-center flex-child">
                     <div className="media-controls-center-buttons flex-parent flex-align-center flex-justify-center">
-                        <span className="time-left flex-child">{progressTime}</span>
-                        <ToggleButton value='1'>
-                            <ShuffleIcon fill="var(--g-text-color-light)"/>
-                        </ToggleButton>
+                        <IconButton onClick={({value, event}) => {
+                            setShuffle(service, !shuffle);
+                        }}>
+                            <ShuffleIcon fill={shuffle ? 'var(--primary)' : 'var(--g-text-color-light)'} />
+                        </IconButton>
                         <IconButton disabled={!service} text={false} rounded size="small" onClick={() => {
                             previous(service);
                         }}>
@@ -174,13 +174,18 @@ const MediaControls = ({
                         }}>
                             <NextIcon fill="var(--g-text-color-light)"/>
                         </IconButton>
-                        <ToggleButton value='2'>
-                            <RepeatIcon fill="var(--g-text-color-light)"/>
-                        </ToggleButton>
-                        <span className="time-right flex-child">{progressTimeLeft}</span>
+                        <IconButton onClick={({value, event}) => {
+                            toggleRepeat(service, repeat);
+                        }}>
+                            {repeat > 1 ? 
+                                <RepeatOneIcon fill={repeat ? 'var(--primary)' : 'var(--g-text-color-light)'}/> :
+                                <RepeatIcon fill={repeat ? 'var(--primary)' : 'var(--g-text-color-light)'}/>}                            
+                        </IconButton>
                     </div>
-                    <div className=" flex-parent flex-justify-space-evenly">
-                        <ProgressLinear className="media-progress flex-child" value={barProgress}></ProgressLinear>
+                    <div className="flex-parent flex-justify-center flex-align-center">
+                        <div className="time-left">{progressTime}</div>
+                        <ProgressLinear className={`media-progress flex-child ${!mediaData.currentlyPlaying.id ? 'disabled' : ''}`} value={barProgress}></ProgressLinear>
+                        <div className="time-right">{progressTimeLeft}</div>
                     </div>
                 </div>
                 <div className="media-controls-right flex-parent flex-align-center">
@@ -202,7 +207,9 @@ const mapStateToProps = (state: IState) => {
         isPlaying: state.media.isPlaying,
         mediaProgress: state.media.currentlyPlaying.progress,
         mediaDuration: state.media.currentlyPlaying.duration,
-        service: state.media.currentlyPlaying.service
+        service: state.media.currentlyPlaying.service,
+        shuffle: state.media.currentlyPlaying.shuffle,
+        repeat: state.media.currentlyPlaying.repeat
     }
 }
 

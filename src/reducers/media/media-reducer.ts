@@ -16,7 +16,9 @@ const initialState = {
         },
         artists: [],
         duration: 0,
-        progress: 0
+        progress: 0,
+        shuffle: false,
+        repeat: 0,
     }
 }
 
@@ -35,18 +37,6 @@ const mediaReducer = (state = initialState, action: IAction) => {
                 isPlaying: false
             }
             return newState
-        case 'SET_PLAYING':
-            newState = {
-                ...state,
-                isPlaying: true
-            }
-            return newState;
-        case 'SET_PAUSED':
-            newState = {
-                ...state,
-                isPlaying: false
-            }
-            return newState;
         case 'SET_PROGRESS':
             newState = {
                 ...state,
