@@ -31,7 +31,7 @@ export const searchTrack = (query) => {
 
 export function songLength(duration) {
     let seconds: any = ((duration / 1000) % 60).toFixed(0);
-    let minutes = Math.abs((((duration / 1000) - seconds) / 60)).toFixed(0);
+    let minutes: number = Math.abs((((duration / 1000) - seconds) / 60));
     
     if(seconds>=60){
         seconds -= 60;
@@ -42,5 +42,5 @@ export function songLength(duration) {
         seconds = "0" + seconds;
     }
     
-    return minutes + ":" + seconds;
+    return minutes.toFixed(0) + ":" + seconds;
 }
