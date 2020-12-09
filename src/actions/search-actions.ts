@@ -11,7 +11,6 @@ export const searchTrack = (query) => {
             }).catch(console.error);
         
             let searchResults = [];
-            console.log(songs);
             if (songs) {
                 songs.tracks.items.forEach(song => {
                     searchResults.push({
@@ -32,7 +31,12 @@ export const searchTrack = (query) => {
 
 function songLength(duration) {
     let seconds: any = ((duration / 1000) % 60).toFixed(0);
-    const minutes = (((duration / 1000) - seconds) / 60).toFixed(0);
+    let minutes = (((duration / 1000) - seconds) / 60).toFixed(0);
+    
+    if(seconds>60){
+        seconds -= 60;
+        minutes += 1;
+    }
 
     if(seconds<10){
         seconds = "0" + seconds;
