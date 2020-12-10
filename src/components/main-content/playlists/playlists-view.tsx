@@ -32,7 +32,7 @@ const PlaylistsView = ({
         <React.Fragment>
             <Card className="view-card float-container flex-parent flex-column" inset rounded>
                 <CardHeader>Playlists</CardHeader>
-                <div><Divider className="playlists-divider" dense/></div>
+                <div><Divider className="playlists-divider" dense /></div>
                 <div className="playlists-container">
                     <CardContent className="playlists-content flex-parent flex-column">
                         <div className="playlists-category">
@@ -42,19 +42,19 @@ const PlaylistsView = ({
                                     <Button color="var(--primary)" text>Show All</Button>
                                 </Link>
                             </div>
-                            <Divider dense/>
+                            <Divider dense />
                             <div className="playlists-preview-container playlists-items">
                                 <Card className="playlists-item"></Card>
                                 <Card className="playlists-item"></Card>
                                 <Card className="playlists-item"></Card>
                                 <Card className="playlists-item"></Card>
                                 <div>&nbsp;</div>
-                            </div>                      
-                            
+                            </div>
+
                         </div>
-                        { connectedToSpotify ? <div className="playlists-category ">
+                        {connectedToSpotify ? <div className="playlists-category ">
                             <div className="playlists-category-header">
-                                <img src={spotifyIcon} alt="" height="24px"/>
+                                <img src={spotifyIcon} alt="" height="24px" />
                                 <span className="playlists-category-title">
                                     Spotify Playlists
                                 </span>
@@ -62,31 +62,38 @@ const PlaylistsView = ({
                                     <Button color="var(--primary)" text>Show All</Button>
                                 </Link>
                             </div>
-                            <Divider dense/>
-                        
-                            { (spotifyPlaylists !== undefined && spotifyPlaylists.length > 0) ? (
-                                    <div className="playlists-preview-container playlists-items">
-                                    {spotifyPlaylists.map(playlist => (
-                                        <Link key={playlist.id} to={`/app/playlists/spotify/${playlist.id}`}>
-                                            <Card bordered className="playlists-item">
-                                                <img src={playlist.image} alt=""/>
-                                                <div className="playlists-item-text">
-                                                    <h4>
-                                                        {playlist.name}
-                                                    </h4>
-                                                    <Subtitle2>
-                                                        Created by {playlist.owner.name}
-                                                    </Subtitle2>
-                                                </div>
-                                            </Card>
-                                        </Link>
-                                    ))}
-                                    </div>
-                                ) : ''}
+                            <Divider dense />
+
+                            {(spotifyPlaylists !== undefined && spotifyPlaylists.length > 0) ? (
+                                <div className="playlists-preview-container playlists-items">
+                                    {spotifyPlaylists.map((playlist: {
+                                        id: number,
+                                        image: string,
+                                        name: string,
+                                        owner: {
+                                            name: string
+                                        }
+                                    }) => (
+                                            <Link key={playlist.id} to={`/app/playlists/spotify/${playlist.id}`}>
+                                                <Card bordered className="playlists-item">
+                                                    <img src={playlist.image} alt="" />
+                                                    <div className="playlists-item-text">
+                                                        <h4>
+                                                            {playlist.name.length > 35 ? playlist.name.substring(0, 35) + "..." : playlist.name}
+                                                        </h4>
+                                                        <Subtitle2>
+                                                            Created by {playlist.owner.name}
+                                                        </Subtitle2>
+                                                    </div>
+                                                </Card>
+                                            </Link>
+                                        ))}
+                                </div>
+                            ) : ''}
                         </div> : ''}
-                        { true ? <div className="playlists-category">
+                        {true ? <div className="playlists-category">
                             <div className="playlists-category-header">
-                                <img src={youtubeIcon} alt="" height="24px"/>
+                                <img src={youtubeIcon} alt="" height="24px" />
                                 <span className="playlists-category-title">
                                     YouTube Playlists
                                 </span>
@@ -94,7 +101,7 @@ const PlaylistsView = ({
                                     <Button color="var(--primary)" text>Show All</Button>
                                 </Link>
                             </div>
-                            <Divider dense/>
+                            <Divider dense />
                             <div className="playlists-preview-container playlists-items">
                                 <Card className="playlists-item"></Card>
                                 <Card className="playlists-item"></Card>
@@ -103,8 +110,8 @@ const PlaylistsView = ({
                                 <div>&nbsp;</div>
                             </div>
                         </div> : ''}
-                    
-                    {/* <Table className="float-item" items={items} headers={headers}/> */}
+
+                        {/* <Table className="float-item" items={items} headers={headers}/> */}
                     </CardContent>
                 </div>
             </Card>

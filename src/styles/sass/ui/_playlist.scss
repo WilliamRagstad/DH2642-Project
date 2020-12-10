@@ -1,10 +1,10 @@
-
 .playlists-container {
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
     width: 100%;
 }
+
 .playlists-content {
     overflow-y: hidden;
     width: 100%;
@@ -17,17 +17,19 @@
     &-header {
         display: flex;
         align-items: center;
-        & > * {
+
+        &>* {
             margin: 5px;
         }
     }
+
     &-title {
         font-size: 20px;
     }
-    
+
     .playlists-preview-container {
-        display: flex;    
-        flex-wrap: nowrap;
+        display: flex;
+        flex-wrap: wrap;
         margin-top: 10px;
         overflow-x: scroll;
         overflow-y: hidden;
@@ -36,21 +38,25 @@
 
 .playlists-item {
     flex: 0 0 200px;
-    height: 280px;
+    min-height: 275px;
+    width: 200px;
     overflow: hidden;
-    
+
     transition: box-shadow .2s;
     box-shadow: var(--box-shadow);
     margin: 10px;
-    
+
     border-radius: 20px;
-    & > img {
+
+    &>img {
         height: 200px;
         opacity: 0.8;
     }
+
     &:active {
         box-shadow: var(--box-shadow-inset);
     }
+
     &-text {
         padding: 0 10px;
     }
