@@ -6,6 +6,7 @@ import IState from '../../../interfaces/redux/state';
 import spotifyIcon from '../../../images/Spotify_Icon_RGB_Green.png';
 import youtubeIcon from '../../../images/youtube_icon.png';
 import { Link } from 'react-router-dom';
+import SpotifyAuth from '../../spotify-auth/spotify-auth';
 
 function createItem(title, artist, album, length) {
     return { title, artist, album, length };
@@ -43,16 +44,11 @@ const PlaylistsView = ({
                                 </Link>
                             </div>
                             <Divider dense/>
-                            <div className="playlists-preview-container playlists-items">
-                                <Card className="playlists-item"></Card>
-                                <Card className="playlists-item"></Card>
-                                <Card className="playlists-item"></Card>
-                                <Card className="playlists-item"></Card>
-                                <div>&nbsp;</div>
+                            <div className="playlists-preview-container">
                             </div>                      
                             
                         </div>
-                        { connectedToSpotify ? <div className="playlists-category ">
+                        { connectedToSpotify ? <div className="playlists-category">
                             <div className="playlists-category-header">
                                 <img src={spotifyIcon} alt="" height="24px"/>
                                 <span className="playlists-category-title">
@@ -63,23 +59,20 @@ const PlaylistsView = ({
                                 </Link>
                             </div>
                             <Divider dense/>
-                        
                             { (spotifyPlaylists !== undefined && spotifyPlaylists.length > 0) ? (
                                     <div className="playlists-preview-container playlists-items">
                                     {spotifyPlaylists.map(playlist => (
-                                        <Link key={playlist.id} to={`/app/playlists/spotify/${playlist.id}`}>
-                                            <Card bordered className="playlists-item">
+                                            <Card key={playlist.id} bordered className="playlists-item">
                                                 <img src={playlist.image} alt=""/>
                                                 <div className="playlists-item-text">
                                                     <h4>
                                                         {playlist.name}
                                                     </h4>
-                                                    <Subtitle2>
+                                                    <p>
                                                         Created by {playlist.owner.name}
-                                                    </Subtitle2>
+                                                    </p>
                                                 </div>
                                             </Card>
-                                        </Link>
                                     ))}
                                     </div>
                                 ) : ''}
@@ -96,11 +89,6 @@ const PlaylistsView = ({
                             </div>
                             <Divider dense/>
                             <div className="playlists-preview-container playlists-items">
-                                <Card className="playlists-item"></Card>
-                                <Card className="playlists-item"></Card>
-                                <Card className="playlists-item"></Card>
-                                <Card className="playlists-item"></Card>
-                                <div>&nbsp;</div>
                             </div>
                         </div> : ''}
                     
