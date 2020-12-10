@@ -33,7 +33,7 @@ const PlaylistsView = ({
         <React.Fragment>
             <Card className="view-card float-container flex-parent flex-column" inset rounded>
                 <CardHeader>Playlists</CardHeader>
-                <div><Divider className="playlists-divider" dense/></div>
+                <div><Divider className="playlists-divider" dense /></div>
                 <div className="playlists-container">
                     <CardContent className="playlists-content flex-parent flex-column">
                         <div className="playlists-category">
@@ -50,7 +50,7 @@ const PlaylistsView = ({
                         </div>
                         { connectedToSpotify ? <div className="playlists-category">
                             <div className="playlists-category-header">
-                                <img src={spotifyIcon} alt="" height="24px"/>
+                                <img src={spotifyIcon} alt="" height="24px" />
                                 <span className="playlists-category-title">
                                     Spotify Playlists
                                 </span>
@@ -77,9 +77,9 @@ const PlaylistsView = ({
                                     </div>
                                 ) : ''}
                         </div> : ''}
-                        { true ? <div className="playlists-category">
+                        {true ? <div className="playlists-category">
                             <div className="playlists-category-header">
-                                <img src={youtubeIcon} alt="" height="24px"/>
+                                <img src={youtubeIcon} alt="" height="24px" />
                                 <span className="playlists-category-title">
                                     YouTube Playlists
                                 </span>
@@ -87,12 +87,12 @@ const PlaylistsView = ({
                                     <Button color="var(--primary)" text>Show All</Button>
                                 </Link>
                             </div>
-                            <Divider dense/>
+                            <Divider dense />
                             <div className="playlists-preview-container playlists-items">
                             </div>
                         </div> : ''}
-                    
-                    {/* <Table className="float-item" items={items} headers={headers}/> */}
+
+                        {/* <Table className="float-item" items={items} headers={headers}/> */}
                     </CardContent>
                 </div>
             </Card>
