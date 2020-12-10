@@ -175,3 +175,28 @@ export const getCurrentSpotifyData = () => {
         .catch(console.error);
     }
 }
+export const getSpotifyPlaylists = () => {
+    return (dispatch, getState) => {
+        validateSpotifyToken().then(() => {
+            spotify.getUserPlaylists().then((data: any) => {
+                let playlists = [];
+                data.items.forEach(item => {
+                    const playlist = {
+                        id: item.id,
+                        name: item.name,
+                        owner: {
+                            id: item.owner.id,
+                            name: item.owner.display_name
+                        },
+                        description: item.description,
+                        image: item.images[0].url,
+                        trackCount: item.tracks.total,
+                    }
+                    playlists.push(playlist);
+                });
+                dispatch({type: 'SET_SPOTIFY_PLAYLISTS', payload: playlists})
+                console.log(data);
+            })
+        })
+    }
+}

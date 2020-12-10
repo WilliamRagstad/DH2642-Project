@@ -29,6 +29,7 @@ class SpotifyPlayer extends React.Component {
 		spotify.setAccessToken(token);
 		spotify.getMyCurrentPlayingTrack().then(console.log);
 		this.props.getCurrentSpotifyData();
+		this.props.getSpotifyPlaylists();
 
 		const player = new window.Spotify.Player({
 			name: 'SoundBundle Web Player',
@@ -55,7 +56,7 @@ class SpotifyPlayer extends React.Component {
 						this.props.setPlaying();
 					}
 					const track = state.track_window.current_track;
-					if (track.id !== this.props.mediaData.currentlyPlaying.id) {
+					if (track.id !== this.props.mediaData.currentlyPlaying.id || track.duration_ms !== this.props.mediaData.currentlyPlaying.duration) {
 						let trackData = {
 							service: 'spotify',
 							id: track.id,
@@ -83,7 +84,7 @@ class SpotifyPlayer extends React.Component {
 					spotify.transferMyPlayback([this.props.mediaData.spotifyDeviceId]);
 				}
 				
-			}, 500);
+			}, 300);
 		});
 
 		// Ready

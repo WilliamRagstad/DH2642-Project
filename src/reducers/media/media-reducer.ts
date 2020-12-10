@@ -19,7 +19,10 @@ const initialState = {
         progress: 0,
         shuffle: false,
         repeat: 0,
-    }
+    },
+    playlists: {
+        spotify: [],
+    },
 }
 
 const mediaReducer = (state = initialState, action: IAction) => {
@@ -59,6 +62,15 @@ const mediaReducer = (state = initialState, action: IAction) => {
                     ...state.currentlyPlaying,
                     ...action.payload
                 }
+            }
+            return newState;
+        case 'SET_SPOTIFY_PLAYLISTS':
+            newState = {
+                ...state,
+                playlists: {
+                    ...state.playlists,
+                    spotify: action.payload,
+                } 
             }
             return newState;
         default:
