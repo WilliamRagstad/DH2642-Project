@@ -99,8 +99,8 @@ const MediaControls = ({
                     // setTimeout(() => {
                     //     getCurrentMediaData(service);
                     // }, 1000)
-                }).catch(console.error);                
-                
+                }).catch(console.error);
+
                 break;
             default:
                 console.error('Invalid service.');
@@ -113,18 +113,18 @@ const MediaControls = ({
                 await validateSpotifyToken().then(() => {
                     if (mediaProgress < 3000)
                         spotify.skipToPrevious()
-                        .then(() => {
-                            console.log("Skipped to previous");
-                            if (!isPlaying) setPlaying();
-                            setProgress(0);
-                        })
-                        .catch(console.error);
+                            .then(() => {
+                                console.log("Skipped to previous");
+                                if (!isPlaying) setPlaying();
+                                setProgress(0);
+                            })
+                            .catch(console.error);
                     else spotify.seek(0);
                     // setTimeout(() => {
                     //     getCurrentMediaData(service);
                     // }, 1000)
-                }).catch(console.error);                
-                
+                }).catch(console.error);
+
                 break;
             default:
                 console.error('Invalid service.');
@@ -150,16 +150,16 @@ const MediaControls = ({
                 <div className="media-controls-left flex-parent flex-align-center">
                     <div>
                         <Subtitle1 className="flex-parent flex-align-center">
-                            {(service === 'spotify') && <img src={spotifyIcon} alt="" height="16px"/>}&nbsp;
+                            {(service === 'spotify') && <img src={spotifyIcon} alt="" height="16px" />}&nbsp;
                             {mediaData.currentlyPlaying.title}
                         </Subtitle1>
-                        
+
                         <Subtitle2>{mediaData.currentlyPlaying.artists.map((artist, index) => <span key={`artist_${index}`}>{(index ? ', ' : '') + artist.name}</span>)}</Subtitle2>
                     </div>
                 </div>
                 <div className="media-controls-center flex-child">
                     <div className="media-controls-center-buttons flex-parent flex-align-center flex-justify-center">
-                        <IconButton onClick={({value, event}) => {
+                        <IconButton rounded active={shuffle} onClick={({ value, event }) => {
                             setShuffle(service, !shuffle);
                         }}>
                             <ShuffleIcon fill={shuffle ? 'var(--primary)' : 'var(--g-text-color-light)'} />
@@ -167,23 +167,23 @@ const MediaControls = ({
                         <IconButton disabled={!service} text={false} rounded size="small" onClick={() => {
                             previous(service);
                         }}>
-                            <PreviousIcon fill="var(--g-text-color-light)"/>
+                            <PreviousIcon fill="var(--g-text-color-light)" />
                         </IconButton>
                         <IconButton disabled={!service} text={false} rounded size="large" onClick={() => {
                             pausePlay(service);
-                        }}>{mediaData.isPlaying ? <PauseIcon fill="var(--g-text-color-light)"/> : <PlayIcon fill="var(--g-text-color-light)"/>}</IconButton>
+                        }}>{mediaData.isPlaying ? <PauseIcon fill="var(--g-text-color-light)" /> : <PlayIcon fill="var(--g-text-color-light)" />}</IconButton>
                         <IconButton disabled={!service} text={false} rounded size="small" onClick={() => {
                             next(service);
-                            
+
                         }}>
-                            <NextIcon fill="var(--g-text-color-light)"/>
+                            <NextIcon fill="var(--g-text-color-light)" />
                         </IconButton>
-                        <IconButton onClick={({value, event}) => {
+                        <IconButton rounded active={repeat} onClick={({ value, event }) => {
                             toggleRepeat(service, repeat);
                         }}>
-                            {repeat > 1 ? 
-                                <RepeatOneIcon fill={repeat ? 'var(--primary)' : 'var(--g-text-color-light)'}/> :
-                                <RepeatIcon fill={repeat ? 'var(--primary)' : 'var(--g-text-color-light)'}/>}                            
+                            {repeat > 1 ?
+                                <RepeatOneIcon fill={repeat ? 'var(--primary)' : 'var(--g-text-color-light)'} /> :
+                                <RepeatIcon fill={repeat ? 'var(--primary)' : 'var(--g-text-color-light)'} />}
                         </IconButton>
                     </div>
                     <div className="flex-parent flex-justify-center flex-align-center">
@@ -193,13 +193,13 @@ const MediaControls = ({
                     </div>
                 </div>
                 <div className="media-controls-right flex-parent flex-align-center">
-                        {/* <Button>A button</Button>
+                    {/* <Button>A button</Button>
                         <IconButton>
                             <DevicesIcon fill="var(--g-text-color-light)"/>
                         </IconButton> */}
                 </div>
             </Card>
-        </React.Fragment>        
+        </React.Fragment>
     )
 }
 
