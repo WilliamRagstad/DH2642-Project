@@ -17,7 +17,7 @@ export const searchTrack = (service: string, query: string) => {
                 break;
 
             default:
-                console.log("Invalid service, try again.")
+                dispatch({ type: 'SEARCH_ERROR', payload: "Invalid service, try again." })
                 break;
         }
 
