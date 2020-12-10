@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Card, CardContent, CardHeader, ProgressLinear, Table, TextField } from 'ui-neumorphism';
+import { Button, Card, CardContent, CardHeader, ProgressLinear, Table, TextField, ToggleButton, ToggleButtonGroup } from 'ui-neumorphism';
 import actions from '../../../actions';
 import { connect } from 'react-redux';
+import spotifyIcon from '../../../images/Spotify_Icon_RGB_Green.png';
+import youtubeIcon from '../../../images/youtube_icon.png';
 
 const SearchView = ({
     isLoading,
@@ -10,6 +12,7 @@ const SearchView = ({
     searchTrack
 }) => {
     const [query, setQuery] = useState("");
+    const [service, setService] = useState("spotify");
 
     const headers = [
         { text: 'Title', align: 'left', value: 'title' },
@@ -24,12 +27,20 @@ const SearchView = ({
                 <CardHeader>Search</CardHeader>
                 <form autoComplete="off" onSubmit={e => {
                     e.preventDefault();
-                    if (query) searchTrack(query);
+                    if (query) searchTrack(service, query);
                 }}>
                     <div className="flex-parent flex-align-center search-form" spellCheck="false">
                         <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
+                        <ToggleButtonGroup mandatory>
+                            <ToggleButton className="search-togglebuttons" value='spotify' onClick={() => setService("spotify")}>
+                                <img alt="" height="24px" src={spotifyIcon}/>
+                            </ToggleButton>
+                            <ToggleButton className="search-togglebuttons" value='youtube' onClick={() => setService("youtube")}>
+                                <img alt="" height="24px" src={youtubeIcon}/>
+                            </ToggleButton>
+                        </ToggleButtonGroup>
                         <Button onClick={() => {
-                            if (query) searchTrack(query);
+                            if (query) searchTrack(service, query);
                         }}>Search</Button>
                     </div>
                     <input type="submit" hidden />
