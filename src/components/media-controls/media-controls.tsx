@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SpotifyPlayer from './spotify-player';
-import { IconButton, Card, ProgressLinear, Subtitle2, Subtitle1, ToggleButton } from 'ui-neumorphism';
+import { IconButton, Card, ProgressLinear, Subtitle2, Subtitle1 } from 'ui-neumorphism';
 import IState from '../../interfaces/redux/state';
 import { connect } from 'react-redux';
 import actions from '../../actions';
-import { PlayIcon, PauseIcon, NextIcon, PreviousIcon, ShuffleIcon, RepeatIcon, RepeatOneIcon, DevicesIcon } from '../../components/icons/icons';
+import { PlayIcon, PauseIcon, NextIcon, PreviousIcon, ShuffleIcon, RepeatIcon, RepeatOneIcon } from '../../components/icons/icons';
 import spotify from '../../spotify';
 import { validateSpotifyToken } from '../../helpers/spotify';
 import { songLength } from '../../actions/search-actions';
@@ -13,6 +13,7 @@ import spotifyIcon from '../../images/Spotify_Icon_RGB_Green.png';
 const MediaControls = ({
     isLoggedIn,
     isConnectedToSpotify,
+    spotifyToken,
     mediaData,
     isPlaying,
     mediaProgress,
@@ -33,6 +34,12 @@ const MediaControls = ({
     const [progressTimeLeft, setProgressTimeLeft] = useState("-0:00");
 
     let barChanging = useRef(false);
+
+    let spotifyPlayer = useRef(null);
+    
+    useEffect(() => {
+        spotifyPlayer.current = <SpotifyPlayer token={spotifyToken}/>
+    }, [spotifyToken])
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -145,7 +152,7 @@ const MediaControls = ({
 
     return (
         <React.Fragment>
-            {isLoggedIn && isConnectedToSpotify && <SpotifyPlayer />}
+            {isLoggedIn && isConnectedToSpotify && spotifyPlayer.current}
             <Card className="media-controls fill-element flex-parent">
                 <div className="media-controls-left flex-parent flex-align-center">
                     <div>
@@ -207,6 +214,7 @@ const mapStateToProps = (state: IState) => {
     return {
         isLoggedIn: state.firebase.auth.isLoaded && !state.firebase.auth.isEmpty,
         isConnectedToSpotify: state.spotify.connected,
+        spotifyToken: state.spotify.access_token,
         mediaData: state.media,
         isPlaying: state.media.isPlaying,
         mediaProgress: state.media.currentlyPlaying.progress,
