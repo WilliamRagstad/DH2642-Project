@@ -45,7 +45,7 @@ const MediaControls = ({
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [isPlaying, service, mediaProgress, barChanging]);
+    }, [isPlaying, service, mediaProgress, barChanging, mediaDuration]);
 
     useEffect(() => {
         const progressbar = document.getElementsByClassName('media-progress')[0];
