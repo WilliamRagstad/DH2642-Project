@@ -9,7 +9,7 @@ function LoadAppFirestore() {
     const dispatch = useDispatch();
 
     loadFirestoreUserData("app", "ui").then((snapshot) => {
-        if (snapshot.exists) dispatch(update_ui(snapshot.data()))
+        if (snapshot && snapshot.exists) dispatch(update_ui(snapshot.data()))
     });
 }
 
@@ -17,7 +17,7 @@ function LoadServices() {
     const dispatch = useDispatch();
 
     loadFirestoreUserData("services", "spotify").then((snapshot) => {
-        if (snapshot.exists) {
+        if (snapshot && snapshot.exists) {
             const hashdata = snapshot.data();
             hashdata.connected = true;
             dispatch(connect("SPOTIFY", hashdata));
