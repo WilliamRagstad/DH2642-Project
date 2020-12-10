@@ -12,7 +12,7 @@ const SearchView = ({
     searchTrack
 }) => {
     const [query, setQuery] = useState("");
-    const [service, setService] = useState("spotify");
+    const [service, setService] = useState("");
 
     const headers = [
         { text: 'Title', align: 'left', value: 'title' },
@@ -31,11 +31,27 @@ const SearchView = ({
                 }}>
                     <div className="flex-parent flex-align-center search-form" spellCheck="false">
                         <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
-                        <ToggleButtonGroup mandatory>
-                            <ToggleButton className="search-togglebuttons" value='spotify' onClick={() => setService("spotify")}>
+                        <ToggleButtonGroup multiple>
+                            <ToggleButton className="search-togglebuttons" value='spotify' onClick={() => 
+                                {if(service==="youtube")
+                                    setService("both");
+                                else if(service==="both")
+                                    setService("youtube");
+                                else if(service==="spotify")
+                                    setService("");
+                                else setService("spotify");}
+                            }>
                                 <img alt="" height="24px" src={spotifyIcon}/>
                             </ToggleButton>
-                            <ToggleButton className="search-togglebuttons" value='youtube' onClick={() => setService("youtube")}>
+                            <ToggleButton className="search-togglebuttons" value='youtube' onClick={() => 
+                                {if(service==="spotify")
+                                    setService("both");
+                                else if(service==="both")
+                                    setService("spotify");
+                                else if(service==="youtube")
+                                    setService("");
+                                else setService("youtube");}
+                            }>
                                 <img alt="" height="24px" src={youtubeIcon}/>
                             </ToggleButton>
                         </ToggleButtonGroup>
