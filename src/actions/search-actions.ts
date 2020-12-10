@@ -11,16 +11,16 @@ export const searchTrack = (service: string, query: string) => {
             case 'youtube':
                 dispatch({ type: 'SET_SEARCH_RESULTS', payload: [] })
                 break;
-            
+
             case 'both':
                 spotifySearch(dispatch, query, 3);
                 break;
-                
+
             default:
                 console.log("Invalid service, try again.")
                 break;
         }
-        
+
     }
 }
 
@@ -54,15 +54,15 @@ function spotifySearch(dispatch: any, query: string, limit: number) {
 export function songLength(duration) {
     let seconds: any = ((duration / 1000) % 60).toFixed(0);
     let minutes: number = Math.abs((((duration / 1000) - seconds) / 60));
-    
-    if(seconds>=60){
+
+    if (seconds >= 60) {
         seconds -= 60;
         minutes += 1;
-    } 
+    }
 
-    if(seconds<10){
+    if (seconds < 10) {
         seconds = "0" + seconds;
     }
-    
+
     return minutes.toFixed(0) + ":" + seconds;
 }

@@ -32,27 +32,27 @@ const SearchView = ({
                     <div className="flex-parent flex-align-center search-form" spellCheck="false">
                         <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
                         <ToggleButtonGroup multiple>
-                            <ToggleButton className="search-togglebuttons" value='spotify' onClick={() => 
-                                {if(service==="youtube")
+                            <ToggleButton className="search-togglebuttons" value='spotify' onClick={() => {
+                                if (service === "youtube")
                                     setService("both");
-                                else if(service==="both")
+                                else if (service === "both")
                                     setService("youtube");
-                                else if(service==="spotify")
+                                else if (service === "spotify")
                                     setService("");
-                                else setService("spotify");}
-                            }>
-                                <img alt="" height="24px" src={spotifyIcon}/>
+                                else setService("spotify");
+                            }}>
+                                <img alt="" height="24px" src={spotifyIcon} />
                             </ToggleButton>
-                            <ToggleButton className="search-togglebuttons" value='youtube' onClick={() => 
-                                {if(service==="spotify")
+                            <ToggleButton className="search-togglebuttons" value='youtube' onClick={() => {
+                                if (service === "spotify")
                                     setService("both");
-                                else if(service==="both")
+                                else if (service === "both")
                                     setService("spotify");
-                                else if(service==="youtube")
+                                else if (service === "youtube")
                                     setService("");
-                                else setService("youtube");}
-                            }>
-                                <img alt="" height="24px" src={youtubeIcon}/>
+                                else setService("youtube");
+                            }}>
+                                <img alt="" height="24px" src={youtubeIcon} />
                             </ToggleButton>
                         </ToggleButtonGroup>
                         <Button onClick={() => {
@@ -61,9 +61,9 @@ const SearchView = ({
                     </div>
                     <input type="submit" hidden />
                 </form>
-                <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6}/>
+                <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6} />
                 <CardContent>
-                    <Table className="float-item" noHeaders items={searchResults} headers={headers}/>
+                    <Table className="float-item" noHeaders items={searchResults} headers={headers} />
                 </CardContent>
             </Card>
         </React.Fragment>
