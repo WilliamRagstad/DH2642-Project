@@ -178,7 +178,7 @@ const MediaControls = ({
                         }}>
                             <NextIcon fill="var(--g-text-color-light)" />
                         </IconButton>
-                        <IconButton rounded active={repeat} onClick={({ value, event }) => {
+                        <IconButton rounded active={repeat > 0} onClick={({ value, event }) => {
                             toggleRepeat(service, repeat);
                         }}>
                             {repeat > 1 ?
