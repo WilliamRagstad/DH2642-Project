@@ -24,9 +24,8 @@ class SpotifyPlayer extends React.Component {
 	handleLoadSuccess() {
 		this.setState({ scriptLoaded: true });
 		const token = this.props.spotifyData.access_token;
-		validateSpotifyToken(this.token);
+		validateSpotifyToken();
 		
-		spotify.setAccessToken(token);
 		spotify.getMyCurrentPlayingTrack().then(console.log);
 		this.props.getCurrentSpotifyData();
 		this.props.getSpotifyPlaylists();
@@ -106,7 +105,8 @@ class SpotifyPlayer extends React.Component {
 	}
 
 	cb(token) {
-		return (token);
+		this.props.validateSpotifyToken();
+		return (this.props.spotifyData.access_token);
 	}
 
 	handleScriptCreate() {

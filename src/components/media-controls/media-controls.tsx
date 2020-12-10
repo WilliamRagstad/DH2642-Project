@@ -35,11 +35,13 @@ const MediaControls = ({
 
     let barChanging = useRef(false);
 
-    let spotifyPlayer = useRef(null);
+    // let spotifyPlayer = useRef(null);
     
-    useEffect(() => {
-        spotifyPlayer.current = <SpotifyPlayer token={spotifyToken}/>
-    }, [spotifyToken])
+    // useEffect(() => {
+    //     console.log("Token changed to " + spotifyToken)
+    //     if (spotifyToken) spotifyPlayer.current = <SpotifyPlayer/>;
+    //     console.log(spotifyPlayer.current);
+    // }, [spotifyToken])
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -152,7 +154,7 @@ const MediaControls = ({
 
     return (
         <React.Fragment>
-            {isLoggedIn && isConnectedToSpotify && spotifyPlayer.current}
+            {isLoggedIn && isConnectedToSpotify && <SpotifyPlayer/>}
             <Card className="media-controls fill-element flex-parent">
                 <div className="media-controls-left flex-parent flex-align-center">
                     <div>
