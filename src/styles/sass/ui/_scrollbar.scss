@@ -1,5 +1,5 @@
-$trackbar-bg: #444;
-$scrollbar-bg: #ccc;
+$trackbar-bg: var(--light-bg-dark-shadow);
+$scrollbar-bg: var(--light-bg-light-shadow);
 $size: 7px;
 
 ::-webkit-scrollbar {

@@ -70,7 +70,7 @@ const SettingsView = () => {
                     <Tab onClick={() => setActiveTab(3)}>Privacy</Tab>
                 </Tabs>
                 <Divider dense className="card-margin" />
-                <TabItems className="tab flex-child" value={activeTab} style={{ height: "100%" }}>
+                <TabItems className="tab flex-child" value={activeTab} style={{ height: "70vh" }}>
                     <TabItem className="tab-item float-container">
                         <Card className="float-item">
                             <CardHeader>Preferences</CardHeader>

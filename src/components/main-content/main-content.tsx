@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Route, Switch, Redirect } from 'react-router-dom';
 import HomeView from './home/home-view';
-import PlaylistView from './playlist/playlist-view';
+import PlaylistsView from './playlists/playlists-view';
 import LyricsView from './lyrics/lyrics-view';
 import SettingsView from "./settings/settings-view";
 import SearchView from './search/search-view';
@@ -14,8 +14,12 @@ const MainContent = () => {
 					<HomeView />
 				</Route>
 
+				<Route path="/app/playlists">
+					<PlaylistsView />
+				</Route>
+
 				<Route path="/app/playlist">
-					<PlaylistView />
+					
 				</Route>
 
 				<Route path="/app/lyrics">

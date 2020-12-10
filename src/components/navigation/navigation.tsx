@@ -25,7 +25,7 @@ const Navigation = () => {
                     <Button rounded onClick={() => setActive(1)} active={active === 1} color={color(1)}><span className="button-icon-container"><SearchIcon fill={color(1)} />&nbsp;</span>Search</Button>
                 </Link>
                 <Divider dense />
-                <Link to="/app/playlist">
+                <Link to="/app/playlists">
                     <Button rounded onClick={() => setActive(2)} active={active === 2} color={color(2)}><span className="button-icon-container"><PlaylistIcon fill={color(2)} />&nbsp;</span>Playlists</Button>
                 </Link>
                 <Divider dense />
