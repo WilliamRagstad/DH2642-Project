@@ -25,12 +25,15 @@ const SearchView = ({
         <React.Fragment>
             <Card className="view-card float-container" inset rounded>
                 <CardHeader>Search</CardHeader>
-                <form autoComplete="off" onSubmit={e => {
-                    e.preventDefault();
-                    if (query) searchTrack(service, query);
-                }}>
                     <div className="flex-parent flex-align-center search-form" spellCheck="false">
-                        <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
+                        <form autoComplete="off" onClick={e => {
+                            e.preventDefault();
+                            if (query) searchTrack(service, query);
+                        }}>
+                            <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
+                            
+                            <input type="submit" hidden />
+                        </form>
                         <ToggleButtonGroup multiple>
                             <ToggleButton className="search-togglebuttons" value='spotify' onClick={() => {
                                 if (service === "youtube")
@@ -59,8 +62,6 @@ const SearchView = ({
                             if (query) searchTrack(service, query);
                         }}>Search</Button>
                     </div>
-                    <input type="submit" hidden />
-                </form>
                 <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6} />
                 <CardContent>
                     <Table className="float-item" noHeaders items={searchResults} headers={headers} />
