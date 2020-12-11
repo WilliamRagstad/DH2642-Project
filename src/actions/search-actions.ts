@@ -9,6 +9,7 @@ export const searchTrack = (service: string, query: string) => {
                 break;
 
             case 'youtube':
+                dispatch({ type: 'SEARCH_SUCCESS' });
                 dispatch({ type: 'SET_SEARCH_RESULTS', payload: [] })
                 break;
 
@@ -28,8 +29,14 @@ function spotifySearch(dispatch: any, query: string, limit: number) {
     validateSpotifyToken().then(async () => {
         dispatch({ type: 'SET_SEARCH_LOADING' });
         const songs = await spotify.searchTracks(query, { limit: limit }).then(result => {
-            dispatch({ type: 'SEARCH_SUCCESS' });
-            return result;
+            if(result.tracks.items.length >= 1){
+                dispatch({ type: 'SEARCH_SUCCESS' });
+                return result;
+            }
+            else{
+                dispatch({ type: 'SEARCH_ERROR', payload: "No results found. Check spelling and try again." })
+                return result;
+            }
         }).catch(console.error);
 
         let searchResults = [];
@@ -46,8 +53,6 @@ function spotifySearch(dispatch: any, query: string, limit: number) {
             });
             dispatch({ type: 'SET_SEARCH_RESULTS', payload: searchResults });
         }
-        else
-            dispatch({ type: 'SEARCH_ERROR', payload: "No results found. Check spelling and try again." });
     });
 }
 

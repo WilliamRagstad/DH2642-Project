@@ -64,7 +64,7 @@ const SearchView = ({
                     </div>
                 <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6} />
                 <CardContent>
-                    {searchError && !isLoading ? <Card className="float-item">No results check spelling and service and try again</Card> : <Table className="float-item" noHeaders items={searchResults} headers={headers} />}
+                    {searchError && !isLoading ? <Card className="float-item">{searchError}</Card> : <Table className="float-item" items={searchResults} headers={headers} />}
                 </CardContent>
             </Card>
         </React.Fragment>
