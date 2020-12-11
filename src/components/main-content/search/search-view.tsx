@@ -35,7 +35,7 @@ const SearchView = ({
                         <input type="submit" hidden />
                     </form>
                     <ToggleButtonGroup multiple>
-                        <ToggleButton className="search-togglebuttons" value='spotify' onClick={() => {
+                        <ToggleButton className="search-toggleButtons" value='spotify' onClick={() => {
                             if (service === "youtube")
                                 setService("both");
                             else if (service === "both")
@@ -46,7 +46,7 @@ const SearchView = ({
                         }}>
                             <img alt="" height="24px" src={spotifyIcon} />
                         </ToggleButton>
-                        <ToggleButton className="search-togglebuttons" value='youtube' onClick={() => {
+                        <ToggleButton className="search-toggleButtons" value='youtube' onClick={() => {
                             if (service === "spotify")
                                 setService("both");
                             else if (service === "both")
