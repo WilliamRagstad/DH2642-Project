@@ -23,7 +23,7 @@ function LocationLoader() {
 
     getCurrentUser(firebase.auth()).then(user => {
         // App has loaded page based on auth.
-        // Redirect if a desired localtion is stored in lavastore
+        // Redirect if a desired location is stored in lavastore
         const to = (LocationCache.Get() as any)?.to as string;
         if (to !== undefined && window.location.href !== to && history !== undefined) {
             const path = to.replace(window.location.origin, '');
