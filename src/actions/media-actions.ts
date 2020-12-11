@@ -197,6 +197,55 @@ export const getSpotifyPlaylists = () => {
                 dispatch({type: 'SET_SPOTIFY_PLAYLISTS', payload: playlists})
                 console.log(data);
             })
+            .catch(console.error);
+        })
+    }
+}
+export const getSpotifyPlaylist = (id: string) => {
+    return (dispatch, getState) => {
+        validateSpotifyToken().then(() => {
+            spotify.getPlaylist(id).then((data: any) => {
+                console.log(data);
+                let tracks = [];
+                let totalDuration = 0;
+                data.tracks.items.forEach(item => {
+                    let trackData = ({
+                        id: item.track.id,
+                        title: item.track.name,
+                        album: {
+                            id: item.track.album.id,
+                            name: item.track.album.name,
+                            images: item.track.album.images
+                        },
+                        artists: [],
+                        duration: item.track.duration_ms,
+                    })
+                    item.track.artists.forEach(artist => {
+                        trackData.artists.push({
+                            id: artist.id,
+                            name: artist.name
+                        })
+                    });
+                    tracks.push(trackData);
+                    totalDuration += item.track.duration_ms;
+                });
+                const playlist = {
+                    service: 'spotify',
+                    id: id,
+                    name: data.name,
+                    description: data.description,
+                    owner: {
+                        id: data.owner.id,
+                        name: data.owner.display_name
+                    },
+                    tracks,
+                    totalDuration
+                }
+                dispatch({type: 'SET_ACTIVE_PLAYLIST', payload: playlist})
+
+                
+            })
+            .catch(console.error);
         })
     }
 }

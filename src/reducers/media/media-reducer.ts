@@ -21,6 +21,19 @@ const initialState = {
         repeat: 0,
     },
     playlists: {
+        active: {
+            service: "",
+            id: "",
+            name: "",
+            description: "",
+
+            tracks: [],
+            owner: {
+                id: "",
+                name: "",
+            },
+            totalDuration: 0,
+        },
         spotify: [],
     },
 }
@@ -71,6 +84,15 @@ const mediaReducer = (state = initialState, action: IAction) => {
                     ...state.playlists,
                     spotify: action.payload,
                 } 
+            }
+            return newState;
+        case 'SET_ACTIVE_PLAYLIST':
+            newState = {
+                ...state,
+                playlists: {
+                    ...state.playlists,
+                    active: action.payload
+                }
             }
             return newState;
         default:

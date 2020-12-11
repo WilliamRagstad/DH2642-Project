@@ -9,12 +9,6 @@ import SettingsView from "./settings/settings-view";
 import SearchView from './search/search-view';
 
 const MainContent = () => {
-
-	const renderPlaylists = (routerProps) => {
-		console.log(routerProps);
-		return "hello";
-	}
-
 	return (
 		<React.Fragment>
 			<Switch>
