@@ -18,7 +18,7 @@ const songsClient = new Genius.SongsClient(config.cilent_access_token);
 //             dispatch({ type: 'SET_CURRENT_LYRICS', payload: song })
 //             console.log(songs[0]);
 
-            
+
 //             return promiseTimeout(songs[0].lyrics(true), 1000).catch(console.error);
 //         })
 //         .then(lyrics => {
@@ -32,30 +32,38 @@ const songsClient = new Genius.SongsClient(config.cilent_access_token);
 
 // CREATE HELPER FUNCTION TO REMOVE CODE DUPLICATION IF POSSIBLE
 export const getCurrentLyrics = () => {
-    return async (dispatch, getState) => {
+    return (dispatch, getState) => {
         const state = getState();
         const query = state.media.currentlyPlaying.title + " " + state.media.currentlyPlaying.artists[0].name;
         dispatch({ type: 'SET_LYRICS_LOADING' });
         dispatch({ type: 'SET_LYRICS_SAME_AS_PLAYING', payload: true });
-        const songs = await songsClient.search(query).catch(console.error);
-        const song = {
-            id: songs[0].id,
-            title: songs[0].featuredTitle,
-            artist: songs[0].artist.name,
-            url: songs[0].url,
-            albumArtUrl: songs[0].image,
-        };
-        dispatch({ type: 'SET_CURRENT_LYRICS', payload: song });
-        console.log(songs[0]);
-        setTimeout(() => songs[0].lyrics(true).then(lyrics => {
-            dispatch({ type: 'SET_CURRENT_LYRICS', payload: { lyrics } });
-            dispatch({ type: 'LYRICS_SUCCESS' });
-            console.log("Test")
-        })
-        .catch(err => {
-            dispatch({ type: 'LYRICS_ERROR', payload: "Failed to load lyrics. Try reloading." });
+        songsClient.search(query).then(songs => {
+            if (songs.length === 0) {
+                dispatch({ type: 'LYRICS_ERROR', payload: "No lyrics found." });
+                return;
+            }
+            const song = {
+                id: songs[0].id,
+                title: songs[0].featuredTitle,
+                artist: songs[0].artist.name,
+                url: songs[0].url,
+                albumArtUrl: songs[0].image,
+            };
+            dispatch({ type: 'SET_CURRENT_LYRICS', payload: song });
+            console.log(songs[0]);
+
+            setTimeout(() => songs[0].lyrics(true).then(lyrics => {
+                dispatch({ type: 'SET_CURRENT_LYRICS', payload: { lyrics } });
+                dispatch({ type: 'LYRICS_SUCCESS' });
+                console.log("Test")
+            }).catch(err => {
+                dispatch({ type: 'LYRICS_ERROR', payload: "Failed to load lyrics. Try reloading." });
+                console.error(err);
+            }), 1000);
+        }).catch(err => {
             console.error(err);
-        }), 1000);
+            dispatch({ type: 'LYRICS_ERROR', payload: "No lyrics found." });
+        });
     }
 }
 export const getLyricsFromId = (id) => {
@@ -75,10 +83,10 @@ export const getLyricsFromId = (id) => {
             dispatch({ type: 'SET_CURRENT_LYRICS', payload: { lyrics } });
             dispatch({ type: 'LYRICS_SUCCESS' });
         })
-        .catch(err => {
-            dispatch({ type: 'LYRICS_ERROR', payload: "Failed to load lyrics. Try reloading." });
-            console.error(err);
-        }), 1000);
+            .catch(err => {
+                dispatch({ type: 'LYRICS_ERROR', payload: "Failed to load lyrics. Try reloading." });
+                console.error(err);
+            }), 1000);
     }
 }
 
@@ -91,7 +99,7 @@ export const searchLyrics = (query) => {
             return result;
         }).catch(console.error);
         let searchResults = [];
-        
+
         // console.log(songs);
         if (songs) {
             songs.forEach(song => {
@@ -105,7 +113,7 @@ export const searchLyrics = (query) => {
             })
             dispatch({ type: 'SET_LYRICS_SEARCH_RESULTS', payload: searchResults })
         }
-        else dispatch({ type: 'LYRICS_ERROR', payload: "No results found. Check spelling and try again."});
+        else dispatch({ type: 'LYRICS_ERROR', payload: "No results found. Check spelling and try again." });
     }
 }
 
