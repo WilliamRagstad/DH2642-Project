@@ -1,27 +1,35 @@
 import React from 'react';
-import { BrowserRouter as Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import HomeView from './home/home-view';
-import PlaylistsView from './playlists/playlists-view';
+import PlaylistsOverview from './playlists/playlists-view';
+import Playlists from './playlists/playlists';
+import Playlist from './playlists/playlist';
 import LyricsView from './lyrics/lyrics-view';
 import SettingsView from "./settings/settings-view";
 import SearchView from './search/search-view';
 
 const MainContent = () => {
+
+	const renderPlaylists = (routerProps) => {
+		console.log(routerProps);
+		return "hello";
+	}
+
 	return (
 		<React.Fragment>
 			<Switch>
 				<Route path="/app/home">
 					<HomeView />
 				</Route>
+				
+				<Route path="/app/playlists/:service/:id" component={Playlist}/>
 
-				<Route path="/app/playlists">
-					<PlaylistsView />
+				<Route path="/app/playlists/:service" component={Playlists}/>
+
+				<Route exact path="/app/playlists">
+					<PlaylistsOverview />
 				</Route>
-
-				<Route path="/app/playlist">
-					
-				</Route>
-
+				
 				<Route path="/app/lyrics">
 					<LyricsView />
 				</Route>

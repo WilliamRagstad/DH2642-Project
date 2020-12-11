@@ -25,11 +25,16 @@
         max-height: 560px;
         overflow-y: hidden;
         flex: 1;
-        display: inline-flex;
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
         margin-top: 10px;
     }
+}
+.playlists-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .playlists-item {

@@ -6,7 +6,6 @@ import IState from '../../../interfaces/redux/state';
 import spotifyIcon from '../../../images/Spotify_Icon_RGB_Green.png';
 import youtubeIcon from '../../../images/youtube_icon.png';
 import { Link } from 'react-router-dom';
-import SpotifyAuth from '../../spotify-auth/spotify-auth';
 
 function createItem(title, artist, album, length) {
     return { title, artist, album, length };
@@ -62,17 +61,17 @@ const PlaylistsView = ({
                             { (spotifyPlaylists !== undefined && spotifyPlaylists.length > 0) ? (
                                     <div className="playlists-preview-container playlists-items">
                                     {spotifyPlaylists.map(playlist => (
-                                            <Card key={playlist.id} bordered className="playlists-item">
-                                                <img src={playlist.image} alt=""/>
-                                                <div className="playlists-item-text">
-                                                    <h4>
-                                                        {playlist.name}
-                                                    </h4>
-                                                    <p>
-                                                        Created by {playlist.owner.name}
-                                                    </p>
-                                                </div>
-                                            </Card>
+                                        <Link key={playlist.id} to={`/app/playlists/spotify/${playlist.id}`} className="playlists-item">
+                                            <img src={playlist.image} alt=""/>
+                                            <div className="playlists-item-text">
+                                                <h4>
+                                                    {playlist.name}
+                                                </h4>
+                                                <p>
+                                                    Created by {playlist.owner.name}
+                                                </p>
+                                            </div>
+                                        </Link>
                                     ))}
                                     </div>
                                 ) : ''}
