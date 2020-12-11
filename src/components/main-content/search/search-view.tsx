@@ -25,46 +25,46 @@ const SearchView = ({
         <React.Fragment>
             <Card className="view-card float-container" inset rounded>
                 <CardHeader>Search</CardHeader>
-                    <div className="flex-parent flex-align-center search-form" spellCheck="false">
-                        <form autoComplete="off" onClick={e => {
-                            e.preventDefault();
-                            if (query) searchTrack(service, query);
+                <div className="flex-parent flex-align-center search-form" spellCheck="false">
+                    <form autoComplete="off" onClick={e => {
+                        e.preventDefault();
+                        if (query) searchTrack(service, query);
+                    }}>
+                        <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
+
+                        <input type="submit" hidden />
+                    </form>
+                    <ToggleButtonGroup multiple>
+                        <ToggleButton className="search-togglebuttons" value='spotify' onClick={() => {
+                            if (service === "youtube")
+                                setService("both");
+                            else if (service === "both")
+                                setService("youtube");
+                            else if (service === "spotify")
+                                setService("");
+                            else setService("spotify");
                         }}>
-                            <TextField bordered placeholder="Search for song..." className="search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
-                            
-                            <input type="submit" hidden />
-                        </form>
-                        <ToggleButtonGroup multiple>
-                            <ToggleButton className="search-togglebuttons" value='spotify' onClick={() => {
-                                if (service === "youtube")
-                                    setService("both");
-                                else if (service === "both")
-                                    setService("youtube");
-                                else if (service === "spotify")
-                                    setService("");
-                                else setService("spotify");
-                            }}>
-                                <img alt="" height="24px" src={spotifyIcon} />
-                            </ToggleButton>
-                            <ToggleButton className="search-togglebuttons" value='youtube' onClick={() => {
-                                if (service === "spotify")
-                                    setService("both");
-                                else if (service === "both")
-                                    setService("spotify");
-                                else if (service === "youtube")
-                                    setService("");
-                                else setService("youtube");
-                            }}>
-                                <img alt="" height="24px" src={youtubeIcon} />
-                            </ToggleButton>
-                        </ToggleButtonGroup>
-                        <Button onClick={() => {
-                            if (query) searchTrack(service, query);
-                        }}>Search</Button>
-                    </div>
+                            <img alt="" height="24px" src={spotifyIcon} />
+                        </ToggleButton>
+                        <ToggleButton className="search-togglebuttons" value='youtube' onClick={() => {
+                            if (service === "spotify")
+                                setService("both");
+                            else if (service === "both")
+                                setService("spotify");
+                            else if (service === "youtube")
+                                setService("");
+                            else setService("youtube");
+                        }}>
+                            <img alt="" height="24px" src={youtubeIcon} />
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+                    <Button onClick={() => {
+                        if (query) searchTrack(service, query);
+                    }}>Search</Button>
+                </div>
                 <ProgressLinear indeterminate={isLoading} color='var(--primary)' value={0} height={6} />
                 <CardContent>
-                    {searchError && !isLoading ? <Card className="float-item">{searchError}</Card> : <Table className="float-item" items={searchResults} headers={headers} />}
+                    {searchError && !isLoading ? <Card className="float-item">{searchError}</Card> : <Table className="float-item card-table search-table" items={searchResults} headers={headers} />}
                 </CardContent>
             </Card>
         </React.Fragment>

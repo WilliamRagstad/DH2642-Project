@@ -11,3 +11,25 @@
     margin-top: 16px;
     margin-bottom: 16px;
 }
+
+.card-table table {
+    width: 100%;
+
+    tbody tr {
+        td:first-child {
+            padding-left: 16px;
+        }
+
+        td:last-child {
+            padding-right: 16px;
+        }
+
+        td {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding-left: 10px;
+            padding-right: 4px;
+        }
+
+    }
+}
