@@ -23,7 +23,7 @@ const Playlists = ({
     return (
         <React.Fragment>
             <Card className="view-card float-container flex-parent flex-column" inset rounded>
-            <CardHeader>{(playlistService === 'soundbundle') ? 'SoundBundle ' :(playlistService === 'spotify' && connectedToSpotify) ? 'Spotify ' : (playlistService === 'youtube') ? 'YouTube ' : <Redirect to="/app/playlists" />}Playlists</CardHeader>
+            <CardHeader>{(playlistService === 'mixed') ? 'SoundBundle ' :(playlistService === 'spotify' && connectedToSpotify) ? 'Spotify ' : (playlistService === 'youtube') ? 'YouTube ' : <Redirect to="/app/playlists" />}Playlists</CardHeader>
             <div><Divider className="playlists-divider" dense /></div>
             <div className="playlists-container">
                 <CardContent className="playlists-content flex-parent flex-column">
