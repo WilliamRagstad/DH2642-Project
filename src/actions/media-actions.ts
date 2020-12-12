@@ -112,6 +112,32 @@ export const pausePlay = (service: string) => {
     }
 }
 
+export const playContext = (service: string, context: string, offset: string = null) => {
+    return (dispatch, getState) => {
+        switch (service) {
+            case 'spotify':
+                validateSpotifyToken().then(() => {
+                    if (context) {
+                        let options: any = {
+                            context_uri: ('spotify:' + context)
+                        };
+                        if (offset) options.offset = {
+                            uri: ('spotify:' + offset)
+                        };
+                        spotify.play(options)
+                        .then(() => {
+                            console.log('Started playing ' + context + ' on Spotify');
+                        })
+                        .catch(handleSpotifyError);
+                    }
+                }).catch(console.error);
+                break;        
+            default:
+                break;
+        }
+    }
+}
+
 export const getCurrentMediaData = (service: string) => {
     return (dispatch, getState) => {
         const state = getState();

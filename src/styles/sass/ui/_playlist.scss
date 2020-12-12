@@ -97,14 +97,14 @@
         text-overflow: ellipsis;
         padding: 5px 5px;
     }
-    &-play {
+    &-action {
         opacity: 0;
         transition: opacity .1s;
         &:hover svg {
             fill: var(--primary);
         }
     }
-    &:hover &-play {
+    &:hover &-action {
         opacity: 1;
     }
     &-title {
@@ -120,9 +120,13 @@
         flex: 0 0 50px;
         text-align: right;
     }
+    &.playlist-track-active {
+        box-shadow: var(--box-shadow-inset);
+        color: var(--primary);
+    }
 }
 
-@media screen and (max-width: 1340px) {
+@media screen and (max-width: 1420px) {
     .playlist-track-tertiary {
         display: none;
         flex: 0 0 0;
