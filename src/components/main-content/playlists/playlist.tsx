@@ -23,7 +23,7 @@ const Playlists = ({
     playContext,
     
 }) => {
-    
+
     const playlistService = match.params.service;
     const playlistId = match.params.id;
 
@@ -45,7 +45,7 @@ const Playlists = ({
         <React.Fragment>
             <Card className="view-card float-container flex-parent flex-column" inset>
                 <CardHeader className="playlist-header">
-                    {playlistService === 'spotify' ? <img src={spotifyIcon} alt="" height="24px"/> : ''}
+                    {playlistService === 'spotify' ? <img src={spotifyIcon} alt="" height="24px" /> : ''}
                     <span>{activePlaylist.name}</span>
                     <Button onClick={() => playContext(playlistService, `playlist:${playlistId}`)} color='var(--primary)'>Play</Button>
                 </CardHeader>
@@ -74,14 +74,15 @@ const Playlists = ({
                                     </IconButton>
                                     }
                                 </div>
-                                <div className="playlist-track-title">{ track.title }</div>
-                                <div className="playlist-track-secondary">{ track.artists.map((artist, index) => {
+                                <div className="playlist-track-title">{track.title}</div>
+                                <div className="playlist-track-secondary">{track.artists.map((artist, index) => {
                                     return (index ? ', ' : '') + artist.name
                                 })}</div>
                                 <div className="playlist-track-tertiary">{track.album.name}</div>
                                 <div className="playlist-track-duration">{songLength(track.duration)}</div>
                             </div>
-                    )}) : 'Empty playlist.') : 'Invalid service.'}
+                        )
+                    }) : 'Empty playlist.') : 'Invalid service.'}
                 </div>
             </Card>
         </React.Fragment>

@@ -38,8 +38,8 @@ const Application = () => {
 					</div>
 					<div className="application-media">
 						<Card elevation={2} className="application-media-card media-container">
-							
-							<img className="fill-element" alt="" src={album.images[0].url} />
+
+							<img className="fill-element no-select" alt="" src={album.images[0].url} />
 						</Card>
 					</div>
 				</div>

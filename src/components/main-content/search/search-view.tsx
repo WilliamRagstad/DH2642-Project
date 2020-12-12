@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Card, CardContent, CardHeader, ProgressLinear, Table, TextField, ToggleButton, ToggleButtonGroup } from 'ui-neumorphism';
 import actions from '../../../actions';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import spotifyIcon from '../../../images/Spotify_Icon_RGB_Green.png';
 import youtubeIcon from '../../../images/youtube_icon.png';
+import { IState } from '../../../interfaces';
 
 const SearchView = ({
     isLoading,
@@ -21,6 +22,8 @@ const SearchView = ({
         { text: 'Length', align: 'right', value: 'length' }
     ]
 
+    const [spotifyConnected, youtubeConnected] = useSelector((state: IState) => [state.spotify.connected, true]);
+
     return (
         <React.Fragment>
             <Card className="view-card float-container" inset rounded>
@@ -35,7 +38,7 @@ const SearchView = ({
                         <input type="submit" hidden />
                     </form>
                     <ToggleButtonGroup multiple>
-                        <ToggleButton className="search-toggleButtons" value='spotify' onClick={() => {
+                        <ToggleButton className="search-toggleButtons" value='spotify' disabled={!spotifyConnected} onClick={() => {
                             if (service === "youtube")
                                 setService("both");
                             else if (service === "both")
@@ -46,7 +49,7 @@ const SearchView = ({
                         }}>
                             <img alt="" height="24px" src={spotifyIcon} />
                         </ToggleButton>
-                        <ToggleButton className="search-toggleButtons" value='youtube' onClick={() => {
+                        <ToggleButton className="search-toggleButtons" value='youtube' disabled={!youtubeConnected} onClick={() => {
                             if (service === "spotify")
                                 setService("both");
                             else if (service === "both")
