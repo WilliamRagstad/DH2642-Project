@@ -13,6 +13,7 @@ import { ReactComponent as RepeatIcon } from  '../../images/repeat-24px.svg';
 import { ReactComponent as SearchIcon } from  '../../images/search-24px.svg';
 import { ReactComponent as SettingIcon } from  '../../images/settings-24px.svg';
 import { ReactComponent as ShuffleIcon } from  '../../images/shuffle-24px.svg';
+import { ReactComponent as TimeIcon } from  '../../images/time-24px.svg';
 
 export {
     CheckIcon,
@@ -29,5 +30,6 @@ export {
     RepeatIcon,
     SearchIcon,
     SettingIcon,
-    ShuffleIcon
+    ShuffleIcon,
+    TimeIcon
 }

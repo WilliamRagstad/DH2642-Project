@@ -85,12 +85,14 @@
 }
 .playlist-track {
     display: flex;
-    margin: 5px;
-    box-shadow: var(--box-shadow);
-    border-radius: 5px;
+    margin: 0 5px;
     align-items: center;
     padding-right: 10px;
-
+    &:not(.playlist-track-captions) {
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        margin: 5px;
+    }
     & > * {
         white-space: nowrap;
         overflow: hidden;
@@ -98,6 +100,7 @@
         padding: 5px 5px;
     }
     &-action {
+        width: 36px;
         opacity: 0;
         transition: opacity .1s;
         &:hover svg {

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardContent, CardHeader, Divider, Table, Button, IconButton, Subtitle2, Subtitle1 } from 'ui-neumorphism';
+import { Card, CardContent, CardHeader, Divider, Table, Button, IconButton, Subtitle2, Subtitle1, Caption } from 'ui-neumorphism';
 import actions from '../../../actions';
 import IState from '../../../interfaces/redux/state';
 import spotifyIcon from '../../../images/Spotify_Icon_RGB_Green.png';
 import youtubeIcon from '../../../images/youtube_icon.png';
-import { PlayIcon, PauseIcon } from '../../icons/icons';
+import { PlayIcon, PauseIcon, TimeIcon } from '../../icons/icons';
 import { songLength } from '../../../actions/search-actions';
 
 const createItem = (title, artists, album, duration) => {
@@ -47,7 +47,7 @@ const Playlists = ({
                 <CardHeader className="playlist-header">
                     {playlistService === 'spotify' ? <img src={spotifyIcon} alt="" height="24px" /> : ''}
                     <span>{activePlaylist.name}</span>
-                    <Button onClick={() => playContext(playlistService, `playlist:${playlistId}`)} color='var(--primary)'>Play</Button>
+                    <Button onClick={() => playContext(playlistService, {context: `playlist:${playlistId}`})} color='var(--primary)'>Play</Button>
                 </CardHeader>
                 <CardContent>
                     <Subtitle1>
@@ -58,12 +58,24 @@ const Playlists = ({
                     </Subtitle2>
                 </CardContent>
                 <div><Divider className="playlists-divider" dense /></div>
-                <div className="playlist-list flex-child flex-parent flex-column">
+                <div className="playlist-list flex-parent flex-column">
+                    <div className="playlist-track playlist-track-captions flex-child">
+                        <div className="playlist-track-action">
+                        </div>
+                        <div className="playlist-track-title">
+                            <Caption>Title</Caption>
+                        </div>
+                        <div className="playlist-track-secondary"><Caption>Artist</Caption></div>
+                        <div className="playlist-track-tertiary"><Caption>Album</Caption></div>
+                        <div className="playlist-track-duration">
+                            <TimeIcon fill="var(--g-text-color-light"/>
+                        </div>
+                    </div>
                     {activePlaylist.tracks ? (playlistService === 'spotify' ? activePlaylist.tracks.map(track => { return (
-                            <div className={`playlist-track flex-child${track.id === currentlyPlaying.id && playlistService === currentlyPlaying.service ? ' playlist-track-active' : ''}`} key={ track.id }>
+                            <div className={`playlist-track${track.id === currentlyPlaying.id && playlistService === currentlyPlaying.service ? ' playlist-track-active' : ''}`} key={ track.id }>
                                 <div className="playlist-track-action">
                                     { track.id !== currentlyPlaying.id ?
-                                    <IconButton className="playlist-track-play-context" size="small" rounded onClick={() => playContext(playlistService, `playlist:${playlistId}`, `track:${track.id}`)}>
+                                    <IconButton className="playlist-track-play-context" size="small" rounded onClick={() => playContext(playlistService, {context: `playlist:${playlistId}`, offset: `track:${track.id}`})}>
                                         <PlayIcon fill='var(--g-text-color-light)'/>
                                     </IconButton> :
                                     <IconButton className="playlist-track-pauseplay" size="small" rounded onClick={() => pausePlay(playlistService)}>

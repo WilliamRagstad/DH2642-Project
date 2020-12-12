@@ -112,18 +112,25 @@ export const pausePlay = (service: string) => {
     }
 }
 
-export const playContext = (service: string, context: string, offset: string = null) => {
+export const playContext = (service: string, {context = null, uris = null, offset = null}) => {
     return (dispatch, getState) => {
+        console.log(context, uris, offset)
         switch (service) {
             case 'spotify':
                 validateSpotifyToken().then(() => {
-                    if (context) {
-                        let options: any = {
-                            context_uri: ('spotify:' + context)
-                        };
+                    if (context || uris) {
+                        let options: any = {};
+                        if (context) options.context_uri = ('spotify:' + context);
                         if (offset) options.offset = {
                             uri: ('spotify:' + offset)
                         };
+                        if (uris) {
+                            options.uris = [];
+                            uris.forEach(uri => {
+                                options.uris.push('spotify:' + uri)
+                            });
+                        }
+                        console.log(options);
                         spotify.play(options)
                         .then(() => {
                             console.log('Started playing ' + context + ' on Spotify');
