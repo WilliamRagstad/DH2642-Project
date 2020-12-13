@@ -9,6 +9,7 @@ import Navigation from './navigation/navigation';
 import MainContent from './main-content/main-content';
 import Connect from "./connect/connect";
 import MediaControls from './media-controls/media-controls';
+import MediaFrame from './media-frame/media-frame';
 
 export {
     Application,
@@ -21,5 +22,6 @@ export {
     Navigation,
     MainContent,
     Connect,
-    MediaControls
+    MediaControls,
+    MediaFrame
 }

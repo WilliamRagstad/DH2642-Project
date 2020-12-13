@@ -207,7 +207,6 @@ const MediaControls = ({
         }
     }
 
-
     return (
         <React.Fragment>
             {isLoggedIn && isConnectedToSpotify && <SpotifyPlayer />}

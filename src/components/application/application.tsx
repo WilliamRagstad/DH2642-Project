@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navigation, MainContent, MediaControls } from '../index';
+import { Navigation, MainContent, MediaControls, MediaFrame } from '../index';
 import { Card } from 'ui-neumorphism';
 
 // LOAD DATA FROM FIRESTORE
@@ -37,10 +37,7 @@ const Application = () => {
 						<Navigation />
 					</div>
 					<div className="application-media">
-						<Card elevation={2} className="application-media-card media-container">
-
-							<img className="fill-element no-select" alt="" src={album.images[0].url} />
-						</Card>
+						<MediaFrame />
 					</div>
 				</div>
 				<div className="application-drag-container">
