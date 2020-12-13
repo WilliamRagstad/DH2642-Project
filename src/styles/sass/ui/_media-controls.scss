@@ -1,43 +1,56 @@
 .media-controls {
     padding: 8px 2%;
-    
-    &-right {
-        align-items: right;
-        text-align: right;
-        margin-right: 0%;
+
+    &-left {
+        justify-content: flex-start;
     }
-    &-left, &-right {
+
+    &-right {
+        justify-content: flex-end;
+        text-align: right;
+    }
+
+    &-left,
+    &-right {
         flex: 0 0 300px;
         padding: 0 10px;
     }
+
     &-center {
+        justify-content: center;
         align-items: center;
         text-align: center;
+
         &-buttons {
-  -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
             user-select: none;
             margin: 5px;
-            & > * {
+
+            &>* {
                 margin: 0px 10px;
+
                 & svg {
                     transition: fill .1s;
                 }
+
                 &:hover svg {
                     fill: var(--primary);
                 }
             }
-            
+
         }
+
         .time-left {
             font-size: 14px;
             flex: 0 0 50px;
             margin: -5px 10px 0 0;
             text-align: right;
         }
+
         .time-right {
             font-size: 14px;
             flex: 0 0 50px;
@@ -45,20 +58,40 @@
             text-align: left;
         }
     }
+
     .media-progress {
-        
+
         margin: 5px 0;
         max-width: 800px;
-        & > div > div {
+
+        &>div>div {
             transition: background .1s;
         }
+
         &:hover:not(.disabled) {
             cursor: pointer;
-            & > div > div {
+
+            &>div>div {
                 background: var(--primary);
             }
         }
-        
+
     }
-    
+
+    .media-volume {
+        margin-left: 5px;
+        max-width: 140px;
+
+        &>div>div {
+            transition: background .1s;
+        }
+
+        &:hover:not(.disabled) {
+            cursor: pointer;
+
+            &>div>div {
+                background: var(--primary);
+            }
+        }
+    }
 }

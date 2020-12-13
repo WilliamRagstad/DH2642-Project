@@ -9,6 +9,10 @@ import spotify from '../../spotify';
 import { validateSpotifyToken } from '../../helpers/spotify';
 import { songLength } from '../../actions/search-actions';
 import spotifyIcon from '../../images/Spotify_Icon_RGB_Green.png';
+import { ReactComponent as VolumeUpIcon } from "../../images/volume_up-24px.svg";
+import { ReactComponent as VolumeDownIcon } from "../../images/volume_down-24px.svg";
+import { ReactComponent as VolumeOffIcon } from "../../images/volume_off-24px.svg";
+import { ReactComponent as VolumeMuteIcon } from "../../images/volume_mute-24px.svg";
 
 const MediaControls = ({
     isLoggedIn,
@@ -30,13 +34,14 @@ const MediaControls = ({
     toggleRepeat
 }) => {
     const [barProgress, setBarProgress] = useState(0);
+    const [volume, setVolume] = useState(50); // %
     const [progressTime, setProgressTime] = useState("0:00");
     const [progressTimeLeft, setProgressTimeLeft] = useState("-0:00");
 
     let barChanging = useRef(false);
 
     // let spotifyPlayer = useRef(null);
-    
+
     // useEffect(() => {
     //     console.log("Token changed to " + spotifyToken)
     //     if (spotifyToken) spotifyPlayer.current = <SpotifyPlayer/>;
@@ -154,7 +159,7 @@ const MediaControls = ({
 
     return (
         <React.Fragment>
-            {isLoggedIn && isConnectedToSpotify && <SpotifyPlayer/>}
+            {isLoggedIn && isConnectedToSpotify && <SpotifyPlayer />}
             <Card className="media-controls fill-element flex-parent">
                 <div className="media-controls-left flex-parent flex-align-center">
                     <div>
@@ -202,6 +207,14 @@ const MediaControls = ({
                     </div>
                 </div>
                 <div className="media-controls-right flex-parent flex-align-center">
+                    <div className="volume-icon">{
+                        volume > 60 ? <VolumeUpIcon fill='var(--g-text-color-light)' /> : (
+                            volume > 20 ? <VolumeDownIcon fill='var(--g-text-color-light)' /> : (
+                                volume > 0 ? <VolumeOffIcon fill='var(--g-text-color-light)' /> : <VolumeMuteIcon fill='var(--g-text-color-light)' />
+                            )
+                        )
+                    }</div>
+                    <ProgressLinear className="media-volume flex-child" value={volume}></ProgressLinear>
                     {/* <Button>A button</Button>
                         <IconButton>
                             <DevicesIcon fill="var(--g-text-color-light)"/>
