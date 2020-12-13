@@ -39,6 +39,7 @@ const MediaControls = ({
     const [progressTimeLeft, setProgressTimeLeft] = useState("-0:00");
 
     let barChanging = useRef(false);
+    let volumeChanging = useRef(false);
 
     // let spotifyPlayer = useRef(null);
 
@@ -100,6 +101,44 @@ const MediaControls = ({
             window.removeEventListener('mouseup', progressRelease);
         }
     }, [mediaDuration]);
+
+    useEffect(() => {
+        const volumeBar = document.getElementsByClassName('media-volume')[0];
+        let volumeValue = 0, proportion = 0;
+        const changeVolume = e => {
+            if (!volumeChanging.current) volumeChanging.current = true;
+            let bounds = volumeBar.getBoundingClientRect();
+            let left = e.clientX - bounds.left;
+            let right = bounds.right - e.clientX;
+            proportion = (left / (left + right));
+            if (proportion >= 0 && proportion < 1) {
+                volumeValue = (volume * (proportion * 100)) / 100;
+                setVolume(proportion * 100);
+            }
+        }
+        const moveVolume = e => {
+            changeVolume(e);
+        }
+        const clickVolume = e => {
+            changeVolume(e);
+            document.addEventListener('mousemove', moveVolume);
+        }
+        const volumeRelease = () => {
+            if (volumeChanging.current) {
+                volumeChanging.current = false;
+                console.log('Seeked to ' + volumeValue);
+                setVolume(volumeValue);
+                // seekMedia(Math.floor(volumeValue));
+            }
+            document.removeEventListener('mousemove', moveVolume);
+        }
+        volumeBar.addEventListener('mousedown', clickVolume);
+        window.addEventListener('mouseup', volumeRelease);
+        return () => {
+            volumeBar.removeEventListener('mousedown', clickVolume);
+            window.removeEventListener('mouseup', volumeRelease);
+        }
+    }, [volume]);
 
     const next = async (service: string) => {
         switch (service) {
@@ -210,7 +249,7 @@ const MediaControls = ({
                     <div className="volume-icon">{
                         volume > 60 ? <VolumeUpIcon fill='var(--g-text-color-light)' /> : (
                             volume > 20 ? <VolumeDownIcon fill='var(--g-text-color-light)' /> : (
-                                volume > 0 ? <VolumeOffIcon fill='var(--g-text-color-light)' /> : <VolumeMuteIcon fill='var(--g-text-color-light)' />
+                                volume > 1 ? <VolumeMuteIcon fill='var(--g-text-color-light)' /> : <VolumeOffIcon fill='var(--g-text-color-light)' />
                             )
                         )
                     }</div>
