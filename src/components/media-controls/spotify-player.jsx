@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Script from 'react-load-script';
 import { connect, useDispatch } from 'react-redux';
 import actions from '../../actions';
@@ -44,11 +44,12 @@ class SpotifyPlayer extends React.Component {
 
 		// Playback status updates
 		player.addListener('player_state_changed', state => {
-			console.log(state);
 			setTimeout(() => {
 				if (state) {
+						console.log(state);
+					
 					if (state.position === 0) 
-						// this.props.getCurrentSpotifyData();
+						this.props.getCurrentSpotifyData();
 					this.props.setProgress(state.position);
 					if (state.paused && this.props.mediaData.isPlaying) {
 						this.props.setPaused();
@@ -84,7 +85,7 @@ class SpotifyPlayer extends React.Component {
 					spotify.transferMyPlayback([this.props.mediaData.spotifyDeviceId]);
 				}
 				
-			}, 300);
+			}, 500);
 		});
 
 		// Ready
@@ -106,8 +107,10 @@ class SpotifyPlayer extends React.Component {
 	}
 
 	cb(token) {
-		validateSpotifyToken();
-		return (this.props.spotifyData.access_token);
+		validateSpotifyToken().then(
+			token = this.props.spotifyData.access_token
+		);
+		return token;
 	}
 
 	handleScriptCreate() {
@@ -139,8 +142,8 @@ class SpotifyPlayer extends React.Component {
 const mapStateToProps = state => {
 	return {
 		spotifyData: state.spotify,
-		mediaData: state.media
-
+		accessToken: state.spotify.access_token,
+		mediaData: state.media,
 	}
 }
 export default connect(mapStateToProps, actions)(SpotifyPlayer);

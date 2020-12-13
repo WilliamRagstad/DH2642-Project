@@ -12,9 +12,9 @@
 /build
 
 # configs
-**/*config.js
-**/*config.ts
-**/*config.tsx
+# **/*config.js
+# **/*config.ts
+# **/*config.tsx
 
 # misc
 .DS_Store
