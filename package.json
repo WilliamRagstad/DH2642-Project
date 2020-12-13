@@ -15,7 +15,7 @@
         "express": "^4.17.1",
         "firebase": "^8.1.1",
         "genius-lyrics": "^4.1.4",
-        "lavastore": "^1.2.3",
+        "lavastore": "^1.2.4",
         "querystring": "^0.2.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
