@@ -19,6 +19,7 @@ const initialState = {
         progress: 0,
         shuffle: false,
         repeat: 0,
+        volume: 100,
     },
     playlists: {
         active: {
