@@ -1,6 +1,6 @@
 import Genius, { Song } from 'genius-lyrics';
 import config from '../genius-config';
-const songsClient = new Genius.SongsClient(config.cilent_access_token);
+const songsClient = new Genius.SongsClient(config.cilent_access_token, { requestOptions: { params: { access_token: config.cilent_access_token } } } as any);
 
 // export const getCurrentSong = (query: string) => {
 //     return (dispatch, getState) => {

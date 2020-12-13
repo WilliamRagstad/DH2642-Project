@@ -1,6 +1,5 @@
 const config = {
     client_id: "tuqIczlqkwtXU9dSMw7O-zX-R2sRY-mBqn-DWTWjngo_V_jKrVeDFNwbUDhcjoEy",
-    cilent_access_token: "_rw_Oltr6xqA3FqfR_w5x3ps3AxAOrWzFFdBh5-Oieh-wwvdlGwkQIHLsCmZQ3Gx",
-    redirect_uri: "http://localhost:3000/lyrics/"
+    cilent_access_token: "N2krsf4WKzP5qorCyLtU068kSUrMcuOiU3_F9zv_l9-4wVCSJYcX80DYBsHwwq4h",
 }
 export default config;
