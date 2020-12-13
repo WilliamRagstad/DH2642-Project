@@ -1,6 +1,6 @@
 const config = {
     client_id: '96f3635ee7d946b9b1d83359d9bb7e7e',
-    redirect_uri: 'http://localhost:3000/connect/spotify/',
+    redirect_uri: 'http://soundbundle.herokuapp.com/connect/spotify/',
     scopes: [
         'user-read-recently-played',
         'user-top-read',
