@@ -1,10 +1,33 @@
-# DH2642-Project
+<div align="center">
+    <img src="src/images/soundBundle.png" width="200px"/>
+    <h1>SoundBundle</h1>
+    <p>A streaming platform for collecting music from various sources</p>
+</div>
 
-DH2642 HT20-1 Interaktionsprogrammering och dynamiska webben projektarbete
+
+
+# About
+
+SoundBundle is our **DH2642 HT20-1 Interaktionsprogrammering och dynamiska webben** project, which is an *neumorphic* web app providing a platform for searching and listening to music from various sources with full support for lyrics.
+
+<span><img src="https://www.clipartmax.com/png/full/334-3344336_specification-for-wheat-grain-design-03-grain-harvest-specification-icon.png" width="25px"> Read more in our <a href="https://docs.google.com/document/d/1utB0_hyB3Sd4W2NWbWYI2HrTHzZCfNOXKaQLORdG7q4/edit?usp=sharing" target="_blank">project specification</a>.</span>
 
 
 
-## Getting Started with Create React App
+## Features
+
+- **Modern and minimalistic design**
+- **High usability**
+- Support for the **latest services**
+- Robust **TypeScript** codebase
+
+<span><img src="https://img.icons8.com/ios/452/trello.png" width="24px"> Follow <a href="https://trello.com/b/CBiWqL12" target="_blank">our progress at Trello</a>.</span>
+
+
+
+---
+
+## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
