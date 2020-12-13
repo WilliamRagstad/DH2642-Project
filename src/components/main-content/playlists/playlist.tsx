@@ -43,7 +43,7 @@ const Playlists = ({
 
     return (
         <React.Fragment>
-            <Card className="view-card float-container flex-parent flex-column" inset>
+            <Card className="view-card flex-parent flex-column" inset>
                 <CardHeader className="playlist-header">
                     {playlistService === 'spotify' ? <img src={spotifyIcon} alt="" height="24px" /> : ''}
                     <span>{activePlaylist.name}</span>
