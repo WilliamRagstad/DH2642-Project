@@ -14,6 +14,16 @@ SoundBundle is our **DH2642 HT20-1 Interaktionsprogrammering och dynamiska webbe
 
 
 
+### TOC
+
+* [About](#About)
+* [Features](#Features)
+* [Screenshots](#Screenshots)
+* [Visit us!](#Visit us!)
+* [Developer Installation](#Developer Installation)
+
+
+
 ## Features
 
 - **Modern and minimalistic design**
@@ -47,9 +57,13 @@ SoundBundle is our **DH2642 HT20-1 Interaktionsprogrammering och dynamiska webbe
 
 ---
 
+
+
 ## Visit us!
 
 ✨ We are hosted at https://soundbundle.herokuapp.com 🎉
+
+
 
 ## Developer Installation
 
