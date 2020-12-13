@@ -282,3 +282,24 @@ export const getSpotifyPlaylist = (id: string) => {
         })
     }
 }
+
+export const setVolume = (volume) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const service = state.media.currentlyPlaying.service;
+        switch (service) {
+            case 'spotify':
+                validateSpotifyToken().then(() => {
+                    spotify.setVolume(volume).then(() => {
+                        dispatch({type: 'SET_CURRENT_MEDIA', payload: {volume}});
+                        console.log('Set volume to ' + (volume));
+                    })
+                    .catch(handleSpotifyError);
+                })
+                .catch(console.error);
+                break;
+            default:
+                break;
+        }
+    }
+}

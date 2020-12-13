@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import SpotifyPlayer from './spotify-player';
 import { IconButton, Card, ProgressLinear, Subtitle2, Subtitle1 } from 'ui-neumorphism';
 import IState from '../../interfaces/redux/state';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import actions from '../../actions';
 import { PlayIcon, PauseIcon, NextIcon, PreviousIcon, ShuffleIcon, RepeatIcon, RepeatOneIcon } from '../../components/icons/icons';
 import spotify from '../../spotify';
@@ -25,22 +25,23 @@ const MediaControls = ({
     service,
     shuffle,
     repeat,
+    volume,
     pausePlay,
     setPlaying,
     setProgress,
     getCurrentSpotifyData,
     seekMedia,
     setShuffle,
-    toggleRepeat
+    toggleRepeat,
+    setVolume
 }) => {
     const [barProgress, setBarProgress] = useState(0);
-    const [barVolume, setBarVolume] = useState(50); // %
-    const [mainVolume, setMainVolume] = useState(50);
+    const [barVolume, setBarVolume] = useState(volume); // %
+    const [mainVolume, setMainVolume] = useState(volume);
     const [progressTime, setProgressTime] = useState("0:00");
     const [progressTimeLeft, setProgressTimeLeft] = useState("-0:00");
 
     let barChanging = useRef(false);
-    let volumeChanging = useRef(false);
 
     // let spotifyPlayer = useRef(null);
 
@@ -128,9 +129,8 @@ const MediaControls = ({
         const volumeRelease = () => {
             if (volumeChanging) {
                 volumeChanging = false;
-                console.log('Seeked to ' + (volumeValue));
                 setBarVolume(volumeValue);
-                // TODO set media volume
+                setVolume(volumeValue);
             }
             document.removeEventListener('mousemove', moveVolume);
         }
@@ -145,10 +145,10 @@ const MediaControls = ({
     const mute = () => {
         if (barVolume <= 1) {
             setBarVolume(mainVolume);
-            // TODO set media volume
+            setVolume(mainVolume);
         } else {
             setBarVolume(0);
-            // TODO set media volume
+            setVolume(0);
         }
     }
 
@@ -287,7 +287,8 @@ const mapStateToProps = (state: IState) => {
         mediaDuration: state.media.currentlyPlaying.duration,
         service: state.media.currentlyPlaying.service,
         shuffle: state.media.currentlyPlaying.shuffle,
-        repeat: state.media.currentlyPlaying.repeat
+        repeat: state.media.currentlyPlaying.repeat,
+        volume: state.media.currentlyPlaying.volume
     }
 }
 
