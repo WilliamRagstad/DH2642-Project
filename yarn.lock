@@ -7290,10 +7290,10 @@ last-call-webpack-plugin@^3.0.0:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
 
-lavastore@^1.1.9:
-  version "1.1.9"
-  resolved "https://registry.npmjs.org/lavastore/-/lavastore-1.1.9.tgz"
-  integrity sha512-B1U5+M9Drbgkp8B4xYHtVodUFlqW2zJP2Ko0Efnyn6OCamD+3WfRGM5056D+OiHZk8UkESors77PVuJVRA/8mA==
+lavastore@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/lavastore/-/lavastore-1.2.3.tgz"
+  integrity sha512-uxvATUSankHCRvjXxn6uhOKcnWnom4FGm3B7lFzmSrlM7GoqIMZ2NJWKyv6kBGqMP1t8iTbHN99B/kqPcNdZYw==
 
 leven@^3.1.0:
   version "3.1.0"
