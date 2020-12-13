@@ -34,7 +34,8 @@ const MediaControls = ({
     toggleRepeat
 }) => {
     const [barProgress, setBarProgress] = useState(0);
-    const [volume, setVolume] = useState(50); // %
+    const [barVolume, setBarVolume] = useState(50); // %
+    const [mainVolume, setMainVolume] = useState(50);
     const [progressTime, setProgressTime] = useState("0:00");
     const [progressTimeLeft, setProgressTimeLeft] = useState("-0:00");
 
@@ -71,7 +72,7 @@ const MediaControls = ({
             let left = e.clientX - bounds.left;
             let right = bounds.right - e.clientX;
             proportion = (left / (left + right));
-            if (proportion >= 0 && proportion < 1) {
+            if (proportion >= 0 && proportion <= 1) {
                 progress = (mediaDuration * (proportion * 100)) / 100;
                 setProgressTime(songLength(progress));
                 setProgressTimeLeft("-" + songLength(mediaDuration - progress));
@@ -104,16 +105,17 @@ const MediaControls = ({
 
     useEffect(() => {
         const volumeBar = document.getElementsByClassName('media-volume')[0];
-        let volumeValue = 0, proportion = 0;
+        let volumeValue = 0, proportion = 0, volumeChanging = false;
         const changeVolume = e => {
-            if (!volumeChanging.current) volumeChanging.current = true;
+            if (!volumeChanging) volumeChanging = true;
             let bounds = volumeBar.getBoundingClientRect();
             let left = e.clientX - bounds.left;
             let right = bounds.right - e.clientX;
             proportion = (left / (left + right));
-            if (proportion >= 0 && proportion < 1) {
-                volumeValue = (volume * (proportion * 100)) / 100;
-                setVolume(proportion * 100);
+            if (proportion >= 0 && proportion <= 1) {
+                volumeValue = Math.round(proportion * 100);
+                setBarVolume(volumeValue);
+                setMainVolume(volumeValue);
             }
         }
         const moveVolume = e => {
@@ -124,11 +126,11 @@ const MediaControls = ({
             document.addEventListener('mousemove', moveVolume);
         }
         const volumeRelease = () => {
-            if (volumeChanging.current) {
-                volumeChanging.current = false;
-                console.log('Seeked to ' + volumeValue);
-                setVolume(volumeValue);
-                // seekMedia(Math.floor(volumeValue));
+            if (volumeChanging) {
+                volumeChanging = false;
+                console.log('Seeked to ' + (volumeValue));
+                setBarVolume(volumeValue);
+                // TODO set media volume
             }
             document.removeEventListener('mousemove', moveVolume);
         }
@@ -138,7 +140,17 @@ const MediaControls = ({
             volumeBar.removeEventListener('mousedown', clickVolume);
             window.removeEventListener('mouseup', volumeRelease);
         }
-    }, [volume]);
+    }, []);
+
+    const mute = () => {
+        if (barVolume <= 1) {
+            setBarVolume(mainVolume);
+            // TODO set media volume
+        } else {
+            setBarVolume(0);
+            // TODO set media volume
+        }
+    }
 
     const next = async (service: string) => {
         switch (service) {
@@ -246,14 +258,14 @@ const MediaControls = ({
                     </div>
                 </div>
                 <div className="media-controls-right flex-parent flex-align-center">
-                    <div className="volume-icon">{
-                        volume > 60 ? <VolumeUpIcon fill='var(--g-text-color-light)' /> : (
-                            volume > 20 ? <VolumeDownIcon fill='var(--g-text-color-light)' /> : (
-                                volume > 1 ? <VolumeMuteIcon fill='var(--g-text-color-light)' /> : <VolumeOffIcon fill='var(--g-text-color-light)' />
+                    <IconButton rounded size="small" onClick={() => mute()} className="volume-icon">{
+                        barVolume > 60 ? <VolumeUpIcon fill='var(--g-text-color-light)' /> : (
+                            barVolume > 20 ? <VolumeDownIcon fill='var(--g-text-color-light)' /> : (
+                                barVolume > 1 ? <VolumeMuteIcon fill='var(--g-text-color-light)' /> : <VolumeOffIcon fill='var(--g-text-color-light)' />
                             )
                         )
-                    }</div>
-                    <ProgressLinear className="media-volume flex-child" value={volume}></ProgressLinear>
+                    }</IconButton>
+                    <ProgressLinear className="media-volume flex-child" value={barVolume}></ProgressLinear>
                     {/* <Button>A button</Button>
                         <IconButton>
                             <DevicesIcon fill="var(--g-text-color-light)"/>
