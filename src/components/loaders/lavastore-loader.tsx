@@ -7,13 +7,16 @@ import firebase from 'firebase/app';
 import { AppDocument, LocationCache } from "../../lavastore";
 import { changeUI } from "../../helpers/ui";
 import { update_ui } from "../../actions/ui";
+import { LSHelpers as LSH } from "lavastore";
 
 function UILoader() {
     const dispatch = useDispatch();
     // Load theme from local storage before catching up with firestore state. Replaced with shorthand version
     AppDocument.DocumentPath("cache/ui")?.PassTo(ui => {
-        changeUI(ui);
-        dispatch(update_ui(ui));
+        if (LSH.HasFields(ui)) {
+            changeUI(ui);
+            dispatch(update_ui(ui));
+        }
     });
     return <React.Fragment />;
 }
