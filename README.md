@@ -19,8 +19,8 @@ SoundBundle is our **DH2642 HT20-1 Interaktionsprogrammering och dynamiska webbe
 * [About](#About)
 * [Features](#Features)
 * [Screenshots](#Screenshots)
-* [Visit us!](#Visit us!)
-* [Developer Installation](#Developer Installation)
+* [Visit us!](#visit-us)
+* [Developer Installation](#developer-installation)
 
 
 
