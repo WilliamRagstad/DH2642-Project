@@ -5,7 +5,7 @@ import { update_ui } from '../../actions/ui';
 import { loadFirestoreUserData } from '../../helpers/firebase';
 
 
-function LoadAppFirestore() {
+function UILoader() {
     const dispatch = useDispatch();
 
     loadFirestoreUserData("app", "ui").then((snapshot) => {
@@ -13,7 +13,7 @@ function LoadAppFirestore() {
     });
 }
 
-function LoadServices() {
+function ServicesLoader() {
     const dispatch = useDispatch();
 
     loadFirestoreUserData("services", "spotify").then((snapshot) => {
@@ -27,8 +27,8 @@ function LoadServices() {
 
 function FirestoreLoader() {
 
-    LoadAppFirestore();
-    LoadServices();
+    UILoader();
+    ServicesLoader();
 
     return <React.Fragment />;
 }
