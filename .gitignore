@@ -12,9 +12,9 @@
 /build
 
 # configs
-**/*config.js
-**/*config.ts
-**/*config.tsx
+# **/*config.js
+# **/*config.ts
+# **/*config.tsx
 
 # misc
 .DS_Store
@@ -33,3 +33,8 @@ tsconfig.json
 yarn.lock
 package.json
 package-lock.json
+.firebase/hosting.YnVpbGQ.cache
+.firebase/hosting.cHVibGlj.cache
+.firebaserc
+firebase.json
+.github/workflows/firebase-hosting-pull-request.yml
