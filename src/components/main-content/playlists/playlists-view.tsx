@@ -65,7 +65,7 @@ const PlaylistsView = ({
                                 <div className="playlists-preview-container playlists-items">
                                     {spotifyPlaylists.map(playlist => (
                                         <Link key={playlist.id} to={`/app/playlists/spotify/${playlist.id}`} className="playlists-item">
-                                            <img src={playlist.image} alt="" />
+                                            <img src={playlist.image} alt="" className="no-select" />
                                             <div className="playlists-item-text">
                                                 <h4>
                                                     {playlist.name}
