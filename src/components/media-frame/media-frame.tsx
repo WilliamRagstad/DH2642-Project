@@ -61,7 +61,7 @@ export const MediaFrame = ({
             
             
             <div className={`${service === 'youtube' ? 'media-video' : 'media-album'}`}>
-                {service === 'spotify' && currentlyPlaying.album ? <img className="no-select" alt="" src={currentlyPlaying.album.images[0].url} /> : ''}
+                {service === 'spotify' && currentlyPlaying.album.images ? <img className="no-select" alt="" src={currentlyPlaying.album.images[0].url} /> : ''}
                 <YouTube id="youtube-player" className={`media-youtube-player ${service !== 'youtube' ? 'hidden' : ''}`}
                     videoId={currentlyPlaying.service === 'youtube' ? currentlyPlaying.id : ''}
                     opts={ytOptions}
