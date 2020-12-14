@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Script from 'react-load-script';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import actions from '../../actions';
 import { validateSpotifyToken } from '../../helpers/spotify';
 import spotify from '../../spotify';
@@ -24,10 +24,11 @@ class SpotifyPlayer extends React.Component {
 	handleLoadSuccess() {
 		this.setState({ scriptLoaded: true });
 		const token = this.props.spotifyData.access_token;
-		validateSpotifyToken();
 		
-		spotify.setAccessToken(token);
-		spotify.getMyCurrentPlayingTrack().then(console.log);
+		validateSpotifyToken().then(() => {
+			spotify.setAccessToken(token);
+		});
+		// spotify.getMyCurrentPlayingTrack().then(console.log);
 		this.props.getCurrentSpotifyData();
 		this.props.getSpotifyPlaylists();
 
@@ -45,12 +46,10 @@ class SpotifyPlayer extends React.Component {
 		// Playback status updates
 		player.addListener('player_state_changed', state => {
 			setTimeout(() => {
-				if (state) {
-						console.log(state);
-					
+				if (state && (this.props.currentlyPlaying.service === 'spotify' || this.props.currentlyPlaying.service === null)) {					
 					if (state.position === 0) 
 						this.props.getCurrentSpotifyData();
-					this.props.setProgress(state.position);
+						this.props.setProgress(state.position);
 					if (state.paused && this.props.mediaData.isPlaying) {
 						this.props.setPaused();
 					} else if (!state.paused && !this.props.mediaData.isPlaying) {
@@ -144,6 +143,7 @@ const mapStateToProps = state => {
 		spotifyData: state.spotify,
 		accessToken: state.spotify.access_token,
 		mediaData: state.media,
+		currentlyPlaying: state.media.currentlyPlaying,
 	}
 }
 export default connect(mapStateToProps, actions)(SpotifyPlayer);

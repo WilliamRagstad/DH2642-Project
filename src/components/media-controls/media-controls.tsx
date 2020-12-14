@@ -2,17 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import SpotifyPlayer from './spotify-player';
 import { IconButton, Card, ProgressLinear, Subtitle2, Subtitle1 } from 'ui-neumorphism';
 import IState from '../../interfaces/redux/state';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import actions from '../../actions';
 import { PlayIcon, PauseIcon, NextIcon, PreviousIcon, ShuffleIcon, RepeatIcon, RepeatOneIcon } from '../../components/icons/icons';
 import spotify from '../../spotify';
 import { validateSpotifyToken } from '../../helpers/spotify';
 import { songLength } from '../../actions/search-actions';
 import spotifyIcon from '../../images/Spotify_Icon_RGB_Green.png';
+import youtubeIcon from '../../images/youtube_icon.png';
 import { ReactComponent as VolumeUpIcon } from "../../images/volume_up-24px.svg";
 import { ReactComponent as VolumeDownIcon } from "../../images/volume_down-24px.svg";
 import { ReactComponent as VolumeOffIcon } from "../../images/volume_off-24px.svg";
 import { ReactComponent as VolumeMuteIcon } from "../../images/volume_mute-24px.svg";
+import youtube from '../../youtube-player';
 
 const MediaControls = ({
     isLoggedIn,
@@ -43,25 +45,28 @@ const MediaControls = ({
 
     let barChanging = useRef(false);
 
-    // let spotifyPlayer = useRef(null);
-
-    // useEffect(() => {
-    //     console.log("Token changed to " + spotifyToken)
-    //     if (spotifyToken) spotifyPlayer.current = <SpotifyPlayer/>;
-    //     console.log(spotifyPlayer.current);
-    // }, [spotifyToken])
-
     useEffect(() => {
         const interval = setInterval(() => {
             if (isPlaying && !barChanging.current) {
-                setProgress(mediaProgress + 1000);
-                setBarProgress((mediaProgress / mediaDuration) * 100);
-                setProgressTime(songLength(mediaProgress));
-                setProgressTimeLeft("-" + songLength(mediaDuration - mediaProgress));
+                if (service === 'spotify') {
+                    setProgress(mediaProgress + 1000);
+                    setBarProgress((mediaProgress / mediaDuration) * 100);
+                    setProgressTime(songLength(mediaProgress));
+                    setProgressTimeLeft("-" + songLength(mediaDuration - mediaProgress));
+                }
+                if (service === 'youtube') {
+                    const ytTime = youtube.player.getMediaReferenceTime() * 1000;
+                    const ytDuration = mediaDuration;
+                    setProgress(ytTime)
+                    setBarProgress((ytTime / ytDuration) * 100);
+                    setProgressTime(songLength(ytTime));
+                    setProgressTimeLeft("-" + songLength(ytDuration - ytTime));
+                }
             }
         }, 1000);
 
         return () => clearInterval(interval);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying, service, mediaProgress, barChanging, mediaDuration]);
 
     useEffect(() => {
@@ -102,6 +107,7 @@ const MediaControls = ({
             progressbar.removeEventListener('mousedown', clickProgress);
             window.removeEventListener('mouseup', progressRelease);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mediaDuration]);
 
     useEffect(() => {
@@ -140,6 +146,7 @@ const MediaControls = ({
             volumeBar.removeEventListener('mousedown', clickVolume);
             window.removeEventListener('mouseup', volumeRelease);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const mute = () => {
@@ -196,25 +203,26 @@ const MediaControls = ({
                 return;
         }
     }
-    const getCurrentMediaData = (service) => {
-        switch (service) {
-            case 'spotify':
-                getCurrentSpotifyData();
-                break;
-            default:
-                console.error('Invalid service.');
-                return;
-        }
-    }
+    // const getCurrentMediaData = (service) => {
+    //     switch (service) {
+    //         case 'spotify':
+    //             getCurrentSpotifyData();
+    //             break;
+    //         default:
+    //             console.error('Invalid service.');
+    //             return;
+    //     }
+    // }
 
     return (
         <React.Fragment>
             {isLoggedIn && isConnectedToSpotify && <SpotifyPlayer />}
             <Card className="media-controls fill-element flex-parent">
                 <div className="media-controls-left flex-parent flex-align-center">
+                    <img className="service-icon" src={(service === 'spotify') ? spotifyIcon : (service === 'youtube' ? youtubeIcon : '')} alt="" height="16px" />
                     <div>
                         <Subtitle1 className="flex-parent flex-align-center">
-                            {(service === 'spotify') && <img src={spotifyIcon} alt="" height="16px" />}&nbsp;
+                           
                             {mediaData.currentlyPlaying.title}
                         </Subtitle1>
 

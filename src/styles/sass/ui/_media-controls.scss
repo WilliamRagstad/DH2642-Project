@@ -1,8 +1,12 @@
 .media-controls {
-    padding: 8px 2%;
+    padding: 8px 1%;
 
     &-left {
         justify-content: flex-start;
+
+        .service-icon {
+            margin: 5px;
+        }
     }
 
     &-right {

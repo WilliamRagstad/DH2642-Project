@@ -15,7 +15,8 @@ function createItem(title, artist, album, length) {
 const PlaylistsView = ({
     connectedToSpotify,
     spotifyPlaylists,
-    getSpotifyPlaylists
+    getSpotifyPlaylists,
+    playContext
 }) => {
     const headers = [
         { text: 'Title', align: 'left', value: 'title' },
@@ -89,8 +90,17 @@ const PlaylistsView = ({
                                 </Link>
                             </div>
                             <Divider dense />
+                            
                             <div className="playlists-preview-container playlists-items">
+                                
                             </div>
+                            <Button onClick={() => {
+                                playContext('youtube', {videoId: 'dQw4w9WgXcQ'})
+                            }}>Test video 1</Button>
+                            &nbsp;&nbsp;
+                            <Button onClick={() => {
+                                playContext('youtube', {videoId: 'kJQP7kiw5Fk'})
+                            }}>Test video 2</Button>
                         </div> : ''}
 
                         {/* <Table className="float-item" items={items} headers={headers}/> */}
