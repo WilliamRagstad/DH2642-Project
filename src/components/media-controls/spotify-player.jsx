@@ -46,7 +46,7 @@ class SpotifyPlayer extends React.Component {
 		// Playback status updates
 		player.addListener('player_state_changed', state => {
 			setTimeout(() => {
-				if (state && (this.props.currentlyPlaying.service === 'spotify' || this.props.currentlyPlaying.service === null)) {					
+				if (state && (this.props.currentlyPlaying.service === 'spotify' || !this.props.currentlyPlaying.service)) {					
 					if (state.position === 0) 
 						this.props.getCurrentSpotifyData();
 						this.props.setProgress(state.position);
