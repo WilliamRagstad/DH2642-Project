@@ -40,7 +40,7 @@ const LyricsView = ({
             <Card className="view-card flex-parent flex-column float-container" inset rounded>
                 <CardHeader>Lyrics</CardHeader>
                 <div className="flex-parent flex-align-center lyrics-search-form" spellCheck="false">
-                    <Button onClick={() => getCurrentLyrics()} depressed active={sameAsPlaying} disabled={!isPlaying}>Currently playing</Button>
+                    <Button onClick={() => getCurrentLyrics()} depressed active={sameAsPlaying} disabled={!currentForeignId}>Currently playing</Button>
                     <span>OR</span>
                     <form autoComplete="off" onSubmit={e => {
                         e.preventDefault();
