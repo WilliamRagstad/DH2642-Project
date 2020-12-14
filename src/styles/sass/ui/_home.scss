@@ -1,6 +1,7 @@
 .home-view-card {
 	height: 100%;
 	overflow-y: auto;
+	scroll-behavior: smooth;
 }
 
 .home-container {
@@ -9,32 +10,32 @@
 	overflow-y: hidden;
 }
 
-.page-container {
-	margin-left: 10px;
-	margin-top: 10px;
-}
+.home-view-card {
 
-.home-view-card * p,
-ul {
-	margin-bottom: 40px;
-}
+	* p,
+	ul {
+		margin-bottom: 40px;
+	}
 
-.home-view-card * p a {
-	color: var(--primary);
-}
+	* ul {
+		margin-left: 34px;
+	}
 
-.home-view-card * p a:hover {
-	color: var(--primary-dark);
-}
+	* p a {
+		color: var(--primary);
 
-.home-view-card * ul {
-	margin-left: 34px;
-}
+		&:hover {
+			color: var(--primary-dark);
+		}
+	}
 
-.home-view-card-header {
-	text-align: center;
-}
+	.home-view-card-header {
+		text-align: center;
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
 
-.home-img {
-	height: 200px;
+	.home-img {
+		height: 200px;
+	}
 }
