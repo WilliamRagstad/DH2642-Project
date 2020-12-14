@@ -1,1 +1,52 @@
+.home-view-card {
+  height: 100%;
+  overflow-y: auto;
+}
 
+.home-container {
+  padding: 10px;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.page-container {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.page-container h3 {
+  text-decoration: underline;
+}
+
+.page-container p {
+  margin-left: 5px;
+}
+
+.home-view-card * h2 {
+  text-decoration: underline;
+}
+
+.home-view-card * p,
+ul {
+  margin-bottom: 20px;
+}
+
+.home-view-card * p a {
+  color: #0366d6;
+}
+
+.home-view-card * p a:hover {
+  text-decoration: underline;
+}
+
+.home-view-card * ul {
+  margin-left: 25px;
+}
+
+.home-view-card-header {
+  text-align: center;
+}
+
+.home-img {
+  height: 200px;
+}
