@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, CardContent, CardHeader, ProgressLinear, Table, TextField, ToggleButton, ToggleButtonGroup, IconButton, Caption } from 'ui-neumorphism';
+import { Button, Card, CardHeader, ProgressLinear, TextField, ToggleButton, ToggleButtonGroup, IconButton, Caption } from 'ui-neumorphism';
 import actions from '../../../actions';
 import { connect, useSelector } from 'react-redux';
 import spotifyIcon from '../../../images/Spotify_Icon_RGB_Green.png';
@@ -20,12 +20,6 @@ const SearchView = ({
 }) => {
     const [query, setQuery] = useState("");
 
-    const headers = [
-        { text: 'Title', align: 'left', value: 'title' },
-        { text: 'Artist', align: 'right', value: 'artist' },
-        { text: 'Album', align: 'right', value: 'album' },
-        { text: 'Length', align: 'right', value: 'length' }
-    ]
 
     const [spotifyConnected, youtubeConnected] = useSelector((state: IState) => [state.spotify.connected, true]);
 
