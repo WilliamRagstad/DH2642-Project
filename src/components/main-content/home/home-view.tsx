@@ -11,8 +11,6 @@ const HomeView = () => {
 					<Card className="home-view-card float-item">
 						<CardHeader className="home-view-card-header">
 							<img className="home-img" src={soundbundleIcon} alt={""} />
-							<br />
-							<br />
 							<H3>SoundBundle</H3>
 							<Body1>A streaming platform for collecting music from various sources</Body1>
 						</CardHeader>
