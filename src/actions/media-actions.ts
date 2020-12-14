@@ -1,5 +1,6 @@
 import spotify from '../spotify';
 import { validateSpotifyToken } from '../helpers/spotify';
+import youtube from '../youtube-player';
 
 export const setSpotifyDeviceId = (id: string) => {
     return {
@@ -77,16 +78,22 @@ export const toggleRepeat = (service: string, repeat: number) => {
         
     }
 }
-export const seekMedia = (progress: number) => {
+export const seekMedia = (progressMS: number) => {
     return (dispatch, getState) => {
         const state = getState();
         const service = state.media.currentlyPlaying.service;
         switch (service) {
             case 'spotify':
                 validateSpotifyToken().then(() => {
-                    spotify.seek(progress)
+                    spotify.seek(progressMS)
                         .catch(console.error);
                 })
+                break;
+            case 'youtube':
+                if (youtube.player) {
+                    youtube.player.seekTo(progressMS / 1000);
+                    dispatch({type: 'SET_PROGRESS'})
+                }
                 break;
             default:
                 console.error('Invalid service.');
@@ -105,6 +112,18 @@ export const pausePlay = (service: string) => {
                     else spotify.play().then(() => dispatch({type: 'MEDIA_PLAY'})).catch(handleSpotifyError)
                 }).catch(console.error);
                 break;
+            case 'youtube':
+                if (youtube.player) {
+                    if (isPlaying) {
+                        youtube.player.pauseVideo();
+                        dispatch({type: 'MEDIA_PAUSE'});
+                    }
+                    else {
+                        youtube.player.playVideo();
+                        dispatch({type: 'MEDIA_PLAY'});
+                    }
+                }
+                break;
             default:
                 console.error('Invalid service.');
                 return;
@@ -112,9 +131,17 @@ export const pausePlay = (service: string) => {
     }
 }
 
-export const playContext = (service: string, {context = null, uris = null, offset = null}) => {
+export const playContext = (service: string, {
+    context = null,
+    uris = null,
+    offset = null,
+    videoId = null
+}) => {
     return (dispatch, getState) => {
-        console.log(context, uris, offset)
+        const state = getState()
+        const isPlaying = state.media.isPlaying;
+        const currentService = state.media.currentlyPlaying.service;
+        
         switch (service) {
             case 'spotify':
                 validateSpotifyToken().then(() => {
@@ -133,14 +160,42 @@ export const playContext = (service: string, {context = null, uris = null, offse
                         console.log(options);
                         spotify.play(options)
                         .then(() => {
+                            dispatch({type: 'SET_CURRENT_MEDIA', payload: {service: 'spotify'}})
                             console.log('Started playing ' + context + ' on Spotify');
                         })
                         .catch(handleSpotifyError);
                     }
                 }).catch(console.error);
-                break;        
+                break;
+            case 'youtube':
+                if (videoId) {
+                    let data = {
+                        service: 'youtube',
+                        id: videoId,
+                    }
+                    dispatch({type: 'SET_CURRENT_MEDIA', payload: data});
+                    dispatch({type: 'MEDIA_PLAY'});
+                    youtube.player.playVideo();
+                }
+                break;
             default:
                 break;
+        }
+        if (isPlaying && currentService !== service) {
+            switch (currentService) {
+                case 'spotify':
+                    validateSpotifyToken().then(() => {
+                        spotify.pause().then(() => console.log('Paused Spotify'))
+                        .catch(handleSpotifyError);
+                    })
+                    .catch(console.error);
+                    break;
+                case 'youtube':
+                    youtube.player.stopVideo();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
