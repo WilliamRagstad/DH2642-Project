@@ -10,10 +10,11 @@ const LyricsView = ({
     isLoading,
     lyricsError,
     searchResults,
+    currentForeignId,
+    currentlyPlaying,
     getCurrentLyrics,
     getLyricsFromId,
     searchLyrics,
-    currentForeignId
 }) => {
     const [query, setQuery] = useState("");
     const [cachedForeignId, setCachedForeignId] = useState("");
@@ -21,11 +22,24 @@ const LyricsView = ({
 
     useEffect(() => {
         if (currentForeignId !== cachedForeignId && sameAsPlaying) {
-            getCurrentLyrics();
-            setCachedForeignId(currentForeignId);
+            switch (currentlyPlaying.service) {
+                case 'spotify':
+                    getCurrentLyrics();
+                    setCachedForeignId(currentForeignId);
+                    break;
+            
+                default:
+                    setQuery(currentlyPlaying.title);
+                    if (query) searchLyrics(query);
+                    console.log("hello")
+                    break;
+            }
+            if (currentlyPlaying.service === 'spotify') {
+                
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentForeignId])
+    }, [currentlyPlaying.id])
 
     const {
         id,
@@ -46,7 +60,7 @@ const LyricsView = ({
                         e.preventDefault();
                         if (query) searchLyrics(query);
                     }}>
-                        <TextField bordered placeholder="Search for song..." className="lyrics-search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text"></TextField>
+                        <TextField bordered placeholder="Search for song..." className="lyrics-search-field" hideExtra onInput={e => setQuery((e.target as HTMLInputElement).value.trim())} type="text" value={query}></TextField>
                     </form>
                     <Button onClick={() => {
                         if (query) searchLyrics(query);
@@ -97,7 +111,8 @@ const mapStateToProps = state => {
         isLoading: state.lyrics.isLoading,
         lyricsError: state.lyrics.lyricsError,
         searchResults: state.lyrics.searchResults,
-        currentForeignId: state.media.currentlyPlaying.id
+        currentForeignId: state.media.currentlyPlaying.id,
+        currentlyPlaying: state.media.currentlyPlaying
     }
 }
 
