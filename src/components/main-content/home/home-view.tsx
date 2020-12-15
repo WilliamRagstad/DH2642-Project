@@ -46,7 +46,7 @@ const HomeView = () => {
 								<li>Connect to your favorite music platforms</li>
 								<li>Modern and minimalistic design</li>
 								<li>High usability</li>
-								<li>Watch <a href="http://shorturl.at/fDJR5" target="_blank">our demonstration video</a></li>
+								<li>Watch <a rel="noreferrer" href="http://shorturl.at/fDJR5" target="_blank">our demonstration video</a></li>
 							</ul>
 
 							<H4>Pages</H4>
