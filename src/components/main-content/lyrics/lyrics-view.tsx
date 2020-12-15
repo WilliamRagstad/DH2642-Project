@@ -15,6 +15,7 @@ const LyricsView = ({
     getCurrentLyrics,
     getLyricsFromId,
     searchLyrics,
+    resetLyrics
 }) => {
     const [query, setQuery] = useState("");
     const [cachedForeignId, setCachedForeignId] = useState("");
@@ -33,9 +34,6 @@ const LyricsView = ({
                     if (query) searchLyrics(query);
                     console.log("hello")
                     break;
-            }
-            if (currentlyPlaying.service === 'spotify') {
-                
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

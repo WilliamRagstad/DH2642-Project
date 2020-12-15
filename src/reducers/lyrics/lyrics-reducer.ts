@@ -66,11 +66,19 @@ const lyricsReducer = (state = initialState, action : IAction) => {
             };
             return newState;
         case 'HIDE_LYRICS_ERROR':
-                newState = {
-                    ...state,
-                    lyricsError: null
-                };
-                return newState;
+            newState = {
+                ...state,
+                lyricsError: null
+            };
+            return newState;
+        case 'LYRICS_RESET':
+            newState = {
+                currentLyrics: {
+                    ...initialState.currentLyrics
+                },
+                searchResults: initialState.searchResults
+            };
+            return newState;
         default:
             return state;
     }

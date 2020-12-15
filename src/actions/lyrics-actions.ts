@@ -8,6 +8,7 @@ export const getCurrentLyrics = () => {
     return (dispatch, getState) => {
         const state = getState();
         const query = state.media.currentlyPlaying.title + " " + state.media.currentlyPlaying.artists[0].name;
+        dispatch({ type: 'LYRICS_RESET'});
         dispatch({ type: 'SET_LYRICS_LOADING' });
         dispatch({ type: 'SET_LYRICS_SAME_AS_PLAYING', payload: true });
         songsClient.search(query).then(songs => {
@@ -41,6 +42,7 @@ export const getCurrentLyrics = () => {
 }
 export const getLyricsFromId = (id) => {
     return async (dispatch, getState) => {
+        dispatch({ type: 'LYRICS_RESET'});
         dispatch({ type: 'SET_LYRICS_LOADING' });
         dispatch({ type: 'SET_LYRICS_SAME_AS_PLAYING', payload: false });
         const result: Song = await songsClient.get(id).catch(console.error) as Song;
@@ -66,6 +68,7 @@ export const getLyricsFromId = (id) => {
 
 export const searchLyrics = (query) => {
     return async (dispatch, getState) => {
+        dispatch({ type: 'LYRICS_RESET'});
         dispatch({ type: 'SET_LYRICS_LOADING' });
         dispatch({ type: 'SET_LYRICS_SAME_AS_PLAYING', payload: false });
         const songs = await songsClient.search(query).then(result => {
@@ -89,5 +92,11 @@ export const searchLyrics = (query) => {
             dispatch({ type: 'SET_LYRICS_SEARCH_RESULTS', payload: searchResults })
         }
         else dispatch({ type: 'LYRICS_ERROR', payload: "No results found. Check spelling and try again." });
+    }
+}
+
+export const resetLyrics = () => {
+    return {
+        type: 'LYRICS_RESET',
     }
 }
