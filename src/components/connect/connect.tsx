@@ -45,14 +45,12 @@ const Connect = ({ match, props, location }) => {
                     })
                         .then(response => {
                             if (response.status !== 200) {
-                                console.log(response);
+                                // console.log(response);
                                 throw new Error("HTTP error: " + response.status);
                             }
-                            console.log(response);
                             return response.data;
                         })
                         .then(data => {
-                            console.log(data);
                             spotify.setAccessToken(data.access_token);
                             data.retrieved_at = Math.round(Date.now() / 1000);
                             // Save to Cloud Firestore

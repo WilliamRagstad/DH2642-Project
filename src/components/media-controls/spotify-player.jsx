@@ -89,7 +89,7 @@ class SpotifyPlayer extends React.Component {
 
 		// Ready
 		player.addListener('ready', ({ device_id }) => {
-			console.log('Ready with Device ID', device_id);
+			console.log('Spotify device with ID', device_id, 'ready');
 			this.props.setSpotifyDeviceId(device_id);
 			setTimeout(() => {
 				spotify.transferMyPlayback([device_id]);
@@ -98,7 +98,7 @@ class SpotifyPlayer extends React.Component {
 
 		// Not Ready
 		player.addListener('not_ready', ({ device_id }) => {
-			console.log('Device ID has gone offline', device_id);
+			console.log('Spotify device with ID', device_id, 'has gone offline');
 		});
 
 		// Connect to the player!
@@ -114,17 +114,17 @@ class SpotifyPlayer extends React.Component {
 
 	handleScriptCreate() {
 		this.setState({ scriptLoaded: false });
-		console.log("Script created");
+		// console.log("Script created");
 	}
 
 	handleScriptError() {
 		this.setState({ scriptError: true });
-		console.log("Script error");
+		// console.log("Script error");
 	}
 
 	handleScriptLoad() {
 		this.setState({ scriptLoaded: true });
-		console.log("Script loaded");
+		// console.log("Script loaded");
 	}
 
 	render() {

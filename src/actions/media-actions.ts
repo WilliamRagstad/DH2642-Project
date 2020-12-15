@@ -157,7 +157,7 @@ export const playContext = (service: string, {
                                 options.uris.push('spotify:' + uri)
                             });
                         }
-                        console.log(options);
+                        // console.log(options);
                         spotify.play(options)
                         .then(() => {
                             dispatch({type: 'SET_CURRENT_MEDIA', payload: {service: 'spotify'}})
@@ -283,7 +283,7 @@ export const getSpotifyPlaylists = () => {
                     playlists.push(playlist);
                 });
                 dispatch({type: 'SET_SPOTIFY_PLAYLISTS', payload: playlists})
-                console.log(data);
+                // console.log(data);
             })
             .catch(console.error);
         })
@@ -293,7 +293,7 @@ export const getSpotifyPlaylist = (id: string) => {
     return (dispatch, getState) => {
         validateSpotifyToken().then(() => {
             spotify.getPlaylist(id).then((data: any) => {
-                console.log(data);
+                // console.log(data);
                 let tracks = [];
                 let totalDuration = 0;
                 data.tracks.items.forEach(item => {

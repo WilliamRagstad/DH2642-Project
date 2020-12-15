@@ -29,11 +29,11 @@ export const MediaFrame = ({
     const ytOnReady = (event) => {
         youtube.setPlayer(event.target);
         console.log("YouTube player ready");
-        console.log(event.target);
+        // console.log(event.target);
         if (isPlaying) youtube.player.playVideo();
     }
     const ytOnEnd = (event) => {
-        console.log("Video ended");
+        // console.log("Video ended");
         if (isPlaying && currentlyPlaying.repeat === 0) {
             pausePlay(service);
         }
