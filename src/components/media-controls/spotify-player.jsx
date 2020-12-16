@@ -80,9 +80,9 @@ class SpotifyPlayer extends React.Component {
 						this.props.setCurrentMedia(trackData);
 					}
 				}
-				else if (state === null) {
-					spotify.transferMyPlayback([this.props.mediaData.spotifyDeviceId]);
-				}
+				// else if (state === null) {
+				// 	spotify.transferMyPlayback([this.props.mediaData.spotifyDeviceId]);
+				// }
 				
 			}, 500);
 		});
