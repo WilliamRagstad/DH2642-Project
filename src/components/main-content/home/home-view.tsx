@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, Divider, H3, H4, H5, Body1, Subtitle1 } from 'ui-neumorphism';
+import { Card, CardContent, CardHeader, Divider, H3, H4, H5, Body1 } from 'ui-neumorphism';
 import soundbundleIcon from '../../../images/soundBundle.png';
-import YouTube from 'react-youtube';
 
 const HomeView = () => {
 	return (
@@ -24,7 +23,7 @@ const HomeView = () => {
                                 It is an neumorphic web platform for searching and listening to music
                                 from various sources with full support for lyrics.
                                 <br /><br />
-                                Read more in our <a href="https://docs.google.com/document/d/1utB0_hyB3Sd4W2NWbWYI2HrTHzZCfNOXKaQLORdG7q4/edit?usp=sharing" target="_blank">project specification</a>
+                                Read more in our <a rel="noreferrer" href="https://docs.google.com/document/d/1utB0_hyB3Sd4W2NWbWYI2HrTHzZCfNOXKaQLORdG7q4/edit?usp=sharing" target="_blank">project specification</a>
 								<br /><br />
 								Now when we've gotten to know each other a bit more, let's take a closer look at how you can <a href="#get-started">get started</a> in the best way. <em>Good luck!</em>
 							</Body1>
@@ -46,7 +45,7 @@ const HomeView = () => {
 								<li>Connect to your favorite music platforms</li>
 								<li>Modern and minimalistic design</li>
 								<li>High usability</li>
-								<li>Watch <a href="http://shorturl.at/fDJR5" target="_blank">our demonstration video</a></li>
+								<li>Watch <a rel="noreferrer" href="http://shorturl.at/fDJR5" target="_blank">our demonstration video</a></li>
 							</ul>
 
 							<H4>Pages</H4>

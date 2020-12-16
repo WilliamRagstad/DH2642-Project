@@ -67,7 +67,7 @@ const SettingsView = () => {
                     <Tab onClick={() => setActiveTab(0)}>Preferences</Tab>
                     <Tab onClick={() => setActiveTab(1)}>Services</Tab>
                     <Tab onClick={() => setActiveTab(2)}>Account</Tab>
-                    <Tab onClick={() => setActiveTab(3)}>Privacy</Tab>
+                    {/*<Tab onClick={() => setActiveTab(3)}>Privacy</Tab>*/}
                 </Tabs>
                 <Divider dense className="card-margin" />
                 <TabItems className="tab flex-child" value={activeTab} style={{ height: "70vh" }}>
@@ -75,13 +75,13 @@ const SettingsView = () => {
                         <Card className="float-item">
                             <CardHeader>Preferences</CardHeader>
                             <CardContent>
-                                <div className="setting-separated">
+                                {/*<div className="setting-separated">
                                     Select language
                                     <RadioGroup vertical value={current_ui.language || 'en'} color='var(--primary)' className="radio-group" onChange={e => applyLanguage(e.value, current_ui)}>
                                         <Radio value='en' label='English' />
                                         <Radio value='se' label='Swedish' />
                                     </RadioGroup>
-                                </div>
+                                </div>*/}
                                 <div className="setting-separated">
                                     Dark theme
                                     <Switch color='var(--primary)' checked={current_ui.theme.dark} onClick={e => applyThemeDark(e.target.checked, current_ui)} />
@@ -134,15 +134,15 @@ const SettingsView = () => {
                                 <Button rounded onClick={() => dispatch(signOut())}>Sign out</Button>
                             </CardContent>
                         </Card>
-                        <Card className="float-item">
+                        {/*<Card className="float-item">
                             <CardHeader>Access</CardHeader>
-                        </Card>
+                        </Card>*/}
                     </TabItem>
-                    <TabItem className="tab-item float-container">
+                    {/*<TabItem className="tab-item float-container">
                         <Card className="float-item">
                             <CardHeader>Privacy Settings</CardHeader>
                         </Card>
-                    </TabItem>
+                    </TabItem>*/}
                 </TabItems>
             </Card>
         </React.Fragment>
