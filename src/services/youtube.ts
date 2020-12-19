@@ -17,7 +17,6 @@ class YouTubeService implements IServiceWrapper {
             q: query,
             maxResults: limit
         } as any)).then(r => r.json()).then(data => {
-            console.log(data);
             let searchResults = [] as ITrack[];
             data.items.forEach(video => {
                 searchResults.push({
