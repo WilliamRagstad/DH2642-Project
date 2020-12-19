@@ -24,7 +24,7 @@ class YouTubeService implements IServiceWrapper {
                     title: video.snippet.title,
                     artist: video.snippet.channelTitle,
                     album: video.snippet.thumbnails.default,
-                    length: songLength(0), // https://stackoverflow.com/a/38348286/5698805
+                    length: songLength(Math.random() * 200000 + 100000), // https://stackoverflow.com/a/38348286/5698805
                     albumArtUrl: video.snippet.thumbnails.high,
                     service: 'youtube'
                 });
