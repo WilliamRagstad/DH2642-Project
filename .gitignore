@@ -33,3 +33,9 @@ tsconfig.json
 yarn.lock
 package.json
 package-lock.json
+src/credentials.json
+src/services/youtube-credentials.ts
+src/services/genius-config.ts
+src/services/spotify-config.ts
+src/genius-config.ts
+src/spotify-config.ts
