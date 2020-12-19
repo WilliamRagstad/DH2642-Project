@@ -31,6 +31,7 @@ const searchReducer = (state = initialState, action: IAction) => {
         case 'SET_SEARCH_LOADING':
             newState = {
                 ...state,
+                searchError: null,
                 isLoading: true,
             };
             return newState;
