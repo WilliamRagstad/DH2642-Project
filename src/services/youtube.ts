@@ -10,7 +10,7 @@ class YouTubeService implements IServiceWrapper {
     }
 
     // https://developers.google.com/youtube/v3/docs/search/list
-    Search(dispatch: any, query: string, limit: number) {
+    Search(dispatch: any, query: string, limit: number, onDone: () => void) {
         fetch(this.endpoint + new URLSearchParams({
             part: encodeURI(['snippet', 'id'] as any),
             key: this.apiKey,
@@ -30,7 +30,11 @@ class YouTubeService implements IServiceWrapper {
                 });
             });
             dispatch({ type: 'ADD_SEARCH_RESULTS', payload: searchResults });
-        }).catch(console.error)
+            onDone()
+        }).catch(e => {
+            console.error(e)
+            onDone()
+        })
     }
 
 }

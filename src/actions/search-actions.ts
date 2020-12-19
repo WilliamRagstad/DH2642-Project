@@ -7,9 +7,14 @@ export const searchTrack = (services: SearchService, query: string) => {
             dispatch({ type: 'SEARCH_ERROR', payload: "Invalid service, try again." });
             return;
         }
+        let servicesRemaining = 0;
+        const serviceDone = () => {
+            servicesRemaining--;
+            if (servicesRemaining === 0) dispatch({ type: 'SEARCH_SUCCESS' });
+        }
         dispatch({ type: 'SET_SEARCH_LOADING' });
         dispatch({ type: 'CLEAR_SEARCH_RESULTS' });
-        if (services & SearchService.Spotify) ServiceProvider.Spotify.Search(dispatch, query, 10);
-        if (services & SearchService.YouTube) ServiceProvider.YouTube.Search(dispatch, query, 10);
+        if (services & SearchService.Spotify) { servicesRemaining++; ServiceProvider.Spotify.Search(dispatch, query, 10, serviceDone); }
+        if (services & SearchService.YouTube) { servicesRemaining++; ServiceProvider.YouTube.Search(dispatch, query, 10, serviceDone); }
     }
 }
