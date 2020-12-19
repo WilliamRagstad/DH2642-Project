@@ -3,5 +3,5 @@ export function insureCrypto() {
 }
 
 export function insureHTTPS() {
-    if (!window.location.host.includes('localhost')) window.location.replace(window.location.href.replace('http:', 'https:'))
+    if (!window.location.host.includes('localhost') && window.location.protocol === 'http:') window.location.replace(window.location.href.replace('http:', 'https:'))
 }
