@@ -41,17 +41,27 @@ SoundBundle is our **DH2642 HT20-1 Interaktionsprogrammering och dynamiska webbe
 
 ### Search
 
+Here you can search for songs from various sources, just choose a service and input a query to search.
+
 ![Search](src/images/screenshots/search.png)
 
 ### Playlists
+
+This is where you can view your playlists from different services and also make playlists mixing tracks from different services into one.
 
 ![Playlists](src/images/screenshots/playlists.png)
 
 ### Lyrics
 
+This page is where you can find lyrics for songs. You can either view lyrics for the song you are currently playing or search for a different songs lyrics.
+
 ![Lyrics](src/images/screenshots/lyrics.png)
 
-### Settings Dark
+### Settings
+
+Here you can change settings for the website. You can find visual settings and user settings here, this is also where you connect to services such as Spotify. 
+
+<b>IMPORTANT</b>: You will need a Spotify premium account to be able to connect to Spotify.
 
 ![Settings Dark](src/images/screenshots/settings_1.png)
 
