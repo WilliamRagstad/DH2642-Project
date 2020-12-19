@@ -13,6 +13,7 @@ import { createFirestoreInstance } from 'redux-firestore';
 
 import { LocationCache } from './lavastore';
 import Loaders from './components/loaders/loaders';
+import { insureHTTPS } from './helpers/http';
 
 const rrfProps = {
 	firebase,
@@ -24,7 +25,7 @@ const rrfProps = {
 	createFirestoreInstance
 }
 
-if (!window.location.host.includes('localhost') && window.location.protocol === 'http:') window.location.replace(window.location.href.replace('http:', 'https:'))
+insureHTTPS();
 
 LocationCache.Set({ to: window.location.href });
 

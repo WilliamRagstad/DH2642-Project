@@ -5,6 +5,7 @@ import { Button } from 'ui-neumorphism';
 import spotifyIcon from '../../images/Spotify_Icon_RGB_Green.png';
 import { LSDocument } from 'lavastore';
 import IState from '../../interfaces/redux/state';
+import { insureCrypto } from '../../helpers/http';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
@@ -19,6 +20,7 @@ const generateCodeVerifier = () => {
 const sha256 = plain => {
     const encoder = new TextEncoder();
     const data = encoder.encode(plain);
+    insureCrypto()
     return window.crypto.subtle.digest("SHA-256", data);
 }
 const base64urlencode = a => {
