@@ -9,11 +9,13 @@ import { IState, ITrack, SearchService } from '../../../interfaces';
 import { AppDocument } from '../../../lavastore';
 import { isString } from 'util';
 
-function searchServicesToArray(searchServices: SearchService) {
+function searchServicesToArray(searchServices: SearchService, spotifyConnected: boolean, youtubeConnected: boolean) {
     const results = []
     Object.entries(SearchService).forEach(([key, value]: [string, string]) => {
         if (!isNaN(Number(key)) && (searchServices & Number(key))) {
-            results.push(value.toLowerCase())
+            const s = value.toLocaleLowerCase();
+            if ((s === 'spotify' && spotifyConnected) ||
+                (s === 'youtube' && youtubeConnected)) results.push(value.toLowerCase())
         }
     })
     return results;
@@ -52,7 +54,7 @@ const SearchView = ({
 
                         <input type="submit" hidden />
                     </form>
-                    <ToggleButtonGroup multiple value={searchServicesToArray(searchServices)}>
+                    <ToggleButtonGroup multiple value={searchServicesToArray(searchServices, spotifyConnected, youtubeConnected)}>
                         <ToggleButton className="search-toggleButtons" value='spotify' disabled={!spotifyConnected} onClick={() => toggleService(SearchService.Spotify)}>
                             <img alt="" height="24px" src={spotifyIcon} />
                         </ToggleButton>
