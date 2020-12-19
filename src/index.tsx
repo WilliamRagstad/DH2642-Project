@@ -24,6 +24,8 @@ const rrfProps = {
 	createFirestoreInstance
 }
 
+if (!window.location.host.includes('localhost') && window.location.protocol === 'http:') window.location.replace(window.location.href.replace('http:', 'https:'))
+
 LocationCache.Set({ to: window.location.href });
 
 ReactDOM.render(
