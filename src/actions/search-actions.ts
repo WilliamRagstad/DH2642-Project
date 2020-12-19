@@ -9,8 +9,7 @@ export const searchTrack = (services: SearchService, query: string) => {
         }
         let servicesRemaining = 0;
         const serviceDone = () => {
-            servicesRemaining--;
-            if (servicesRemaining === 0) dispatch({ type: 'SEARCH_SUCCESS' });
+            if (--servicesRemaining === 0) dispatch({ type: 'SEARCH_SUCCESS' });
         }
         dispatch({ type: 'SET_SEARCH_LOADING' });
         dispatch({ type: 'CLEAR_SEARCH_RESULTS' });
