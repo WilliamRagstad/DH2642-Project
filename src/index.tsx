@@ -25,9 +25,8 @@ const rrfProps = {
 	createFirestoreInstance
 }
 
-insureHTTPS();
-
 LocationCache.Set({ to: window.location.href });
+insureHTTPS();
 
 ReactDOM.render(
 	<React.Fragment>
