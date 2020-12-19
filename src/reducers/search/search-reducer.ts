@@ -7,19 +7,25 @@ const initialState = {
     searchResults: []
 }
 
-const searchReducer = (state = initialState, action : IAction) => {
-    let newState : any;
-    switch(action.type) {
+const searchReducer = (state = initialState, action: IAction) => {
+    let newState: any;
+    switch (action.type) {
         case 'SET_SEARCH_QUERY':
             newState = {
                 ...state,
                 searchQuery: action.payload
             };
             return newState;
-        case 'SET_SEARCH_RESULTS':
+        case 'ADD_SEARCH_RESULTS':
             newState = {
                 ...state,
-                searchResults: action.payload
+                searchResults: [...state.searchResults, ...action.payload]
+            }
+            return newState;
+        case 'CLEAR_SEARCH_RESULTS':
+            newState = {
+                ...state,
+                searchResults: []
             }
             return newState;
         case 'SET_SEARCH_LOADING':

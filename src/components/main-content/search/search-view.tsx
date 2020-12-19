@@ -5,8 +5,19 @@ import { connect, useSelector } from 'react-redux';
 import spotifyIcon from '../../../images/Spotify_Icon_RGB_Green.png';
 import youtubeIcon from '../../../images/youtube_icon.png';
 import { PlayIcon, PauseIcon, TimeIcon } from '../../icons/icons';
-import { IState } from '../../../interfaces';
+import { IState, ITrack, SearchService } from '../../../interfaces';
 import { AppDocument } from '../../../lavastore';
+import { isString } from 'util';
+
+function searchServicesToArray(searchServices: SearchService) {
+    const results = []
+    Object.entries(SearchService).forEach(([key, value]: [string, string]) => {
+        if (!isNaN(Number(key)) && (searchServices & Number(key))) {
+            results.push(value.toLowerCase())
+        }
+    })
+    return results;
+}
 
 const SearchView = ({
     isLoading,
@@ -20,14 +31,11 @@ const SearchView = ({
 }) => {
     const [query, setQuery] = useState("");
 
-
     const [spotifyConnected, youtubeConnected] = useSelector((state: IState) => [state.spotify.connected, true]);
 
-    let searchServices = (AppDocument.DocumentPath("cache/search")?.Get() as any)?.services as string[] ?? [];
-    function toggleService(service: string) {
-        if (searchServices.includes(service)) searchServices = searchServices.filter(s => s !== service);
-        else searchServices = [...searchServices, service];
-
+    let searchServices = (AppDocument.DocumentPath("cache/search")?.Get() as any)?.services as SearchService ?? SearchService.None;
+    function toggleService(service: SearchService) {
+        searchServices ^= service; // XOR Toggles a bit in a byte
         AppDocument.SetPath("cache/search", { services: searchServices });
     }
 
@@ -44,11 +52,11 @@ const SearchView = ({
 
                         <input type="submit" hidden />
                     </form>
-                    <ToggleButtonGroup multiple value={searchServices}>
-                        <ToggleButton className="search-toggleButtons" value='spotify' disabled={!spotifyConnected} onClick={e => toggleService(e.value)}>
+                    <ToggleButtonGroup multiple value={searchServicesToArray(searchServices)}>
+                        <ToggleButton className="search-toggleButtons" value='spotify' disabled={!spotifyConnected} onClick={() => toggleService(SearchService.Spotify)}>
                             <img alt="" height="24px" src={spotifyIcon} />
                         </ToggleButton>
-                        <ToggleButton className="search-toggleButtons" value='youtube' disabled={!youtubeConnected} onClick={e => toggleService(e.value)}>
+                        <ToggleButton className="search-toggleButtons" value='youtube' disabled={!youtubeConnected} onClick={() => toggleService(SearchService.YouTube)}>
                             <img alt="" height="24px" src={youtubeIcon} />
                         </ToggleButton>
                     </ToggleButtonGroup>
@@ -67,16 +75,22 @@ const SearchView = ({
                         </div>
                         <div className="playlist-track-secondary"><Caption>Artist</Caption></div>
                         <div className="playlist-track-tertiary"><Caption>Album</Caption></div>
+                        <div className="playlist-track-quaternary"><Caption>Service</Caption></div>
                         <div className="playlist-track-duration">
                             <TimeIcon fill="var(--g-text-color-light" />
                         </div>
                     </div> : ''}
-                    {searchResults ? searchResults.map(track => {
+                    {searchResults ? searchResults.map((track: ITrack) => {
                         return (
-                            <div className={`playlist-track${track.id === currentlyPlaying.id && searchServices.includes(currentlyPlaying.service) ? ' playlist-track-active' : ''}`} key={track.id}>
+                            <div className={`playlist-track${track.id === currentlyPlaying.id ? ' playlist-track-active' : ''}`} key={track.id}>
                                 <div className="playlist-track-action">
                                     {track.id !== currentlyPlaying.id ?
-                                        <IconButton className="playlist-track-play-context" size="small" rounded onClick={() => playContext('spotify', { uris: [`track:${track.id}`] })}>
+                                        <IconButton className="playlist-track-play-context" size="small" rounded onClick={() => {
+                                            let data = {};
+                                            if (track.service === 'spotify') data = { uris: [`track:${track.id}`] };
+                                            else if (track.service === 'youtube') data = { videoId: track.id };
+                                            playContext(track.service, data)
+                                        }}>
                                             <PlayIcon fill='var(--g-text-color-light)' />
                                         </IconButton> :
                                         <IconButton className="playlist-track-pauseplay" size="small" rounded onClick={() => pausePlay(currentlyPlaying.service)}>
@@ -89,7 +103,10 @@ const SearchView = ({
                                 </div>
                                 <div className="playlist-track-title">{track.title}</div>
                                 <div className="playlist-track-secondary">{track.artist}</div>
-                                <div className="playlist-track-tertiary">{track.album}</div>
+                                <div className="playlist-track-tertiary">{typeof track.album === 'string' ? track.album : <img src={track.album.url} height="30" />}</div>
+                                <div className="playlist-track-quaternary">{
+                                    track.service === 'spotify' ? <img alt="" height="20px" src={spotifyIcon} /> : <img alt="" height="20px" src={youtubeIcon} />
+                                }</div>
                                 <div className="playlist-track-duration">{track.length}</div>
                             </div>
                         )

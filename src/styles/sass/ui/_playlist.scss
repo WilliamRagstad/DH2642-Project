@@ -137,7 +137,8 @@
         flex: 2;
     }
 
-    &-duration {
+    &-duration,
+    &-quaternary {
         flex: 0 0 50px;
         text-align: right;
     }

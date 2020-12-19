@@ -42,15 +42,15 @@ const PlaylistsView = ({
                             <div className="playlists-category-header">
                                 <img src={soundBundleIcon} alt="" height="24px" />
                                 <span className="playlists-category-title">SoundBundle Mixed Playlists</span>
-                                { false &&
-                                <Link to="/app/playlists/mixed">
-                                    <Button color="var(--primary)" text>Show All</Button>
-                                </Link>}
+                                {false &&
+                                    <Link to="/app/playlists/mixed">
+                                        <Button color="var(--primary)" text>Show All</Button>
+                                    </Link>}
                             </div>
                             <Divider dense />
                             Under construction.
                             <div className="playlists-preview-container">
-                                
+
                             </div>
 
                         </div>
@@ -61,9 +61,9 @@ const PlaylistsView = ({
                                     Spotify Playlists
                                 </span>
                                 {connectedToSpotify ?
-                                <Link to="/app/playlists/spotify">
-                                    <Button color="var(--primary)" text>Show All</Button>
-                                </Link> : ''}
+                                    <Link to="/app/playlists/spotify">
+                                        <Button color="var(--primary)" text>Show All</Button>
+                                    </Link> : ''}
                             </div>
                             <Divider dense />
                             {connectedToSpotify ? (spotifyPlaylists !== undefined && spotifyPlaylists.length > 0) ? (
@@ -91,22 +91,21 @@ const PlaylistsView = ({
                                 <span className="playlists-category-title">
                                     YouTube Playlists
                                 </span>
-                                { false &&
-                                <Link to="/app/playlists/youtube">
+                                { /* <Link to="/app/playlists/youtube">
                                     <Button color="var(--primary)" text>Show All</Button>
-                                </Link>}
+                        </Link> */ }
                             </div>
                             <Divider dense />
                             Under construction. Video player can be tested with these examples:
                             <div className="playlists-preview-container playlists-items">
-                                
+
                             </div>
                             <Button onClick={() => {
-                                playContext('youtube', {videoId: 'dQw4w9WgXcQ'})
+                                playContext('youtube', { videoId: 'dQw4w9WgXcQ' })
                             }}>Test video 1</Button>
                             &nbsp;&nbsp;
                             <Button onClick={() => {
-                                playContext('youtube', {videoId: 'kJQP7kiw5Fk'})
+                                playContext('youtube', { videoId: 'kJQP7kiw5Fk' })
                             }}>Test video 2</Button>
                         </div> : ''}
 

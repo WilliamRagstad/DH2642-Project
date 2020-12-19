@@ -45,7 +45,7 @@ const Playlists = ({
                         </div>
                     ) : ''}
                 </CardContent>
-            </div>
+            </div> 
             </Card>
         </React.Fragment>
     )

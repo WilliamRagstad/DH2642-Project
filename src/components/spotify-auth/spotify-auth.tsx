@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import config from '../../spotify-config';
+import config from '../../services/spotify-config';
 import { Button } from 'ui-neumorphism';
 import spotifyIcon from '../../images/Spotify_Icon_RGB_Green.png';
 import { LSDocument } from 'lavastore';

@@ -1,6 +1,6 @@
 import SongsClient from '../helpers/SongsClient';
 import Song from '../helpers/Song';
-import config from '../genius-config';
+import config from '../services/genius-config';
 const songsClient = new SongsClient(config.cilent_access_token);
 
 // CREATE HELPER FUNCTION TO REMOVE CODE DUPLICATION IF POSSIBLE

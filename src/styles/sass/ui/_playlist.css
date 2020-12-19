@@ -1,0 +1,153 @@
+.playlists-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.playlists-category {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.playlists-category-header {
+  display: flex;
+  align-items: center;
+}
+
+.playlists-category-header > * {
+  margin: 5px;
+}
+
+.playlists-category-title {
+  font-size: 20px;
+}
+
+.playlists-category .playlists-preview-container {
+  width: 100%;
+  max-height: 560px;
+  overflow-y: hidden;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.playlists-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.playlists-item {
+  flex: 0 0 200px;
+  height: 260px;
+  overflow: hidden;
+  transition: box-shadow .2s;
+  box-shadow: var(--box-shadow);
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.playlists-item > img {
+  height: 200px;
+  opacity: 0.8;
+}
+
+.playlists-item:active {
+  box-shadow: var(--box-shadow-inset);
+}
+
+.playlists-item-text {
+  padding: 0 10px;
+}
+
+.playlists-item-text h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlists-item-text p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-header {
+  display: flex;
+  align-items: center;
+}
+
+.playlist-header > *:not(:last-child) {
+  margin-right: 10px;
+}
+
+.playlist-list {
+  width: 100%;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.playlist-track {
+  display: flex;
+  margin: 0 5px;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.playlist-track:not(.playlist-track-captions) {
+  box-shadow: var(--box-shadow);
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.playlist-track > * {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px 5px;
+}
+
+.playlist-track-action {
+  width: 34px;
+  opacity: 0;
+  transition: opacity .1s;
+}
+
+.playlist-track-action:hover svg {
+  fill: var(--primary);
+}
+
+.playlist-track:hover .playlist-track-action {
+  opacity: 1;
+}
+
+.playlist-track-title {
+  flex: 3;
+}
+
+.playlist-track-secondary {
+  flex: 2;
+}
+
+.playlist-track-tertiary {
+  flex: 2;
+}
+
+.playlist-track-duration, .playlist-track-quaternary {
+  flex: 0 0 50px;
+  text-align: right;
+}
+
+.playlist-track.playlist-track-active {
+  box-shadow: var(--box-shadow-inset);
+  color: var(--primary);
+}
+
+@media screen and (max-width: 1420px) {
+  .playlist-track-tertiary {
+    display: none;
+    flex: 0 0 0;
+  }
+}

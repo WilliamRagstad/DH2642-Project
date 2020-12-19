@@ -7,7 +7,7 @@ import { connect } from '../../actions/connect-actions';
 
 import { saveFirestoreUserData } from '../../helpers/firebase';
 
-import spotifyConfig from '../../spotify-config';
+import spotifyConfig from '../../services/spotify-config';
 import { LSDocument } from 'lavastore';
 
 import axios from 'axios';

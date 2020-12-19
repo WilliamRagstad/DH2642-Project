@@ -6,7 +6,7 @@ import IState from '../../../interfaces/redux/state';
 import spotifyIcon from '../../../images/Spotify_Icon_RGB_Green.png';
 import youtubeIcon from '../../../images/youtube_icon.png';
 import { PlayIcon, PauseIcon, TimeIcon } from '../../icons/icons';
-import { songLength } from '../../../actions/search-actions';
+import { songLength } from '../../../helpers/spotify';
 
 const createItem = (title, artists, album, duration) => {
     return { title, artists, album, duration }
